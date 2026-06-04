@@ -58,6 +58,15 @@ export default function App() {
           <SideBtn active={page === 'cases'} onClick={() => setPage('cases')}>
             📋 All Cases
           </SideBtn>
+          {/* Link to Citizen Portal */}
+          <a
+            href={import.meta.env.VITE_CITIZEN_URL || '/citizen'}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition text-orange-300 hover:bg-teal-800 flex items-center gap-2"
+          >
+            🏠 Citizen Portal
+          </a>
         </nav>
         <div className="p-4 border-t border-teal-700 text-sm">
           <div className="text-teal-200 truncate">{user.name}</div>

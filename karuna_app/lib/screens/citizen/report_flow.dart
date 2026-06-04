@@ -5,6 +5,9 @@ import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:printing/printing.dart';
 import '../../providers/auth_provider.dart';
 import '../../providers/case_provider.dart';
 import '../../services/ai_service.dart';
@@ -36,6 +39,7 @@ class _ReportFlowState extends State<ReportFlow> {
   AiAnalysisResult? _analysis;
   bool _analyzing = false;
   String? _analyzeError;
+  int? _submittedCaseId;
 
   // Per-step detailed instructions state
   final Map<int, String?> _stepDetails = {};
@@ -151,10 +155,161 @@ class _ReportFlowState extends State<ReportFlow> {
     );
     if (!mounted) return;
     if (result != null) {
-      setState(() => _step = 3);
+      setState(() {
+        _submittedCaseId = result.id;
+        _step = 3;
+      });
     } else {
       _showSnack(cases.error ?? 'Failed to submit');
     }
+  }
+
+  Future<void> _downloadCertificate() async {
+    final auth = Provider.of<AuthProvider>(context, listen: false);
+    final name = auth.user?.name ?? 'Anonymous Compassionate Citizen';
+    final dateStr = DateTime.now().day.toString() + ' ' + 
+        _getMonthName(DateTime.now().month) + ' ' + 
+        DateTime.now().year.toString();
+        
+    final caseId = _submittedCaseId != null ? _submittedCaseId.toString() : 'N/A';
+
+    final pdf = pw.Document();
+
+    pdf.addPage(
+      pw.Page(
+        pageFormat: PdfPageFormat.a4.landscape,
+        margin: const pw.EdgeInsets.all(24),
+        build: (pw.Context context) {
+          return pw.Container(
+            decoration: pw.BoxDecoration(
+              color: PdfColors.white,
+              border: pw.Border.all(
+                color: PdfColor.fromHex('#D97706'), // Gold / Amber-600
+                width: 6,
+              ),
+            ),
+            padding: const pw.EdgeInsets.all(6),
+            child: pw.Container(
+              decoration: pw.BoxDecoration(
+                border: pw.Border.all(
+                  color: PdfColor.fromHex('#0F766E'), // Teal-700
+                  width: 1.5,
+                ),
+              ),
+              padding: const pw.EdgeInsets.all(24),
+              child: pw.Column(
+                mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                children: [
+                  pw.Column(
+                    children: [
+                      pw.Text(
+                        'CERTIFICATE OF APPRECIATION',
+                        style: pw.TextStyle(
+                          color: PdfColor.fromHex('#0F766E'),
+                          fontSize: 26,
+                          fontWeight: pw.FontWeight.bold,
+                        ),
+                      ),
+                      pw.SizedBox(height: 12),
+                      pw.Text(
+                        'THIS CERTIFICATE IS PROUDLY PRESENTED TO',
+                        style: pw.TextStyle(
+                          color: PdfColor.fromHex('#64748B'),
+                          fontSize: 10,
+                        ),
+                      ),
+                      pw.SizedBox(height: 18),
+                      pw.Text(
+                        name,
+                        style: pw.TextStyle(
+                          color: PdfColor.fromHex('#1E293B'),
+                          fontSize: 22,
+                          fontWeight: pw.FontWeight.bold,
+                        ),
+                      ),
+                      pw.Container(
+                        width: 250,
+                        height: 1.5,
+                        color: PdfColor.fromHex('#0F766E'),
+                        margin: const pw.EdgeInsets.symmetric(vertical: 4),
+                      ),
+                      pw.SizedBox(height: 18),
+                      pw.Padding(
+                        padding: const pw.EdgeInsets.symmetric(horizontal: 40),
+                        child: pw.Text(
+                          'For showing outstanding compassion, care, and prompt action in reporting an animal in distress to the Karuṇā Rescue Network. Your immediate support has directly contributed to saving a life and making the world a kinder place.',
+                          textAlign: pw.TextAlign.center,
+                          style: pw.TextStyle(
+                            color: PdfColor.fromHex('#475569'),
+                            fontSize: 11,
+                            lineSpacing: 4,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  pw.Row(
+                    mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                    children: [
+                      pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.start,
+                        children: [
+                          pw.Text(
+                            'CASE ID: $caseId',
+                            style: pw.TextStyle(
+                              color: PdfColor.fromHex('#0F766E'),
+                              fontWeight: pw.FontWeight.bold,
+                              fontSize: 10,
+                            ),
+                          ),
+                          pw.Text(
+                            'DATE: $dateStr',
+                            style: pw.TextStyle(
+                              color: PdfColor.fromHex('#475569'),
+                              fontSize: 9,
+                            ),
+                          ),
+                        ],
+                      ),
+                      pw.Column(
+                        children: [
+                          pw.Container(
+                            width: 100,
+                            height: 1,
+                            color: PdfColor.fromHex('#0F766E'),
+                          ),
+                          pw.SizedBox(height: 4),
+                          pw.Text(
+                            'Karuṇā Team Signatory',
+                            style: pw.TextStyle(
+                              color: PdfColor.fromHex('#475569'),
+                              fontSize: 9,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+
+    await Printing.layoutPdf(
+      onLayout: (PdfPageFormat format) async => pdf.save(),
+      name: 'Karuna_Certificate_$caseId.pdf',
+    );
+  }
+
+  String _getMonthName(int month) {
+    const months = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    return months[month - 1];
   }
 
   void _showSnack(String msg) {
@@ -887,6 +1042,18 @@ class _ReportFlowState extends State<ReportFlow> {
               _stepDetails.clear(); _stepLoading.clear();
             }),
             child: const Text('Report Another'),
+          ),
+          const SizedBox(height: 12),
+          ElevatedButton.icon(
+            onPressed: _downloadCertificate,
+            icon: const Icon(Icons.workspace_premium_outlined, size: 20),
+            label: const Text('Download Certificate 📜'),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.teal,
+              foregroundColor: Colors.white,
+              minimumSize: const Size(double.infinity, 48),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+            ),
           ),
           const SizedBox(height: 12),
           OutlinedButton(

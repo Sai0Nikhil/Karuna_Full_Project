@@ -1,4 +1,5 @@
-const BASE = 'http://localhost:8081/api';
+// Use env variable in production, fallback to localhost for dev
+const BASE = import.meta.env.VITE_API_URL || 'http://localhost:8081/api';
 
 function authHeaders(): Record<string, string> {
   const t = localStorage.getItem('token');

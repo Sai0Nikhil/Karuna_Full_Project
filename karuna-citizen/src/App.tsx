@@ -56,6 +56,15 @@ export default function App() {
             <NavBtn active={page === 'donate'} onClick={() => setPage('donate')}>Donate</NavBtn>
             <NavBtn active={page === 'adopt'} onClick={() => setPage('adopt')}>Adopt</NavBtn>
             {user && <NavBtn active={page === 'my-cases'} onClick={() => setPage('my-cases')}>My Cases</NavBtn>}
+            {/* NGO Portal Link */}
+            <a
+              href={import.meta.env.VITE_NGO_URL || '/ngo'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-1.5 rounded-md text-orange-600 border border-orange-300 hover:bg-orange-50 font-medium transition"
+            >
+              NGO Portal
+            </a>
             {user ? (
               <button onClick={doLogout} className="px-3 py-1.5 rounded-md text-slate-500 hover:bg-slate-100">
                 Logout ({user.name})

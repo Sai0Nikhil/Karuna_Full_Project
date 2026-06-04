@@ -13,6 +13,7 @@ class AppColors {
   static const Color dark       = Color(0xFF1E293D); // #1e293d main text
   static const Color gray       = Color(0xFF64748B); // #64748b subtext
   static const Color divider    = Color(0xFFE2E7F0); // #e2e7f0 divider/border
+  static const Color lightGray  = Color(0xFFE2E7F0); // alias for divider
   static const Color inputBg    = Color(0xFFF1F5F9);
   static const Color background = Color(0xFFF8FAFD); // #f8fafd page bg
   static const Color white      = Colors.white;

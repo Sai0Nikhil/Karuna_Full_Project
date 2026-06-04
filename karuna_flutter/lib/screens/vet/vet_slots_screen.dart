@@ -70,7 +70,7 @@ class VetSlotsScreen extends StatelessWidget {
             // Slots
             const Text('Available Slots', style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: AppColors.dark)),
             const SizedBox(height: 10),
-            ..._slots.map((slot) => _SlotCard(slot: slot)),
+            ..._slots.map((slot) => _SlotCard(time: slot)),
             const SizedBox(height: 20),
 
             // Booked appointments

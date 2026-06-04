@@ -46,6 +46,110 @@ export const ReportFlow: React.FC<Props> = ({ user, onNeedLogin }) => {
     }
   }, [imageDataUrl, locationLabel, description, user]);
 
+  const downloadCertificate = () => {
+    if (!result) return;
+    const jspdfModule = (window as any).jspdf;
+    if (!jspdfModule) {
+      alert('PDF library is loading, please try again.');
+      return;
+    }
+    const { jsPDF } = jspdfModule;
+    const doc = new jsPDF({
+      orientation: 'landscape',
+      unit: 'px',
+      format: [640, 480]
+    });
+
+    const name = user?.name || 'Anonymous Compassionate Citizen';
+    const dateStr = new Date().toLocaleDateString('en-IN', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+
+    // Draw background color
+    doc.setFillColor(248, 250, 253);
+    doc.rect(0, 0, 640, 480, 'F');
+
+    // Draw gold borders
+    doc.setDrawColor(217, 119, 6);
+    doc.setLineWidth(6);
+    doc.rect(20, 20, 600, 440);
+
+    doc.setDrawColor(15, 118, 110);
+    doc.setLineWidth(1.5);
+    doc.rect(26, 26, 588, 428);
+
+    // Title
+    doc.setTextColor(15, 118, 110);
+    doc.setFont('Helvetica', 'bold');
+    doc.setFontSize(26);
+    doc.text('CERTIFICATE OF APPRECIATION', 320, 75, { align: 'center' });
+
+    // Sub-title
+    doc.setTextColor(100, 116, 139);
+    doc.setFont('Helvetica', 'normal');
+    doc.setFontSize(12);
+    doc.text('THIS CERTIFICATE IS PROUDLY PRESENTED TO', 320, 110, { align: 'center' });
+
+    // Recipient Name
+    doc.setTextColor(30, 41, 59);
+    doc.setFont('Helvetica', 'bold');
+    doc.setFontSize(22);
+    doc.text(name, 320, 155, { align: 'center' });
+
+    // Inner underline for name
+    doc.setDrawColor(15, 118, 110);
+    doc.setLineWidth(1);
+    doc.line(180, 165, 460, 165);
+
+    // Appreciation Text
+    doc.setTextColor(71, 85, 105);
+    doc.setFont('Helvetica', 'normal');
+    doc.setFontSize(12);
+    const appreciationText = 
+      "For showing outstanding compassion, care, and prompt action in reporting " +
+      "an animal in distress to the Karuṇā Rescue Network. Your immediate support " +
+      "has directly contributed to saving a life and making the world a kinder place.";
+    const splitText = doc.splitTextToSize(appreciationText, 480);
+    doc.text(splitText, 320, 200, { align: 'center' });
+
+    // Details Box
+    doc.setFillColor(241, 245, 249);
+    doc.rect(80, 275, 480, 50, 'F');
+    doc.setDrawColor(226, 231, 240);
+    doc.rect(80, 275, 480, 50);
+
+    doc.setTextColor(100, 116, 139);
+    doc.setFontSize(10);
+    doc.text('CASE IDENTIFIER', 180, 292, { align: 'center' });
+    doc.text('DATE OF SUBMISSION', 440, 292, { align: 'center' });
+
+    doc.setTextColor(15, 118, 110);
+    doc.setFont('Helvetica', 'bold');
+    doc.setFontSize(11);
+    doc.text(`CASE #${result.id}`, 180, 312, { align: 'center' });
+    doc.text(dateStr, 440, 312, { align: 'center' });
+
+    // Signature Area
+    doc.setDrawColor(15, 118, 110);
+    doc.setLineWidth(1);
+    doc.line(260, 385, 380, 385);
+    
+    doc.setTextColor(100, 116, 139);
+    doc.setFont('Helvetica', 'normal');
+    doc.setFontSize(10);
+    doc.text('Karuṇā Team Signatory', 320, 398, { align: 'center' });
+
+    // Logo / Seal stamp
+    doc.setTextColor(217, 119, 6);
+    doc.setFont('Helvetica', 'bold');
+    doc.setFontSize(18);
+    doc.text('🐾', 320, 422, { align: 'center' });
+
+    doc.save(`Karuna_Certificate_${result.id}.pdf`);
+  };
+
   return (
     <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-md p-6 space-y-4">
       <h2 className="text-xl font-bold text-teal-800">Report an injured animal</h2>
@@ -79,9 +183,17 @@ export const ReportFlow: React.FC<Props> = ({ user, onNeedLogin }) => {
       </button>
 
       {result && (
-        <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-          <h3 className="font-semibold text-green-800">Report submitted ✓</h3>
-          <p className="text-sm text-green-700 mt-1">Case #{result.id} — {result.status}</p>
+        <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <h3 className="font-semibold text-green-800">Report submitted ✓</h3>
+            <p className="text-sm text-green-700 mt-1">Case #{result.id} — {result.status}</p>
+          </div>
+          <button
+            onClick={downloadCertificate}
+            className="bg-teal-600 text-white text-sm font-bold py-2 px-4 rounded-lg hover:bg-teal-700 transition whitespace-nowrap"
+          >
+            Download Certificate 📜
+          </button>
         </div>
       )}
     </div>
