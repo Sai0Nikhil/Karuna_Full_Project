@@ -111,6 +111,38 @@ class _NgoCaseDetailState extends State<NgoCaseDetail> {
                       const SizedBox(height: 4),
                       Text('📍 ${c.locationLabel ?? 'Unknown'}', style: const TextStyle(fontSize: 11, color: AppColors.gray)),
                       Text('👤 Reported by ${c.reporterName}', style: const TextStyle(fontSize: 11, color: AppColors.gray)),
+                      if (c.latitude != null && c.longitude != null) ...[
+                        const SizedBox(height: 8),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              '/map-routing',
+                              arguments: {
+                                'caseId': c.id,
+                                'caseLat': c.latitude,
+                                'caseLon': c.longitude,
+                                'animalTitle': '${c.species ?? "Animal"} (${c.injuryType ?? "Injured"})',
+                              },
+                            );
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                            decoration: BoxDecoration(
+                              color: AppColors.teal,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: const Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(Icons.navigation_outlined, size: 14, color: Colors.white),
+                                SizedBox(width: 4),
+                                Text('Navigate to Case 🚑', style: TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold)),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ]),
                   ),
                 ],

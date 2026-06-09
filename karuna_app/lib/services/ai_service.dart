@@ -57,6 +57,7 @@ class AiService {
     required String species,
     required String injuryDescription,
     String? locationContext,
+    String language = 'English',
   }) async {
     try {
       final data = await ApiService.post(
@@ -65,6 +66,7 @@ class AiService {
           'species': species,
           'injuryDescription': injuryDescription,
           'locationContext': locationContext ?? '',
+          'language': language,
         },
         auth: false,
       );
@@ -86,6 +88,7 @@ class AiService {
           'species': animal,
           'injuryDescription': step,
           'locationContext': 'street / public place',
+          'language': 'English',
         },
         auth: false,
       );
@@ -104,6 +107,7 @@ class AiService {
     required String message,
     String species = 'animal',
     String context = '',
+    String language = 'English',
   }) async {
     try {
       final data = await ApiService.post(
@@ -112,6 +116,7 @@ class AiService {
           'species': species,
           'injuryDescription': message,
           'locationContext': context,
+          'language': language,
         },
         auth: false,
       );

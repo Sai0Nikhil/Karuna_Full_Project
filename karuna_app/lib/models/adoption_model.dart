@@ -6,6 +6,8 @@ class AdoptionModel {
   final int? caseId;
   final String? status;
   final String? createdAt;
+  final String? adopterIdUrl;
+  final String? checkinsLogs;
 
   AdoptionModel({
     required this.id,
@@ -15,6 +17,8 @@ class AdoptionModel {
     this.caseId,
     this.status,
     this.createdAt,
+    this.adopterIdUrl,
+    this.checkinsLogs,
   });
 
   factory AdoptionModel.fromJson(Map<String, dynamic> json) => AdoptionModel(
@@ -25,5 +29,7 @@ class AdoptionModel {
         caseId: json['caseId'],
         status: json['status'],
         createdAt: json['createdAt'],
+        adopterIdUrl: json['adopterIdUrl'],
+        checkinsLogs: json['checkinsLogs'],
       );
 }

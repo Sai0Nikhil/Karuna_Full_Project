@@ -5,6 +5,8 @@ class DonationModel {
   final String? message;
   final int? caseId;
   final String? createdAt;
+  final String? paymentMethod;
+  final String? billOffsetDetails;
 
   DonationModel({
     required this.id,
@@ -13,6 +15,8 @@ class DonationModel {
     this.message,
     this.caseId,
     this.createdAt,
+    this.paymentMethod,
+    this.billOffsetDetails,
   });
 
   factory DonationModel.fromJson(Map<String, dynamic> json) => DonationModel(
@@ -22,5 +26,7 @@ class DonationModel {
         message: json['message'],
         caseId: json['caseId'],
         createdAt: json['createdAt'],
+        paymentMethod: json['paymentMethod'],
+        billOffsetDetails: json['billOffsetDetails'],
       );
 }

@@ -23,6 +23,7 @@ import 'screens/citizen/sita_chat_screen.dart';
 // NGO
 import 'screens/ngo/ngo_home.dart';
 import 'screens/ngo/ngo_case_detail.dart';
+import 'screens/ngo/map_routing_screen.dart';
 
 // Veterinary Clinic
 import 'screens/vet/vet_home.dart';
@@ -99,6 +100,15 @@ class KarunaApp extends StatelessWidget {
       case '/ngo/case':
         final id = settings.arguments as int;
         return _slide(NgoCaseDetail(caseId: id));
+
+      case '/map-routing':
+        final args = settings.arguments as Map<String, dynamic>;
+        return _slide(MapRoutingScreen(
+          caseId: args['caseId'] as int,
+          caseLat: args['caseLat'] as double,
+          caseLon: args['caseLon'] as double,
+          animalTitle: args['animalTitle'] as String,
+        ));
 
       // ── Veterinary Clinic portal ─────────────────────────────────────────
       case '/vet':

@@ -14,6 +14,7 @@ class FirstAidScreen extends StatefulWidget {
 
 class _FirstAidScreenState extends State<FirstAidScreen> {
   String? _species;
+  String _language = 'English';
   final _injuryCtrl = TextEditingController();
   final _locationCtrl = TextEditingController();
   FirstAidResult? _result;
@@ -38,6 +39,7 @@ class _FirstAidScreenState extends State<FirstAidScreen> {
       species: _species ?? 'animal',
       injuryDescription: _injuryCtrl.text.trim(),
       locationContext: _locationCtrl.text.trim(),
+      language: _language,
     );
     setState(() { _loading = false; _result = result; });
   }
@@ -105,6 +107,40 @@ class _FirstAidScreenState extends State<FirstAidScreen> {
                       border: Border.all(color: active ? AppColors.teal : AppColors.lightGray),
                     ),
                     child: Text(s[1],
+                        style: TextStyle(
+                          color: active ? Colors.white : AppColors.dark,
+                          fontWeight: active ? FontWeight.w600 : FontWeight.normal,
+                          fontSize: 13,
+                        )),
+                  ),
+                );
+              }).toList(),
+            ),
+            // Language selection
+            const Text('Response Language', style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: AppColors.dark)),
+            const SizedBox(height: 10),
+            Wrap(
+              spacing: 8, runSpacing: 8,
+              children: [
+                ['English', '🇺🇸 English'],
+                ['Hindi', '🇮🇳 हिन्दी'],
+                ['Telugu', '🇮🇳 తెలుగు'],
+                ['Tamil', '🇮🇳 தமிழ்'],
+                ['Kannada', '🇮🇳 ಕನ್ನಡ'],
+                ['Bengali', '🇮🇳 বাংলা'],
+              ].map((lang) {
+                final active = _language == lang[0];
+                return GestureDetector(
+                  onTap: () => setState(() => _language = lang[0]),
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 150),
+                    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
+                    decoration: BoxDecoration(
+                      color: active ? AppColors.teal : Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: active ? AppColors.teal : AppColors.lightGray),
+                    ),
+                    child: Text(lang[1],
                         style: TextStyle(
                           color: active ? Colors.white : AppColors.dark,
                           fontWeight: active ? FontWeight.w600 : FontWeight.normal,

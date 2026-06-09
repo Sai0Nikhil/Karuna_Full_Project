@@ -84,6 +84,7 @@ class AiAnalysisResult {
   final int? estimatedCostInr;
   final String? aiSummary;
   final String? confidence;
+  final String? species;
 
   AiAnalysisResult({
     this.probableCondition,
@@ -93,6 +94,7 @@ class AiAnalysisResult {
     this.estimatedCostInr,
     this.aiSummary,
     this.confidence,
+    this.species,
   });
 
   factory AiAnalysisResult.fromJson(Map<String, dynamic> json) => AiAnalysisResult(
@@ -103,6 +105,7 @@ class AiAnalysisResult {
         estimatedCostInr: json['estimatedCostInr'],
         aiSummary: json['aiSummary'],
         confidence: json['confidence'],
+        species: json['species'],
       );
 
   List<String> get firstAidList {

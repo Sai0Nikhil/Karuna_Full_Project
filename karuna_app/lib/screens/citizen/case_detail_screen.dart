@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'dart:convert';
 import '../../providers/case_provider.dart';
 import '../../utils/app_colors.dart';
 import '../../widgets/status_badge.dart';
+import '../../services/adoption_service.dart';
+import '../../models/adoption_model.dart';
+import '../../utils/pdf_ledger_helper.dart';
+import '../../widgets/loading_button.dart';
 
 class CaseDetailScreen extends StatefulWidget {
   final int caseId;
@@ -13,12 +18,124 @@ class CaseDetailScreen extends StatefulWidget {
 }
 
 class _CaseDetailScreenState extends State<CaseDetailScreen> {
+  List<AdoptionModel> _applications = [];
+  bool _loadingAdoptions = false;
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<CaseProvider>().fetchCase(widget.caseId);
+      _loadAdoptions();
     });
+  }
+
+  Future<void> _loadAdoptions() async {
+    setState(() => _loadingAdoptions = true);
+    try {
+      final list = await AdoptionService.getAdoptionsForCase(widget.caseId);
+      setState(() {
+        _applications = list;
+        _loadingAdoptions = false;
+      });
+    } catch (_) {
+      setState(() => _loadingAdoptions = false);
+    }
+  }
+
+  void _showCheckinDialog(AdoptionModel app) {
+    final textCtrl = TextEditingController();
+    String? photoUrl;
+    bool photoAttached = false;
+    bool subLoading = false;
+
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
+      builder: (ctx) => StatefulBuilder(
+        builder: (ctx, setSheetState) => Padding(
+          padding: EdgeInsets.fromLTRB(24, 24, 24, MediaQuery.of(ctx).viewInsets.bottom + 24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('Submit Pet Check-in Report',
+                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: AppColors.dark)),
+              const SizedBox(height: 6),
+              const Text('Share updates on pet recovery, diet, and behavior with the NGO.',
+                  style: TextStyle(fontSize: 12, color: AppColors.gray)),
+              const Divider(height: 24),
+              TextFormField(
+                controller: textCtrl,
+                maxLines: 3,
+                decoration: const InputDecoration(
+                  labelText: 'Status Details',
+                  hintText: 'How is the animal adjusting to its new home?',
+                  alignLabelWithHint: true,
+                ),
+              ),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    photoAttached ? '✓ Photo attached' : 'No photo attached',
+                    style: TextStyle(fontSize: 12, color: photoAttached ? Colors.green[700] : AppColors.gray, fontWeight: photoAttached ? FontWeight.bold : FontWeight.normal),
+                  ),
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      final petPhotos = [
+                        'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=150', // Happy dog
+                        'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=150', // Happy cat
+                        'https://images.unsplash.com/photo-1552053831-71594a27632d?w=150'  // Golden retriever
+                      ];
+                      setSheetState(() {
+                        photoAttached = true;
+                        photoUrl = petPhotos[DateTime.now().millisecond % petPhotos.length];
+                      });
+                    },
+                    icon: const Icon(Icons.camera_alt, size: 14),
+                    label: const Text('Capture photo', style: TextStyle(fontSize: 11)),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              LoadingButton(
+                label: 'Submit Check-in',
+                loading: subLoading,
+                onPressed: () async {
+                  if (textCtrl.text.trim().isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Please enter status details')),
+                    );
+                    return;
+                  }
+                  setSheetState(() => subLoading = true);
+                  try {
+                    await AdoptionService.addCheckin(
+                      appId: app.id,
+                      text: textCtrl.text.trim(),
+                      photoUrl: photoUrl,
+                    );
+                    Navigator.pop(ctx);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('✓ Check-in submitted successfully!'), backgroundColor: AppColors.teal),
+                    );
+                    _loadAdoptions(); // Reload check-ins list
+                  } catch (e) {
+                    setSheetState(() => subLoading = false);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(e.toString()), backgroundColor: AppColors.critical),
+                    );
+                  }
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   @override
@@ -139,6 +256,141 @@ class _CaseDetailScreenState extends State<CaseDetailScreen> {
                     ),
                     const SizedBox(height: 24),
                   ],
+
+                  // Download PDF Ledger card
+                  _sectionTitle('Audit & Transparency Ledger'),
+                  _card(
+                    child: Row(
+                      children: [
+                        const Icon(Icons.receipt_long, color: AppColors.teal, size: 36),
+                        const SizedBox(width: 12),
+                        const Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Transaction & Treatment Ledger', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
+                              Text('Download full audit log of expenses & donations', style: TextStyle(color: Colors.grey, fontSize: 11)),
+                            ],
+                          ),
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.download, color: AppColors.teal),
+                          onPressed: () => PdfLedgerHelper.generateAndPrintLedger(c),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+
+                  // Post-Placement Check-ins section
+                  (() {
+                    if (_applications.isEmpty) return const SizedBox.shrink();
+                    final approvedApps = _applications.where((a) => a.status?.toLowerCase() == 'approved').toList();
+                    if (approvedApps.isEmpty) return const SizedBox.shrink();
+                    final app = approvedApps.first;
+
+                    // Parse logs
+                    List<dynamic> logs = [];
+                    if (app.checkinsLogs != null && app.checkinsLogs!.isNotEmpty && app.checkinsLogs != '[]') {
+                      try {
+                        logs = jsonDecode(app.checkinsLogs!);
+                      } catch (_) {}
+                    }
+
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _sectionTitle('Post-Placement Check-ins 🏡'),
+                        _card(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text('Approved Adopter: ${app.applicantName}', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
+                                        const SizedBox(height: 2),
+                                        const Text('Mandatory post-placement follow-up logs', style: TextStyle(color: Colors.grey, fontSize: 11)),
+                                      ],
+                                    ),
+                                  ),
+                                  ElevatedButton.icon(
+                                    onPressed: () => _showCheckinDialog(app),
+                                    icon: const Icon(Icons.add_home, size: 14),
+                                    label: const Text('Add Check-in', style: TextStyle(fontSize: 11)),
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: AppColors.teal,
+                                      foregroundColor: Colors.white,
+                                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              if (logs.isNotEmpty) ...[
+                                const SizedBox(height: 12),
+                                const Divider(),
+                                const SizedBox(height: 8),
+                                ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount: logs.length,
+                                  itemBuilder: (ctx, index) {
+                                    final log = logs[logs.length - 1 - index];
+                                    final date = log['date'] != null ? DateTime.tryParse(log['date'])?.toLocal() : null;
+                                    final dateStr = date != null ? '${date.day}/${date.month}/${date.year}' : 'Recent';
+                                    return Padding(
+                                      padding: const EdgeInsets.only(bottom: 12),
+                                      child: Row(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          const Text('🟢', style: TextStyle(fontSize: 10)),
+                                          const SizedBox(width: 8),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    Text(dateStr, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 11, color: Colors.black87)),
+                                                    if (log['photoUrl'] != null && log['photoUrl'].toString().isNotEmpty)
+                                                      const Text('📸 Photo attached', style: TextStyle(color: Colors.green, fontSize: 10, fontWeight: FontWeight.bold)),
+                                                  ],
+                                                ),
+                                                const SizedBox(height: 2),
+                                                Text(log['text'] ?? '', style: const TextStyle(fontSize: 12, color: Colors.black54)),
+                                                if (log['photoUrl'] != null && log['photoUrl'].toString().isNotEmpty) ...[
+                                                  const SizedBox(height: 6),
+                                                  ClipRRect(
+                                                    borderRadius: BorderRadius.circular(8),
+                                                    child: Image.network(
+                                                      log['photoUrl'],
+                                                      width: 120,
+                                                      height: 80,
+                                                      fit: BoxFit.cover,
+                                                      errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ],
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                      ],
+                    );
+                  })(),
                 ],
               ),
             ),

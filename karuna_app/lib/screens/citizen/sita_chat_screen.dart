@@ -28,6 +28,7 @@ class _SitaChatScreenState extends State<SitaChatScreen> with TickerProviderStat
   bool _isSpeaking = false;
   bool _speechAvailable = false;
   String _currentWords = '';
+  String _language = 'English';
 
   // Chat
   final List<_Message> _messages = [];
@@ -98,6 +99,18 @@ class _SitaChatScreenState extends State<SitaChatScreen> with TickerProviderStat
     });
   }
 
+  Future<void> _updateTtsLanguage(String lang) async {
+    String ttsLang = 'en-IN';
+    if (lang == 'Hindi') ttsLang = 'hi-IN';
+    else if (lang == 'Telugu') ttsLang = 'te-IN';
+    else if (lang == 'Tamil') ttsLang = 'ta-IN';
+    else if (lang == 'Kannada') ttsLang = 'kn-IN';
+    else if (lang == 'Bengali') ttsLang = 'bn-IN';
+    try {
+      await _tts.setLanguage(ttsLang);
+    } catch (_) {}
+  }
+
   @override
   void dispose() {
     _speech.stop();
@@ -158,6 +171,13 @@ class _SitaChatScreenState extends State<SitaChatScreen> with TickerProviderStat
       });
       _pulseController.repeat(reverse: true);
 
+      String locale = 'en_IN';
+      if (_language == 'Hindi') locale = 'hi_IN';
+      else if (_language == 'Telugu') locale = 'te_IN';
+      else if (_language == 'Tamil') locale = 'ta_IN';
+      else if (_language == 'Kannada') locale = 'kn_IN';
+      else if (_language == 'Bengali') locale = 'bn_IN';
+
       await _speech.listen(
         onResult: (result) {
           setState(() {
@@ -166,7 +186,7 @@ class _SitaChatScreenState extends State<SitaChatScreen> with TickerProviderStat
         },
         listenFor: const Duration(seconds: 30),
         pauseFor: const Duration(seconds: 3),
-        localeId: 'en_IN',
+        localeId: locale,
       );
     }
   }
@@ -196,6 +216,7 @@ class _SitaChatScreenState extends State<SitaChatScreen> with TickerProviderStat
       message: text,
       species: widget.species ?? 'animal',
       context: widget.initialContext ?? '',
+      language: _language,
     );
 
     setState(() {
@@ -320,6 +341,38 @@ class _SitaChatScreenState extends State<SitaChatScreen> with TickerProviderStat
               ],
             ),
           ),
+          // Language selector dropdown
+          Theme(
+            data: Theme.of(context).copyWith(canvasColor: AppColors.teal),
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton<String>(
+                value: _language,
+                icon: const Icon(Icons.translate, color: Colors.white, size: 20),
+                style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w500),
+                onChanged: (lang) {
+                  if (lang != null) {
+                    setState(() {
+                      _language = lang;
+                    });
+                    _updateTtsLanguage(lang);
+                  }
+                },
+                items: [
+                  ['English', 'EN'],
+                  ['Hindi', 'HI'],
+                  ['Telugu', 'TE'],
+                  ['Tamil', 'TA'],
+                  ['Kannada', 'KN'],
+                  ['Bengali', 'BN'],
+                ].map((l) => DropdownMenuItem<String>(
+                  value: l[0],
+                  child: Text(l[1]),
+                )).toList(),
+              ),
+            ),
+          ),
+          const SizedBox(width: 8),
+
           if (_isActive)
             GestureDetector(
               onTap: _endChat,

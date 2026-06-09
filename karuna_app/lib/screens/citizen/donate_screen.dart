@@ -4,6 +4,7 @@ import '../../providers/case_provider.dart';
 import '../../services/donation_service.dart';
 import '../../utils/app_colors.dart';
 import '../../widgets/loading_button.dart';
+import '../../utils/pdf_ledger_helper.dart';
 
 class DonateScreen extends StatefulWidget {
   const DonateScreen({super.key});
@@ -26,12 +27,21 @@ class _DonateScreenState extends State<DonateScreen> {
   int get _amount => _selectedAmount ?? (int.tryParse(_customCtrl.text) ?? 0);
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final args = ModalRoute.of(context)?.settings.arguments;
+    if (args is int) {
+      _caseId = args;
+    }
+  }
+
+  @override
   void dispose() {
     _customCtrl.dispose(); _nameCtrl.dispose(); _msgCtrl.dispose();
     super.dispose();
   }
 
-  Future<void> _donate() async {
+  void _startCheckout() {
     if (_amount <= 0) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please select or enter an amount')),
@@ -44,6 +54,222 @@ class _DonateScreenState extends State<DonateScreen> {
       );
       return;
     }
+
+    String paymentMethod = 'UPI';
+    String selectedUpiApp = 'Google Pay';
+    String paymentState = 'idle'; // idle, processing, pin, verifying, success
+
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (ctx) => StatefulBuilder(
+        builder: (ctx, setSheetState) {
+          return Padding(
+            padding: EdgeInsets.fromLTRB(20, 20, 20, MediaQuery.of(ctx).viewInsets.bottom + 20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Header (Razorpay-style)
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF1F2438),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text('🐾 KARUNA', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)),
+                          const SizedBox(height: 2),
+                          Text('Secure Sandbox Checkout', style: TextStyle(color: Colors.white.withOpacity(0.6), fontSize: 10)),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text('Pay Amount', style: TextStyle(color: Colors.white.withOpacity(0.6), fontSize: 10)),
+                          const SizedBox(height: 2),
+                          Text('₹$_amount', style: const TextStyle(color: Colors.greenAccent, fontWeight: FontWeight.bold, fontSize: 18)),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 16),
+
+                if (paymentState == 'idle') ...[
+                  const Text('Select Payment Method', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+                  const SizedBox(height: 12),
+
+                  // UPI Selector
+                  _buildPaymentOption(
+                    title: 'UPI (Google Pay, PhonePe)',
+                    subtitle: 'Pay instantly using any UPI app',
+                    icon: Icons.mobile_screen_share,
+                    selected: paymentMethod == 'UPI',
+                    onTap: () => setSheetState(() => paymentMethod = 'UPI'),
+                  ),
+                  const SizedBox(height: 8),
+
+                  // Card Selector
+                  _buildPaymentOption(
+                    title: 'Card (Credit/Debit)',
+                    subtitle: 'Visa, MasterCard, RuPay supported',
+                    icon: Icons.credit_card,
+                    selected: paymentMethod == 'Card',
+                    onTap: () => setSheetState(() => paymentMethod = 'Card'),
+                  ),
+                  const SizedBox(height: 8),
+
+                  // Netbanking Selector
+                  _buildPaymentOption(
+                    title: 'Netbanking',
+                    subtitle: 'All major Indian banks',
+                    icon: Icons.account_balance,
+                    selected: paymentMethod == 'Netbanking',
+                    onTap: () => setSheetState(() => paymentMethod = 'Netbanking'),
+                  ),
+
+                  if (paymentMethod == 'UPI') ...[
+                    const SizedBox(height: 12),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: ['Google Pay', 'PhonePe', 'Paytm'].map((app) {
+                        final active = selectedUpiApp == app;
+                        return ElevatedButton(
+                          onPressed: () => setSheetState(() => selectedUpiApp = app),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: active ? AppColors.teal : Colors.grey[200],
+                            foregroundColor: active ? Colors.white : Colors.black87,
+                            elevation: 0,
+                          ),
+                          child: Text(app, style: const TextStyle(fontSize: 11)),
+                        );
+                      }).toList(),
+                    ),
+                  ],
+
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 48,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setSheetState(() => paymentState = 'processing');
+                        Future.delayed(const Duration(milliseconds: 1500), () {
+                          if (paymentMethod == 'UPI') {
+                            setSheetState(() => paymentState = 'pin');
+                          } else {
+                            setSheetState(() => paymentState = 'verifying');
+                          }
+                          Future.delayed(const Duration(milliseconds: 1500), () {
+                            setSheetState(() => paymentState = 'success');
+                            Future.delayed(const Duration(milliseconds: 1200), () async {
+                              Navigator.pop(ctx);
+                              _executeDonate(paymentMethod);
+                            });
+                          });
+                        });
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF5266EB),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      ),
+                      child: Text('Pay ₹$_amount', style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                    ),
+                  ),
+                ] else ...[
+                  Container(
+                    height: 200,
+                    alignment: Alignment.center,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        if (paymentState == 'processing') ...[
+                          const CircularProgressIndicator(color: Color(0xFF5266EB)),
+                          const SizedBox(height: 16),
+                          const Text('Processing payment...', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                          const SizedBox(height: 4),
+                          const Text('Do not close the application', style: TextStyle(color: Colors.grey, fontSize: 12)),
+                        ] else if (paymentState == 'pin') ...[
+                          const Icon(Icons.lock_outline, size: 48, color: Color(0xFF5266EB)),
+                          const SizedBox(height: 16),
+                          Text('Confirming secure UPI PIN on $selectedUpiApp...', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+                          const SizedBox(height: 4),
+                          const Text('Enter PIN on request prompt', style: TextStyle(color: Colors.grey, fontSize: 12)),
+                        ] else if (paymentState == 'verifying') ...[
+                          const CircularProgressIndicator(color: Colors.amber),
+                          const SizedBox(height: 16),
+                          const Text('Verifying secure transaction...', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                          const SizedBox(height: 4),
+                          const Text('Connecting to banking secure portal', style: TextStyle(color: Colors.grey, fontSize: 12)),
+                        ] else if (paymentState == 'success') ...[
+                          const Icon(Icons.check_circle_outline, size: 56, color: Colors.green),
+                          const SizedBox(height: 16),
+                          const Text('Transaction Successful!', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green, fontSize: 18)),
+                          const SizedBox(height: 4),
+                          const Text('Payment logged in immutable ledger', style: TextStyle(color: Colors.grey, fontSize: 12)),
+                        ],
+                      ],
+                    ),
+                  ),
+                ],
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildPaymentOption({
+    required String title,
+    required String subtitle,
+    required IconData icon,
+    required bool selected,
+    required VoidCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: selected ? const Color(0xFFEEF2FF) : Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: selected ? const Color(0xFF5266EB) : Colors.grey[200]!),
+        ),
+        child: Row(
+          children: [
+            Icon(icon, color: selected ? const Color(0xFF5266EB) : Colors.grey),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: selected ? const Color(0xFF5266EB) : Colors.black87)),
+                  const SizedBox(height: 2),
+                  Text(subtitle, style: const TextStyle(color: Colors.grey, fontSize: 10)),
+                ],
+              ),
+            ),
+            Icon(
+              selected ? Icons.radio_button_checked : Icons.radio_button_off,
+              color: selected ? const Color(0xFF5266EB) : Colors.grey,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> _executeDonate(String method) async {
     setState(() => _loading = true);
     try {
       final cases = context.read<CaseProvider>().openCases;
@@ -53,6 +279,8 @@ class _DonateScreenState extends State<DonateScreen> {
         donorName: _nameCtrl.text.trim(),
         amountInr: _amount,
         message: _msgCtrl.text.trim().isEmpty ? null : _msgCtrl.text.trim(),
+        paymentMethod: method,
+        billOffsetDetails: 'Case #$targetCaseId Vet Treatment Offset',
       );
       setState(() { _loading = false; _success = true; });
     } catch (e) {
@@ -166,7 +394,7 @@ class _DonateScreenState extends State<DonateScreen> {
                   LoadingButton(
                     label: _amount > 0 ? 'Donate ₹$_amount 💝' : 'Donate',
                     loading: _loading,
-                    onPressed: _donate,
+                    onPressed: _startCheckout,
                   ),
                   const SizedBox(height: 12),
                   const Center(
@@ -201,7 +429,25 @@ class _DonateScreenState extends State<DonateScreen> {
               const SizedBox(height: 10),
               Text('Your donation of ₹$_amount has been recorded. You\'re helping save a life!',
                   textAlign: TextAlign.center, style: const TextStyle(fontSize: 14, color: AppColors.gray)),
-              const SizedBox(height: 32),
+              const SizedBox(height: 24),
+              ElevatedButton.icon(
+                onPressed: () async {
+                  final cases = context.read<CaseProvider>().openCases;
+                  final targetCase = cases.firstWhere(
+                    (c) => c.id == (_caseId ?? (cases.isNotEmpty ? cases.first.id : 1)),
+                    orElse: () => cases.first,
+                  );
+                  await PdfLedgerHelper.generateAndPrintLedger(targetCase);
+                },
+                icon: const Icon(Icons.download),
+                label: const Text('Download PDF Ledger'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.teal,
+                  foregroundColor: Colors.white,
+                  minimumSize: const Size(200, 42),
+                ),
+              ),
+              const SizedBox(height: 12),
               ElevatedButton(
                 onPressed: () => setState(() { _success = false; _selectedAmount = null; }),
                 child: const Text('Donate Again'),

@@ -13,11 +13,15 @@ class DonationService {
     required String donorName,
     required int amountInr,
     String? message,
+    String? paymentMethod,
+    String? billOffsetDetails,
   }) async {
     final data = await ApiService.post(ApiConfig.donationsForCase(caseId), {
       'donorName': donorName,
       'amountInr': amountInr,
       if (message != null && message.isNotEmpty) 'message': message,
+      if (paymentMethod != null && paymentMethod.isNotEmpty) 'paymentMethod': paymentMethod,
+      if (billOffsetDetails != null && billOffsetDetails.isNotEmpty) 'billOffsetDetails': billOffsetDetails,
     });
     return DonationModel.fromJson(data);
   }

@@ -176,6 +176,8 @@ class _PetCard extends StatelessWidget {
     final contactCtrl = TextEditingController();
     final reasonCtrl = TextEditingController();
     bool loading = false;
+    String? adopterIdUrl;
+    String? kycDocName;
 
     showModalBottomSheet(
       context: context,
@@ -205,6 +207,40 @@ class _PetCard extends StatelessWidget {
               TextFormField(controller: contactCtrl, keyboardType: TextInputType.phone, decoration: const InputDecoration(labelText: 'Contact Number', prefixIcon: Icon(Icons.phone_outlined, color: AppColors.gray))),
               const SizedBox(height: 12),
               TextFormField(controller: reasonCtrl, maxLines: 3, decoration: const InputDecoration(labelText: 'Why do you want to adopt?', alignLabelWithHint: true)),
+              const SizedBox(height: 16),
+              // KYC Document upload row
+              Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text('KYC Identity Scan', style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppColors.dark)),
+                        const SizedBox(height: 4),
+                        Text(
+                          kycDocName ?? 'No verification document attached',
+                          style: TextStyle(fontSize: 11, color: kycDocName != null ? Colors.green[700] : AppColors.gray),
+                        ),
+                      ],
+                    ),
+                  ),
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      final mockDocs = ['Aadhaar_ID_Verified.jpg', 'PAN_Card_Verified.jpg', 'Voter_Card_Verified.jpg'];
+                      setState(() {
+                        kycDocName = mockDocs[DateTime.now().millisecond % mockDocs.length];
+                        adopterIdUrl = 'https://res.cloudinary.com/karuna/image/upload/$kycDocName';
+                      });
+                    },
+                    icon: const Icon(Icons.attach_file, size: 14),
+                    label: const Text('Attach KYC', style: TextStyle(fontSize: 11)),
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                      minimumSize: Size.zero,
+                    ),
+                  ),
+                ],
+              ),
               const SizedBox(height: 20),
               LoadingButton(
                 label: 'Submit Adoption Request',
@@ -217,6 +253,7 @@ class _PetCard extends StatelessWidget {
                       applicantName: nameCtrl.text.trim(),
                       contact: contactCtrl.text.trim(),
                       reason: reasonCtrl.text.trim(),
+                      adopterIdUrl: adopterIdUrl,
                     );
                     Navigator.pop(ctx);
                     ScaffoldMessenger.of(context).showSnackBar(

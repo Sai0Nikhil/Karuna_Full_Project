@@ -152,6 +152,9 @@ class _ReportFlowState extends State<ReportFlow> {
       severity: _analysis?.severity,
       locationLabel: locLabel,
       probableCondition: _analysis?.probableCondition,
+      latitude: _lat,
+      longitude: _lon,
+      imageDataUrl: _photoBase64,
     );
     if (!mounted) return;
     if (result != null) {

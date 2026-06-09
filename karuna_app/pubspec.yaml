@@ -33,6 +33,9 @@ dependencies:
   # PDF Generation & Printing
   pdf: ^3.10.8
   printing: ^5.11.1
+  # Mapping & Navigation Routing
+  flutter_map: ^6.1.0
+  latlong2: ^0.9.0
 
 dev_dependencies:
   flutter_test:
