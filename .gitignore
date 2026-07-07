@@ -1,0 +1,56 @@
+# =====================================================================
+# Karuna — root .gitignore
+# =====================================================================
+
+# ── Credentials & Secrets (NEVER commit these) ────────────────────
+.env
+.env.local
+.env.*.local
+neon-credentials.txt
+*.credentials.txt
+secrets/
+
+# ── Build artifacts ───────────────────────────────────────────────
+# Java / Maven
+target/
+*.jar
+*.war
+*.class
+
+# Node / Vite
+node_modules/
+dist/
+dist-ssr/
+.vite/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite
+*.sqlite3
+
+# Flutter / Dart
+build/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# ── IDE & OS files ────────────────────────────────────────────────
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ── Misc ─────────────────────────────────────────────────────────
+*.log
+*.zip
+*.local
