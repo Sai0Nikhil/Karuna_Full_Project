@@ -93,7 +93,7 @@ export interface NewCaseInput {
 
 const CaseStoreContext = createContext<CaseStoreApi | null>(null);
 
-import { useRemoteCaseStore } from './remoteCaseStore';
+import { useRemoteCaseStore } from './RemoteCaseStoreContext';
 import { REMOTE_ENABLED } from '../services/api';
 
 export const useCaseStore = (): CaseStoreApi => {

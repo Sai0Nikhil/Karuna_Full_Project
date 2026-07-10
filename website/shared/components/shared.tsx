@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Case, Severity, STATUS_LABEL, CaseStatus } from '../types';
-import { donationProgress, totalDonated } from '../store/caseStore';
+import { donationProgress, totalDonated } from '../store/CaseStoreContext';
 
 export const SeverityChip: React.FC<{ s: Severity }> = ({ s }) => {
   const styles: Record<Severity, string> = {

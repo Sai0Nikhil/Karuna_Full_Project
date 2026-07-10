@@ -6,8 +6,8 @@
 // =====================================================================
 
 import React, { useMemo } from 'react';
-import { useCaseStore, totalDonated, donationProgress } from '../store/caseStore';
-import { useRouter } from '../store/router';
+import { useCaseStore, totalDonated, donationProgress } from '../store/CaseStoreContext';
+import { useRouter } from '../store/RouterContext';
 import { Case, CaseStatus, Severity, STATUS_LABEL, STATUS_FLOW } from '../types';
 import { formatInr } from './shared';
 

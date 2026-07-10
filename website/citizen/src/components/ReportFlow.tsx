@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { createCase } from '../api';
+import { aiTriage, createCase } from '../api';
 
 interface Props { user: any; onNeedLogin: () => void; }
 
@@ -10,6 +10,7 @@ export const ReportFlow: React.FC<Props> = ({ user, onNeedLogin }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [result, setResult] = useState<any>(null);
+  const [triageResult, setTriageResult] = useState<any>(null);
 
   const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -25,6 +26,13 @@ export const ReportFlow: React.FC<Props> = ({ user, onNeedLogin }) => {
     setLoading(true);
     setError('');
     try {
+      const triage = await aiTriage({
+        imageDataUrl,
+        description,
+        species: 'dog',
+        locationLabel,
+      });
+      setTriageResult(triage);
       // Send to backend — AI triage handled server-side
       const c = await createCase({
         imageDataUrl,
@@ -33,9 +41,9 @@ export const ReportFlow: React.FC<Props> = ({ user, onNeedLogin }) => {
         longitude: null,
         species: 'dog',
         injuryType: 'unknown',
-        severity: 'routine',
-        probableCondition: description || 'Injured animal reported',
-        firstAidSteps: '[]',
+        severity: triage?.severity || 'routine',
+        probableCondition: triage?.probableCondition || description || 'Injured animal reported',
+        firstAidSteps: JSON.stringify(triage?.firstAidSteps || []),
         estimatedCostInr: 1500,
       });
       setResult(c);
@@ -156,7 +164,7 @@ export const ReportFlow: React.FC<Props> = ({ user, onNeedLogin }) => {
 
       <div>
         <label className="block text-sm font-medium text-slate-700 mb-1">Upload photo</label>
-        <input type="file" accept="image/*" capture="environment" onChange={handleFile}
+        <input type="file" accept="image/*" onChange={handleFile} aria-label="Upload animal photo"
           className="w-full p-2 border border-slate-300 rounded-lg" />
         {imageDataUrl && <img src={imageDataUrl} alt="preview" className="mt-2 max-h-48 rounded object-cover" />}
       </div>
@@ -176,6 +184,14 @@ export const ReportFlow: React.FC<Props> = ({ user, onNeedLogin }) => {
       </div>
 
       {error && <div className="text-red-600 text-sm bg-red-50 p-3 rounded-lg">{error}</div>}
+
+      {triageResult && (
+        <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+          <p className="text-xs uppercase tracking-wider text-slate-500 mb-1">AI triage</p>
+          <p className="font-medium text-slate-800">{triageResult.probableCondition}</p>
+          <p className="text-sm text-slate-600 mt-1">Suggested severity: <span className="font-semibold">{triageResult.severity}</span></p>
+        </div>
+      )}
 
       <button onClick={handleSubmit} disabled={loading || !imageDataUrl}
         className="w-full bg-teal-600 text-white font-bold py-3 rounded-lg hover:bg-teal-700 disabled:opacity-50">

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { LoginPage } from './components/LoginPage';
+import { RegisterPage } from './components/RegisterPage';
 import { LandingPage } from './components/LandingPage';
 import { ReportFlow } from './components/ReportFlow';
 import { CaseList } from './components/CaseList';
 import { DonatePage } from './components/DonatePage';
 import { AdoptPage } from './components/AdoptPage';
 
-type Page = 'login' | 'landing' | 'report' | 'my-cases' | 'donate' | 'adopt';
+type Page = 'login' | 'register' | 'landing' | 'report' | 'my-cases' | 'donate' | 'adopt';
 
 interface AuthUser {
   token: string;
@@ -80,7 +81,8 @@ export default function App() {
 
       {/* Page content */}
       <div className="container mx-auto px-4 py-6">
-        {page === 'login' && <LoginPage onLogin={doLogin} onRegister={() => alert('Register page')} />}
+        {page === 'login' && <LoginPage onLogin={doLogin} onRegister={() => setPage('register')} />}
+        {page === 'register' && <RegisterPage onRegister={doLogin} onBackToLogin={() => setPage('login')} />}
         {page === 'landing' && <LandingPage onNavigate={setPage} user={user} />}
         {page === 'report' && <ReportFlow user={user} onNeedLogin={() => setPage('login')} />}
         {page === 'my-cases' && <CaseList user={user} />}

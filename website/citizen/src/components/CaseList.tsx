@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getMyCases } from '../api';
+import { getMyCases, subscribeToCaseUpdates } from '../api';
 
 interface Props { user: any; }
 
@@ -9,7 +9,14 @@ export const CaseList: React.FC<Props> = ({ user }) => {
 
   useEffect(() => {
     if (!user) return;
-    getMyCases().then(setCases).catch(() => {}).finally(() => setLoading(false));
+    const loadCases = (showLoading = false) => {
+      if (showLoading) setLoading(true);
+      getMyCases().then(setCases).catch(() => {}).finally(() => {
+        if (showLoading) setLoading(false);
+      });
+    };
+    loadCases(true);
+    return subscribeToCaseUpdates(() => loadCases(false));
   }, [user]);
 
   if (!user) return <p className="text-center text-slate-500 mt-8">Please sign in to see your cases.</p>;

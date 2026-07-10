@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { getCases, getOpenCases, getMyCases } from '../api';
+import React, { useCallback, useEffect, useState } from 'react';
+import { getCases, getOpenCases, getMyCases, subscribeToCaseUpdates } from '../api';
 
 interface Props { user: any; onViewCase: (id: number) => void; }
 
@@ -9,12 +9,20 @@ export const Dashboard: React.FC<Props> = ({ user, onViewCase }) => {
   const [myCases, setMyCases] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    Promise.all([getCases(), getOpenCases(), getMyCases()])
+  const loadDashboard = useCallback((showLoading = false) => {
+    if (showLoading) setLoading(true);
+    return Promise.all([getCases(), getOpenCases(), getMyCases()])
       .then(([all, open, my]) => { setAllCases(all); setOpenCases(open); setMyCases(my); })
       .catch(() => {})
-      .finally(() => setLoading(false));
+      .finally(() => {
+        if (showLoading) setLoading(false);
+      });
   }, []);
+
+  useEffect(() => {
+    loadDashboard(true);
+    return subscribeToCaseUpdates(() => { void loadDashboard(false); });
+  }, [loadDashboard]);
 
   if (loading) return <p className="text-slate-500">Loading dashboard...</p>;
 
@@ -56,11 +64,11 @@ export const Dashboard: React.FC<Props> = ({ user, onViewCase }) => {
           <span>₹{(totalDonations).toLocaleString('en-IN')} raised</span>
           <span>of ₹{(totalEstimated).toLocaleString('en-IN')} needed</span>
         </div>
-        <div className="w-full bg-slate-200 rounded-full h-3">
-          <div className="bg-teal-500 h-3 rounded-full" style={{
-            width: totalEstimated > 0 ? `${Math.min(100, (totalDonations / totalEstimated) * 100)}%` : '0%'
-          }} />
-        </div>
+        <progress
+          className="w-full h-3 rounded-full overflow-hidden accent-teal-500"
+          max={100}
+          value={totalEstimated > 0 ? Math.min(100, (totalDonations / totalEstimated) * 100) : 0}
+        />
       </div>
 
       {/* Recent unassigned cases */}
@@ -100,7 +108,7 @@ export const Dashboard: React.FC<Props> = ({ user, onViewCase }) => {
                   <span className="font-medium text-sm">#{c.id}</span>
                   <span className={`ml-2 text-xs font-medium px-2 py-0.5 rounded ${
                     c.status === 'in_treatment' ? 'bg-purple-100 text-purple-700' :
-                    c.status === 'rescue_route' ? 'bg-amber-100 text-amber-700' :
+                    c.status === 'assigned' ? 'bg-amber-100 text-amber-700' :
                     c.status === 'discharged' ? 'bg-emerald-100 text-emerald-700' :
                     'bg-slate-100 text-slate-700'
                   }`}>{c.status}</span>

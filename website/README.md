@@ -18,14 +18,14 @@ website/
 
 ## Running Locally
 
-### Citizen Portal (port 5173)
+### Citizen Portal (port 3001)
 ```bash
 cd citizen
 npm install
 npm run dev
 ```
 
-### NGO Portal (port 5174)
+### NGO Portal (port 3002)
 ```bash
 cd ngo
 npm install
@@ -47,12 +47,12 @@ For production, `.env.production` already points to the Render deployment.
 | Feature | citizen/ | ngo/ |
 |---|---|---|
 | Landing Page | ✅ | — |
-| Login | ✅ | ✅ |
+| Login / Register | ✅ | ✅ |
 | AI Photo Triage (report animal) | ✅ | — |
 | Case List | ✅ | ✅ |
 | Case Detail | — | ✅ |
-| Donate | ✅ | — |
-| Adopt | ✅ | — |
+| Donate | ✅ inline case donation forms | — |
+| Adopt | ✅ inline adoption applications | ✅ approve / reject applications |
 | NGO Dashboard | — | ✅ |
 | Assign / Dispatch Cases | — | ✅ |
 | Stats & Analytics | shared/ | shared/ |

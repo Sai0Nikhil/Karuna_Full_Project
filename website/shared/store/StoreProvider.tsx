@@ -9,8 +9,8 @@
 // =====================================================================
 
 import React from 'react';
-import { CaseStoreProvider } from './caseStore';
-import { RemoteCaseStoreProvider } from './remoteCaseStore';
+import { CaseStoreProvider } from './CaseStoreContext';
+import { RemoteCaseStoreProvider } from './RemoteCaseStoreContext';
 import { REMOTE_ENABLED } from '../services/api';
 
 export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
