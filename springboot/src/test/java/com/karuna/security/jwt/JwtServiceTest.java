@@ -59,7 +59,7 @@ class JwtServiceTest {
 	@Test
 	void rejectsTamperedToken() {
 		String token = jwtService.generateAccessToken("42", Map.of());
-		String tamperedToken = token.substring(0, token.length() - 1) + (token.endsWith("a") ? "b" : "a");
+		String tamperedToken = token.substring(0, 10) + (token.charAt(10) == 'a' ? 'b' : 'a') + token.substring(11);
 
 		assertFalse(jwtService.validateSignature(tamperedToken));
 		assertFalse(jwtService.validateToken(tamperedToken));
