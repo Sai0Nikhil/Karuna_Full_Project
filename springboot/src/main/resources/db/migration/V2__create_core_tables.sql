@@ -1,0 +1,220 @@
+ALTER TABLE users
+    ADD COLUMN IF NOT EXISTS phone_number VARCHAR(30),
+    ADD COLUMN IF NOT EXISTS location_id BIGINT,
+    ADD COLUMN IF NOT EXISTS updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    ADD COLUMN IF NOT EXISTS created_by VARCHAR(100),
+    ADD COLUMN IF NOT EXISTS updated_by VARCHAR(100),
+    ADD COLUMN IF NOT EXISTS version BIGINT NOT NULL DEFAULT 0,
+    ADD COLUMN IF NOT EXISTS active BOOLEAN NOT NULL DEFAULT TRUE,
+    ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP;
+
+ALTER TABLE cases
+    ADD COLUMN IF NOT EXISTS location_id BIGINT,
+    ADD COLUMN IF NOT EXISTS animal_id BIGINT,
+    ADD COLUMN IF NOT EXISTS ngo_id BIGINT,
+    ADD COLUMN IF NOT EXISTS primary_volunteer_id BIGINT,
+    ADD COLUMN IF NOT EXISTS created_by VARCHAR(100),
+    ADD COLUMN IF NOT EXISTS updated_by VARCHAR(100),
+    ADD COLUMN IF NOT EXISTS version BIGINT NOT NULL DEFAULT 0,
+    ADD COLUMN IF NOT EXISTS active BOOLEAN NOT NULL DEFAULT TRUE,
+    ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP;
+
+ALTER TABLE donations
+    ADD COLUMN IF NOT EXISTS case_id BIGINT,
+    ADD COLUMN IF NOT EXISTS payment_reference VARCHAR(120),
+    ADD COLUMN IF NOT EXISTS payment_provider VARCHAR(80),
+    ADD COLUMN IF NOT EXISTS message VARCHAR(500),
+    ADD COLUMN IF NOT EXISTS updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    ADD COLUMN IF NOT EXISTS created_by VARCHAR(100),
+    ADD COLUMN IF NOT EXISTS updated_by VARCHAR(100),
+    ADD COLUMN IF NOT EXISTS version BIGINT NOT NULL DEFAULT 0;
+
+ALTER TABLE adoption_applications
+    ADD COLUMN IF NOT EXISTS animal_id BIGINT,
+    ADD COLUMN IF NOT EXISTS applicant_name VARCHAR(255),
+    ADD COLUMN IF NOT EXISTS contact_email VARCHAR(255),
+    ADD COLUMN IF NOT EXISTS contact_phone VARCHAR(30),
+    ADD COLUMN IF NOT EXISTS reason TEXT,
+    ADD COLUMN IF NOT EXISTS adopter_id_url VARCHAR(500),
+    ADD COLUMN IF NOT EXISTS decided_by_id BIGINT,
+    ADD COLUMN IF NOT EXISTS decided_at TIMESTAMP,
+    ADD COLUMN IF NOT EXISTS updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    ADD COLUMN IF NOT EXISTS created_by VARCHAR(100),
+    ADD COLUMN IF NOT EXISTS updated_by VARCHAR(100),
+    ADD COLUMN IF NOT EXISTS version BIGINT NOT NULL DEFAULT 0;
+
+CREATE TABLE IF NOT EXISTS roles (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    description VARCHAR(255),
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_by VARCHAR(100),
+    updated_by VARCHAR(100),
+    version BIGINT NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS locations (
+    id BIGSERIAL PRIMARY KEY,
+    label VARCHAR(255) NOT NULL,
+    address_line_1 VARCHAR(255),
+    address_line_2 VARCHAR(255),
+    city VARCHAR(120),
+    state VARCHAR(120),
+    postal_code VARCHAR(30),
+    country VARCHAR(120) DEFAULT 'India',
+    latitude NUMERIC(9, 6),
+    longitude NUMERIC(9, 6),
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_by VARCHAR(100),
+    updated_by VARCHAR(100),
+    version BIGINT NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS animals (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(120),
+    species VARCHAR(50) NOT NULL DEFAULT 'UNKNOWN',
+    breed VARCHAR(120),
+    condition VARCHAR(50) NOT NULL DEFAULT 'UNKNOWN',
+    color VARCHAR(50),
+    sex VARCHAR(40),
+    estimated_age VARCHAR(80),
+    last_known_location_id BIGINT,
+    active BOOLEAN NOT NULL DEFAULT TRUE,
+    deleted_at TIMESTAMP,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_by VARCHAR(100),
+    updated_by VARCHAR(100),
+    version BIGINT NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS ngos (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    registration_number VARCHAR(100) NOT NULL,
+    email VARCHAR(255),
+    phone_number VARCHAR(30),
+    description TEXT,
+    headquarters_location_id BIGINT,
+    verified BOOLEAN NOT NULL DEFAULT FALSE,
+    active BOOLEAN NOT NULL DEFAULT TRUE,
+    deleted_at TIMESTAMP,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_by VARCHAR(100),
+    updated_by VARCHAR(100),
+    version BIGINT NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS volunteers (
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    phone_number VARCHAR(30),
+    status VARCHAR(50) NOT NULL DEFAULT 'AVAILABLE',
+    skills VARCHAR(255),
+    service_location_id BIGINT,
+    active BOOLEAN NOT NULL DEFAULT TRUE,
+    deleted_at TIMESTAMP,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_by VARCHAR(100),
+    updated_by VARCHAR(100),
+    version BIGINT NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS veterinarians (
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    license_number VARCHAR(120) NOT NULL,
+    clinic_name VARCHAR(255),
+    specialization VARCHAR(120),
+    email VARCHAR(255),
+    phone_number VARCHAR(30),
+    clinic_location_id BIGINT,
+    active BOOLEAN NOT NULL DEFAULT TRUE,
+    deleted_at TIMESTAMP,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_by VARCHAR(100),
+    updated_by VARCHAR(100),
+    version BIGINT NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS treatments (
+    id BIGSERIAL PRIMARY KEY,
+    animal_id BIGINT NOT NULL,
+    case_id BIGINT,
+    veterinarian_id BIGINT,
+    status VARCHAR(50) NOT NULL DEFAULT 'PLANNED',
+    diagnosis TEXT,
+    procedure_summary TEXT,
+    medication_plan TEXT,
+    started_at TIMESTAMP,
+    completed_at TIMESTAMP,
+    next_follow_up_at TIMESTAMP,
+    cost_amount NUMERIC(12, 2),
+    cost_currency VARCHAR(10) DEFAULT 'INR',
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_by VARCHAR(100),
+    updated_by VARCHAR(100),
+    version BIGINT NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS notifications (
+    id BIGSERIAL PRIMARY KEY,
+    recipient_id BIGINT NOT NULL,
+    type VARCHAR(80) NOT NULL,
+    status VARCHAR(50) NOT NULL DEFAULT 'PENDING',
+    title VARCHAR(255) NOT NULL,
+    message TEXT NOT NULL,
+    channel VARCHAR(50),
+    read_at TIMESTAMP,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_by VARCHAR(100),
+    updated_by VARCHAR(100),
+    version BIGINT NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS audit_logs (
+    id BIGSERIAL PRIMARY KEY,
+    actor_user_id BIGINT,
+    action VARCHAR(120) NOT NULL,
+    entity_type VARCHAR(120) NOT NULL,
+    entity_id VARCHAR(120),
+    ip_address VARCHAR(80),
+    user_agent VARCHAR(500),
+    metadata TEXT,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_by VARCHAR(100),
+    updated_by VARCHAR(100),
+    version BIGINT NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS refresh_tokens (
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    token_hash VARCHAR(255) NOT NULL,
+    expires_at TIMESTAMP NOT NULL,
+    revoked_at TIMESTAMP,
+    created_by_ip VARCHAR(80),
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_by VARCHAR(100),
+    updated_by VARCHAR(100),
+    version BIGINT NOT NULL DEFAULT 0
+);
+
+INSERT INTO roles (name, description)
+VALUES
+    ('CITIZEN', 'Citizen user'),
+    ('NGO', 'NGO operator'),
+    ('VOLUNTEER', 'Volunteer responder'),
+    ('VET', 'Veterinarian'),
+    ('ADMIN', 'Administrative user')
+ON CONFLICT DO NOTHING;
