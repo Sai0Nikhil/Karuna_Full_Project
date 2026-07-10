@@ -667,6 +667,23 @@ sticky-session requirement.
 
 ---
 
+## Upcoming Development
+
+The next planned milestone is **Milestone 5 — AI Integration Platform**.
+
+This phase will introduce AI-powered features to enhance rescue operations, animal care, and user engagement. The roadmap is organized into four phases:
+
+1. **AI Foundation** — Provider-agnostic abstraction for Gemini and Claude, prompt templates, JSON schema validation, retry policies, and rate limiting.
+2. **AI Features** — Rescue triage, animal condition prediction, rescue priority prediction, and an AI chatbot ("Sita") with conversation history.
+3. **Integrations** — File uploads, image processing, WebSocket notifications, email notifications, and background job processing.
+4. **Production** — Docker, Kubernetes, monitoring, CI/CD, security hardening, and performance tuning.
+
+Development will proceed on the `feature/milestone-5-ai` branch. Core backend modules remain stable and will not be modified unless required for AI integration.
+
+See `docs/milestone-5-plan.md` for the detailed roadmap.
+
+---
+
 ## Future Roadmap
 
 - Implement the AI triage provider (Gemini/Claude) and wire `AiPrediction` documents into the
