@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getCases } from '../api';
+import { getCases, subscribeToCaseUpdates } from '../api';
 
 interface Props { onViewCase: (id: number) => void; }
 
@@ -9,7 +9,14 @@ export const CaseList: React.FC<Props> = ({ onViewCase }) => {
   const [filter, setFilter] = useState<string>('all');
 
   useEffect(() => {
-    getCases().then(setCases).catch(() => {}).finally(() => setLoading(false));
+    const loadCases = (showLoading = false) => {
+      if (showLoading) setLoading(true);
+      getCases().then(setCases).catch(() => {}).finally(() => {
+        if (showLoading) setLoading(false);
+      });
+    };
+    loadCases(true);
+    return subscribeToCaseUpdates(() => loadCases(false));
   }, []);
 
   const filtered = filter === 'all' ? cases : cases.filter((c: any) => c.status === filter);
@@ -21,7 +28,7 @@ export const CaseList: React.FC<Props> = ({ onViewCase }) => {
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold text-slate-800">All Cases</h1>
         <div className="flex gap-2">
-          {['all', 'reported', 'rescue_route', 'in_treatment', 'discharged'].map((s) => (
+          {['all', 'reported', 'assigned', 'collected', 'at_clinic', 'in_treatment', 'discharged'].map((s) => (
             <button key={s} onClick={() => setFilter(s)}
               className={`px-3 py-1.5 text-xs font-medium rounded-lg ${filter === s ? 'bg-teal-600 text-white' : 'bg-white text-slate-600 border border-slate-200'}`}>
               {s === 'all' ? 'All' : s.replace('_', ' ')}

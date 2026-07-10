@@ -4,7 +4,7 @@
 import React from 'react';
 import { Case } from '../types';
 import { rankResponders, MatchResult } from '../services/dispatch';
-import { useCaseStore } from '../store/caseStore';
+import { useCaseStore } from '../store/CaseStoreContext';
 
 interface Props {
   c: Case;

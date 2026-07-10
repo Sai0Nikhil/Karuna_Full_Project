@@ -1,5 +1,24 @@
-// Use env variable in production, fallback to localhost for dev
-const BASE = import.meta.env.VITE_API_URL || 'http://localhost:8081/api';
+// Accept either a backend origin (http://localhost:8081) or a full API base
+// (http://localhost:8081/api) from VITE_API_URL.
+const RAW_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8081';
+
+const normalizeApiBase = (value: string) => {
+  const trimmed = value.replace(/\/+$/, '');
+  return trimmed.endsWith('/api') ? trimmed : `${trimmed}/api`;
+};
+
+export const BASE = normalizeApiBase(RAW_BASE);
+
+export const REALTIME_URL = (() => {
+  try {
+    const url = new URL(BASE);
+    url.protocol = url.protocol === 'https:' ? 'wss:' : 'ws:';
+    url.pathname = url.pathname.replace(/\/api\/?$/, '').replace(/\/$/, '') + '/ws';
+    return url.toString();
+  } catch {
+    return '';
+  }
+})();
 
 function authHeaders(): Record<string, string> {
   const t = localStorage.getItem('token');
@@ -11,8 +30,37 @@ async function handle(res: Response) {
     const body = await res.json().catch(() => ({ message: res.statusText }));
     throw new Error(body.message || 'Request failed');
   }
-  return res.json();
+  if (res.status === 204) return null;
+  const text = await res.text();
+  return text ? JSON.parse(text) : null;
 }
+
+export const subscribeToCaseUpdates = (onUpdate: () => void) => {
+  if (!REALTIME_URL) return () => {};
+  let stopped = false;
+  let retry = 0;
+  let socket: WebSocket | null = null;
+
+  const connect = () => {
+    if (stopped) return;
+    socket = new WebSocket(REALTIME_URL);
+    socket.onopen = () => { retry = 0; };
+    socket.onmessage = () => onUpdate();
+    socket.onclose = () => {
+      if (stopped) return;
+      const delay = Math.min(10000, 500 * 2 ** retry);
+      retry += 1;
+      window.setTimeout(connect, delay);
+    };
+    socket.onerror = () => socket?.close();
+  };
+
+  connect();
+  return () => {
+    stopped = true;
+    socket?.close();
+  };
+};
 
 // ─── Auth ────────────────────────────────────────────────────────────
 

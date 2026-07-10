@@ -1,0 +1,148 @@
+spring:
+  application:
+    name: ${SPRING_APPLICATION_NAME}
+
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE}
+
+  datasource:
+    url: ${POSTGRES_URL}
+    username: ${POSTGRES_USERNAME}
+    password: ${POSTGRES_PASSWORD}
+    driver-class-name: ${POSTGRES_DRIVER}
+
+  data:
+    mongodb:
+      uri: ${MONGODB_URI}
+
+  jpa:
+    open-in-view: ${JPA_OPEN_IN_VIEW}
+    hibernate:
+      ddl-auto: ${JPA_HIBERNATE_DDL_AUTO}
+    show-sql: ${JPA_SHOW_SQL}
+    properties:
+      hibernate:
+        format_sql: ${HIBERNATE_FORMAT_SQL}
+        jdbc:
+          time_zone: ${HIBERNATE_JDBC_TIME_ZONE}
+
+  flyway:
+    enabled: ${FLYWAY_ENABLED}
+    locations: ${FLYWAY_LOCATIONS}
+    baseline-on-migrate: ${FLYWAY_BASELINE_ON_MIGRATE}
+
+  cache:
+    type: ${SPRING_CACHE_TYPE}
+
+  security:
+    user:
+      name: ${ACTUATOR_USERNAME}
+      password: ${ACTUATOR_PASSWORD}
+      roles: ${ACTUATOR_ROLES}
+
+server:
+  port: ${SERVER_PORT}
+  error:
+    include-binding-errors: ${SERVER_ERROR_INCLUDE_BINDING_ERRORS}
+    include-message: ${SERVER_ERROR_INCLUDE_MESSAGE}
+    include-stacktrace: ${SERVER_ERROR_INCLUDE_STACKTRACE}
+    whitelabel:
+      enabled: ${SERVER_ERROR_WHITELABEL_ENABLED}
+
+management:
+  endpoints:
+    web:
+      base-path: ${MANAGEMENT_ENDPOINT_BASE_PATH}
+      exposure:
+        include: ${MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE}
+  endpoint:
+    health:
+      probes:
+        enabled: ${MANAGEMENT_ENDPOINT_HEALTH_PROBES_ENABLED}
+      show-details: ${MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS}
+    prometheus:
+      enabled: ${MANAGEMENT_ENDPOINT_PROMETHEUS_ENABLED}
+  info:
+    env:
+      enabled: ${MANAGEMENT_INFO_ENV_ENABLED}
+  metrics:
+    tags:
+      application: ${SPRING_APPLICATION_NAME}
+  prometheus:
+    metrics:
+      export:
+        enabled: ${MANAGEMENT_PROMETHEUS_METRICS_EXPORT_ENABLED}
+
+info:
+  app:
+    name: ${SPRING_APPLICATION_NAME}
+    description: ${KARUNA_OPENAPI_DESCRIPTION}
+
+springdoc:
+  api-docs:
+    enabled: ${SPRINGDOC_API_DOCS_ENABLED}
+    path: ${SPRINGDOC_API_DOCS_PATH}
+  swagger-ui:
+    enabled: ${SPRINGDOC_SWAGGER_UI_ENABLED}
+    path: ${SPRINGDOC_SWAGGER_UI_PATH}
+    operations-sorter: ${SPRINGDOC_SWAGGER_UI_OPERATIONS_SORTER}
+    tags-sorter: ${SPRINGDOC_SWAGGER_UI_TAGS_SORTER}
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX} %-5level [%thread] %logger{36} traceId=%X{traceId:-} %kvp - %msg%n"
+  level:
+    root: ${LOG_LEVEL_ROOT}
+    com.karuna: ${LOG_LEVEL_KARUNA}
+    org.springframework.security: ${LOG_LEVEL_SPRING_SECURITY}
+    org.hibernate.SQL: ${LOG_LEVEL_HIBERNATE_SQL}
+
+karuna:
+  cache:
+    cache-names: ${KARUNA_CACHE_NAMES}
+  cors:
+    allowed-origins: ${KARUNA_CORS_ALLOWED_ORIGINS}
+    allowed-origin-patterns: ${KARUNA_CORS_ALLOWED_ORIGIN_PATTERNS:}
+    allowed-methods: ${KARUNA_CORS_ALLOWED_METHODS}
+    allowed-headers: ${KARUNA_CORS_ALLOWED_HEADERS}
+    exposed-headers: ${KARUNA_CORS_EXPOSED_HEADERS:}
+    allow-credentials: ${KARUNA_CORS_ALLOW_CREDENTIALS}
+    max-age: ${KARUNA_CORS_MAX_AGE}
+  open-api:
+    title: ${KARUNA_OPENAPI_TITLE}
+    description: ${KARUNA_OPENAPI_DESCRIPTION}
+    version: ${KARUNA_OPENAPI_VERSION}
+    server-url: ${KARUNA_OPENAPI_SERVER_URL}
+    contact-name: ${KARUNA_OPENAPI_CONTACT_NAME}
+    license-name: ${KARUNA_OPENAPI_LICENSE_NAME}
+    bearer-auth-enabled: ${KARUNA_OPENAPI_BEARER_AUTH_ENABLED}
+  websocket:
+    endpoint: ${KARUNA_WEBSOCKET_ENDPOINT}
+    allowed-origins: ${KARUNA_WEBSOCKET_ALLOWED_ORIGINS}
+    allowed-origin-patterns: ${KARUNA_WEBSOCKET_ALLOWED_ORIGIN_PATTERNS:}
+  jwt:
+    secret: ${KARUNA_JWT_SECRET}
+    access-token-expiration: ${KARUNA_JWT_ACCESS_TOKEN_EXPIRATION}
+    refresh-token-expiration: ${KARUNA_JWT_REFRESH_TOKEN_EXPIRATION}
+    issuer: ${KARUNA_JWT_ISSUER}
+    audience: ${KARUNA_JWT_AUDIENCE:}
+  security:
+    password:
+      min-length: ${KARUNA_PASSWORD_MIN_LENGTH}
+      max-length: ${KARUNA_PASSWORD_MAX_LENGTH}
+      require-uppercase: ${KARUNA_PASSWORD_REQUIRE_UPPERCASE}
+      require-lowercase: ${KARUNA_PASSWORD_REQUIRE_LOWERCASE}
+      require-digit: ${KARUNA_PASSWORD_REQUIRE_DIGIT}
+      require-special-character: ${KARUNA_PASSWORD_REQUIRE_SPECIAL}
+    login:
+      max-failed-attempts: ${KARUNA_LOGIN_MAX_FAILED_ATTEMPTS}
+      lock-duration: ${KARUNA_LOGIN_LOCK_DURATION}
+    verification:
+      email-verification-expiration: ${KARUNA_EMAIL_VERIFICATION_EXPIRATION}
+      password-reset-expiration: ${KARUNA_PASSWORD_RESET_EXPIRATION}
+  ai:
+    provider: ${AI_PROVIDER}
+    gemini:
+      key: ${GEMINI_API_KEY:}
+    claude:
+      key: ${CLAUDE_API_KEY:}

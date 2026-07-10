@@ -1,5 +1,5 @@
 // =====================================================================
-// KARUNA — REMOTE case store (FastAPI + WebSocket).
+// KARUNA — REMOTE case store (Spring REST + WebSocket).
 //
 // Same API surface as the local caseStore so existing views call:
 //   const { cases, createCase, addDonation, ... } = useCaseStore()
@@ -12,7 +12,7 @@ import {
 } from '../types';
 import { api } from '../services/api';
 import { getRealtime, RealtimeEvent } from '../services/realtime';
-import type { NewCaseInput } from './caseStore';
+import type { NewCaseInput } from './CaseStoreContext';
 
 // Re-export the helpers the views import from the local store, so the
 // remote provider stays a drop-in replacement.
@@ -61,7 +61,7 @@ export const useRemoteCaseStore = (): CaseStoreApi => {
 const applyEventToList = (list: Case[], ev: RealtimeEvent): Case[] => {
   if (!ev.caseId || !ev.payload) return list;
   const updated = ev.payload as Case;
-  const idx = list.findIndex(c => c.id === ev.caseId);
+  const idx = list.findIndex(c => String(c.id) === String(ev.caseId));
   if (idx === -1) return [updated, ...list];
   const copy = list.slice();
   copy[idx] = updated;

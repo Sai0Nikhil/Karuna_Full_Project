@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface Props {
-  onNavigate: (p: string) => void;
+  onNavigate: (p: 'login' | 'register' | 'landing' | 'report' | 'my-cases' | 'donate' | 'adopt') => void;
   user: any;
 }
 

@@ -42,10 +42,12 @@ export const LoginPage: React.FC<Props> = ({ onLogin, onRegister }) => {
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-1">Login as</label>
+          <label htmlFor="citizen-role" className="block text-sm font-medium text-slate-700 mb-1">Login as</label>
           <select
+            id="citizen-role"
             value={role}
             onChange={(e) => setRole(e.target.value)}
+            aria-label="Login as"
             className="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500"
           >
             {ROLES.map((r) => <option key={r.value} value={r.value}>{r.label}</option>)}
@@ -53,14 +55,14 @@ export const LoginPage: React.FC<Props> = ({ onLogin, onRegister }) => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-1">Email</label>
-          <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
+          <label htmlFor="citizen-email" className="block text-sm font-medium text-slate-700 mb-1">Email</label>
+          <input id="citizen-email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com"
             className="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500" />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-1">Password</label>
-          <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)}
+          <label htmlFor="citizen-password" className="block text-sm font-medium text-slate-700 mb-1">Password</label>
+          <input id="citizen-password" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••"
             className="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500" />
         </div>
 

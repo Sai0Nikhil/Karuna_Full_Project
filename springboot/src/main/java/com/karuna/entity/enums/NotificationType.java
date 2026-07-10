@@ -1,0 +1,11 @@
+package com.karuna.entity.enums;
+
+public enum NotificationType {
+	CASE_CREATED,
+	CASE_ASSIGNED,
+	CASE_STATUS_CHANGED,
+	DONATION_RECEIVED,
+	ADOPTION_UPDATED,
+	TREATMENT_UPDATED,
+	SYSTEM
+}

@@ -1,14 +1,20 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { getCase, assignCase, advanceCase, addNote, getResponders } from '../api';
+import { getCase, assignCase, advanceCase, addNote, getResponders, updateAdoptionStatus, subscribeToCaseUpdates } from '../api';
 
 interface Props { caseId: number; onBack: () => void; user: any; }
 
 const STATUS_ACTIONS: Record<string, { next: string; label: string; color: string }[]> = {
   reported: [
-    { next: 'rescue_route', label: 'Dispatch to rescue →', color: 'bg-amber-600 hover:bg-amber-700' },
+    { next: 'assigned', label: 'Dispatch to rescue →', color: 'bg-amber-600 hover:bg-amber-700' },
   ],
-  rescue_route: [
-    { next: 'in_treatment', label: 'Start treatment →', color: 'bg-purple-600 hover:bg-purple-700' },
+  assigned: [
+    { next: 'collected', label: 'Mark collected →', color: 'bg-orange-600 hover:bg-orange-700' },
+  ],
+  collected: [
+    { next: 'at_clinic', label: 'Send to clinic →', color: 'bg-purple-600 hover:bg-purple-700' },
+  ],
+  at_clinic: [
+    { next: 'in_treatment', label: 'Start treatment →', color: 'bg-indigo-600 hover:bg-indigo-700' },
   ],
   in_treatment: [
     { next: 'discharged', label: 'Mark as recovered →', color: 'bg-emerald-600 hover:bg-emerald-700' },
@@ -22,15 +28,20 @@ export const CaseDetail: React.FC<Props> = ({ caseId, onBack, user }) => {
   const [noteText, setNoteText] = useState('');
   const [actionLoading, setActionLoading] = useState(false);
 
-  const load = useCallback(() => {
-    setLoading(true);
-    Promise.all([getCase(caseId), getResponders()])
+  const load = useCallback((showLoading = true) => {
+    if (showLoading) setLoading(true);
+    return Promise.all([getCase(caseId), getResponders()])
       .then(([cData, rData]) => { setCase(cData); setResponders(rData); })
       .catch(() => {})
-      .finally(() => setLoading(false));
+      .finally(() => {
+        if (showLoading) setLoading(false);
+      });
   }, [caseId]);
 
-  useEffect(() => { load(); }, [load]);
+  useEffect(() => {
+    load(true);
+    return subscribeToCaseUpdates(() => { void load(false); });
+  }, [load]);
 
   const handleAdvance = async (event: string) => {
     setActionLoading(true);
@@ -54,18 +65,25 @@ export const CaseDetail: React.FC<Props> = ({ caseId, onBack, user }) => {
     finally { setActionLoading(false); }
   };
 
+  const handleAdoptionDecision = async (applicationId: number, status: 'approved' | 'rejected') => {
+    setActionLoading(true);
+    try { await updateAdoptionStatus(applicationId, status); await load(); }
+    catch (err: any) { alert(err.message); }
+    finally { setActionLoading(false); }
+  };
+
   if (loading) return <p className="text-slate-500">Loading case...</p>;
   if (!c) return <p className="text-red-500">Case not found.</p>;
 
   const actions = STATUS_ACTIONS[c.status] || [];
-  const parsedNotes: string[] = (() => {
+  const parsedNotes: string[] = Array.isArray(c.notes) ? c.notes : (() => {
     try { return JSON.parse(c.notes || '[]'); } catch { return []; }
   })();
-  const parsedFirstAid: string[] = (() => {
+  const parsedFirstAid: string[] = Array.isArray(c.firstAidSteps) ? c.firstAidSteps : (() => {
     try { return JSON.parse(c.firstAidSteps || '[]'); } catch { return []; }
   })();
   const donations = c.donations || [];
-  const adoptions = c.adoptions || [];
+  const adoptions = c.adoptions || c.adoptionApplications || [];
 
   return (
     <div>
@@ -160,11 +178,16 @@ export const CaseDetail: React.FC<Props> = ({ caseId, onBack, user }) => {
               <h3 className="font-semibold text-slate-700 mb-3">
                 {c.responderName ? 'Reassign' : 'Assign responder'}
               </h3>
+              <label htmlFor="case-responder" className="block text-xs font-medium text-slate-500 mb-2">
+                Choose responder
+              </label>
               <select
+                id="case-responder"
                 onChange={(e) => { const v = parseInt(e.target.value); if (v) handleAssign(v); }}
                 disabled={actionLoading}
                 className="w-full p-2 border border-slate-300 rounded-lg text-sm"
                 defaultValue=""
+                aria-label="Choose responder"
               >
                 <option value="" disabled>Select a responder...</option>
                 {responders.map((r: any) => <option key={r.id} value={r.id}>{r.name} ({r.email})</option>)}
@@ -204,9 +227,33 @@ export const CaseDetail: React.FC<Props> = ({ caseId, onBack, user }) => {
                     <p className="text-sm font-medium text-slate-700">{a.applicantName}</p>
                     <p className="text-xs text-slate-500">{a.contact}</p>
                     <p className="text-xs text-slate-600 mt-1">"{a.reason}"</p>
-                    <span className="text-xs font-medium px-2 py-0.5 rounded bg-blue-100 text-blue-700 mt-1 inline-block">
-                      {a.status}
-                    </span>
+                    <div className="mt-2 flex items-center gap-2">
+                      <span className={`text-xs font-medium px-2 py-0.5 rounded ${
+                        a.status === 'approved' ? 'bg-emerald-100 text-emerald-700' :
+                        a.status === 'rejected' ? 'bg-red-100 text-red-700' :
+                        'bg-blue-100 text-blue-700'
+                      }`}>
+                        {a.status}
+                      </span>
+                      {a.status === 'pending' && (
+                        <div className="ml-auto flex gap-1">
+                          <button
+                            onClick={() => handleAdoptionDecision(a.id, 'approved')}
+                            disabled={actionLoading}
+                            className="px-2 py-1 text-xs rounded bg-emerald-600 text-white hover:bg-emerald-700 disabled:opacity-50"
+                          >
+                            Approve
+                          </button>
+                          <button
+                            onClick={() => handleAdoptionDecision(a.id, 'rejected')}
+                            disabled={actionLoading}
+                            className="px-2 py-1 text-xs rounded bg-red-600 text-white hover:bg-red-700 disabled:opacity-50"
+                          >
+                            Reject
+                          </button>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>

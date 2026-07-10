@@ -1,8 +1,8 @@
 // =====================================================================
-// KARUNA — REST API client for the FastAPI backend.
+// KARUNA — REST API client for the Spring backend.
 //
 // Set VITE_API_URL in .env to enable remote mode:
-//   VITE_API_URL=http://localhost:8000
+//   VITE_API_URL=http://localhost:8081
 //
 // When unset, the app falls back to the local-only store (no network).
 // =====================================================================
@@ -10,12 +10,16 @@
 import { Case } from '../types';
 
 // Vite exposes import.meta.env.VITE_*; fall back to process.env for safety.
-const API_URL: string =
+const RAW_API_URL: string =
   (typeof import.meta !== 'undefined' && (import.meta as any).env?.VITE_API_URL) ||
-  (typeof process !== 'undefined' && (process as any).env?.VITE_API_URL) ||
   '';
 
-export const REMOTE_ENABLED = !!API_URL;
+const normalizeApiOrigin = (value: string) =>
+  value.replace(/\/+$/, '').replace(/\/api$/, '');
+
+const API_URL = normalizeApiOrigin(RAW_API_URL);
+
+export const REMOTE_ENABLED = !!RAW_API_URL;
 
 const TOKEN_KEY = 'karuna.auth.token';
 const USER_KEY  = 'karuna.auth.user';
@@ -94,18 +98,18 @@ export const api = {
   remoteEnabled: REMOTE_ENABLED,
 
   async register(input: { email: string; password: string; name: string; role?: string; ngo_name?: string }) {
-    const out = await request<{ access_token: string; user: AuthUser }>('/api/auth/register', {
+    const out = await request<{ access_token?: string; accessToken?: string; token?: string; user: AuthUser }>('/api/auth/register', {
       method: 'POST', body: JSON.stringify(input),
     });
-    setAuth(out.access_token, out.user);
+    setAuth(out.access_token || out.accessToken || out.token || '', out.user);
     return out;
   },
 
   async login(email: string, password: string) {
-    const out = await request<{ access_token: string; user: AuthUser }>('/api/auth/login', {
+    const out = await request<{ access_token?: string; accessToken?: string; token?: string; user: AuthUser }>('/api/auth/login', {
       method: 'POST', body: JSON.stringify({ email, password }),
     });
-    setAuth(out.access_token, out.user);
+    setAuth(out.access_token || out.accessToken || out.token || '', out.user);
     return out;
   },
 
