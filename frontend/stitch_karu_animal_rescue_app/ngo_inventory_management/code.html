@@ -1,0 +1,315 @@
+<!DOCTYPE html><html lang="en" class="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600;700&amp;family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#bdc9c6",
+                    "on-tertiary-fixed-variant": "#783200",
+                    "surface-container-highest": "#d9e3f4",
+                    "secondary-container": "#dfe0e0",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-low": "#eef4ff",
+                    "on-secondary-container": "#616363",
+                    "on-tertiary-container": "#ffe6da",
+                    "on-primary-fixed-variant": "#00504a",
+                    "surface-dim": "#d1dbec",
+                    "on-tertiary-fixed": "#341100",
+                    "background": "#f8f9ff",
+                    "on-surface-variant": "#3e4947",
+                    "on-error": "#ffffff",
+                    "primary-container": "#0f766e",
+                    "surface-tint": "#006a63",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "tertiary": "#893a00",
+                    "inverse-surface": "#27313e",
+                    "primary-fixed-dim": "#80d5cb",
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#a3faef",
+                    "primary-fixed": "#9cf2e8",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#ffdbca",
+                    "surface-bright": "#f8f9ff",
+                    "tertiary-container": "#af4c00",
+                    "on-secondary-fixed-variant": "#454747",
+                    "on-primary-fixed": "#00201d",
+                    "on-secondary": "#ffffff",
+                    "surface-container-high": "#dfe9fa",
+                    "surface-variant": "#d9e3f4",
+                    "secondary-fixed": "#e2e2e2",
+                    "secondary": "#5d5f5f",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-primary": "#80d5cb",
+                    "on-background": "#121c28",
+                    "tertiary-fixed-dim": "#ffb690",
+                    "surface-container": "#e5eeff",
+                    "primary": "#005c55",
+                    "outline": "#6e7977",
+                    "on-surface": "#121c28",
+                    "surface": "#f8f9ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "12px",
+                    "xs": "4px",
+                    "md": "20px",
+                    "lg": "32px",
+                    "container-margin": "20px",
+                    "gutter": "16px",
+                    "xl": "48px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "label-caps": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["EB Garamond"],
+                    "display-lg": ["EB Garamond"],
+                    "body-sm": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "headline-lg": ["EB Garamond"],
+                    "title-md": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "600"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    }catch(_e){}</script><meta charset="utf-8"></head><body class="bg-background text-on-background font-body-lg min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface shadow-sm flex items-center justify-between px-container-margin h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary p-2 hover:bg-surface-container-low transition-colors rounded-full active:scale-95 duration-150">menu</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Resources</h1>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">notifications</span>
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a female NGO worker with a warm, compassionate expression, set against a soft, clean white background. She wears a deep teal vest, part of the Karuna organization uniform. The lighting is bright and even, reinforcing the modern humanist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCg1FKd3DurxkBwXx4yD2sP62n-2s-GxdTK4FUjJKB22EYu434bfwbB8yQdfnmzzLCW2Ri13DVzTjs6G6t1iOCartMHJZXLPtY7WhzLxr2RXwUnWFWhCjg90sjsRhUZsup_t5sXf_oKWEB5dWxE8xjMh67qlKpEo4lXr1m8G3v0rXO_qtEFE5brYzQOd4t7for3zFyw7iLrQq3QssE1RfTLnKDgyuOKBVe7PhEmhU6Q-lyj8apn04Rc_HhEm9elZsGGKMx73EtL9so">
+</div>
+</div>
+</header>
+<main class="pt-20 px-container-margin max-w-5xl mx-auto">
+<!-- Dashboard Stats Row (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mt-4">
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant shadow-sm relative overflow-hidden group">
+<div class="absolute inset-0 bg-jali pointer-events-none"></div>
+<p class="font-label-caps text-label-caps text-secondary uppercase">Active Rescues</p>
+<h3 class="font-display-lg text-display-lg text-primary mt-2">12</h3>
+<div class="flex items-center mt-2 text-primary gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span class="text-xs font-bold">+3 since 8 AM</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant shadow-sm relative overflow-hidden group">
+<div class="absolute inset-0 bg-jali pointer-events-none"></div>
+<p class="font-label-caps text-label-caps text-secondary uppercase">Fleet Status</p>
+<h3 class="font-display-lg text-display-lg text-primary mt-2">85%</h3>
+<div class="flex items-center mt-2 text-secondary gap-1">
+<span class="material-symbols-outlined text-sm">info</span>
+<span class="text-xs">1 Vehicle in Maintenance</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant shadow-sm relative overflow-hidden group">
+<div class="absolute inset-0 bg-jali pointer-events-none"></div>
+<p class="font-label-caps text-label-caps text-secondary uppercase">Critical Supplies</p>
+<h3 class="font-display-lg text-display-lg text-error mt-2">04</h3>
+<div class="flex items-center mt-2 text-error gap-1">
+<span class="material-symbols-outlined text-sm">warning</span>
+<span class="text-xs font-bold">Action Required</span>
+</div>
+</div>
+</div>
+<!-- Tab Navigation -->
+<nav class="flex border-b border-outline-variant mt-lg overflow-x-auto no-scrollbar">
+<button class="px-lg py-sm relative active-tab text-primary font-bold transition-all whitespace-nowrap">
+<span class="font-title-md text-title-md">Vehicles</span>
+</button>
+<button class="px-lg py-sm text-on-surface-variant font-title-md text-title-md transition-all hover:bg-surface-container-low whitespace-nowrap">
+                Medical Kits
+            </button>
+<button class="px-lg py-sm text-on-surface-variant font-title-md text-title-md transition-all hover:bg-surface-container-low whitespace-nowrap">
+                Shelter Beds
+            </button>
+</nav>
+<!-- Search & Filter Actions -->
+<div class="flex flex-col md:flex-row items-center justify-between mt-md gap-4">
+<div class="relative w-full md:w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 pl-10 py-2 font-body-lg text-on-surface placeholder:text-outline transition-colors" placeholder="Search inventory..." type="text">
+</div>
+<div class="flex gap-2 w-full md:w-auto">
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 bg-primary-container text-on-primary px-lg py-2 rounded-lg font-title-md text-sm active:scale-95 transition-transform shadow-sm">
+<span class="material-symbols-outlined">add</span>
+                    Register New
+                </button>
+<button class="flex items-center justify-center p-2 border border-outline-variant rounded-lg hover:bg-surface-container-low text-on-surface-variant">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Inventory List -->
+<div class="mt-lg space-y-gutter">
+<!-- Item-->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm flex flex-col md:flex-row items-stretch group hover:shadow-md transition-shadow">
+<div class="md:w-48 h-32 md:h-auto overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A modern, high-tech animal rescue ambulance vehicle parked in a clean garage environment. The vehicle is white with deep teal Karuna branding and orange emergency strips. The lighting is soft and cinematic, highlighting the clean lines and professional nature of the rescue fleet." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNPnVVlU89JIW-JlaZps1fS7TQ37AasAbunWfmI6P94hLu4qSAzEzQ52Ahqhwc8Gy6LvT0x-h0xWiArQu62R7QOqycgbPxZO_ms6OiBwghFq7wKPkWz5_UPA9w8ZBRriQHKavOLU8vzQhNLl9ZsK3CqT4ij3oTw1PctuWaTjbKdTh0pdjqt13vCMFevipoBUmmaKzP9hgugGtqVJXURFy4ZLM2n_WUt7QqWoqdDpULsbAZco0L0pVoCMK8HqWCA85i8-G1paNFY2k">
+</div>
+<div class="flex-1 p-md flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-title-md text-title-md text-on-surface">Ambulance #1</h4>
+<div class="flex items-center gap-2 mt-1">
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-[10px] font-bold text-secondary uppercase tracking-wider">Fleet ID: V-091</span>
+<span class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="text-body-sm font-semibold">2 Large Animals</span>
+</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-[12px] font-bold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                                En Route
+                            </span>
+<span class="text-xs text-outline mt-2">Est. Arrival: 14 mins</span>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant flex justify-end gap-3">
+<button class="text-primary font-bold text-sm px-4 py-1.5 hover:bg-primary/5 rounded-lg transition-colors">View Map</button>
+<button class="bg-primary text-on-primary font-bold text-sm px-6 py-1.5 rounded-lg active:scale-95 transition-transform shadow-sm">Dispatch Support</button>
+</div>
+</div>
+</div>
+<!-- Item 2: Medical Kit -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm hover:shadow-md transition-shadow">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-error-container/20 flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-2xl">medical_services</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface">Medical Kit A</h4>
+<div class="flex items-center gap-2 text-outline mt-1">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span class="text-body-sm">Central Hub - Cabinet 4</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:items-end">
+<span class="px-3 py-1 rounded-full bg-error-container text-on-error-container text-[12px] font-bold flex items-center gap-1 w-fit">
+<span class="material-symbols-outlined text-sm">inventory_2</span>
+                            Low Stock
+                        </span>
+<div class="w-full md:w-32 h-1.5 bg-outline-variant rounded-full mt-2 overflow-hidden">
+<div class="h-full bg-error w-[15%]"></div>
+</div>
+</div>
+<div class="flex md:flex-col gap-2">
+<button class="flex-1 md:flex-none border border-error text-error font-bold text-sm px-6 py-1.5 rounded-lg hover:bg-error/5 active:scale-95 transition-all">Request Re-stock</button>
+</div>
+</div>
+</div>
+<!-- Item 3: Surgical Suite -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="absolute right-0 top-0 w-24 h-24 -mr-8 -mt-8 bg-jali rotate-12 opacity-10"></div>
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl">emergency</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface">Surgical Suite</h4>
+<div class="flex items-center gap-2 mt-1">
+<span class="bg-primary-container/10 text-primary-container px-2 py-0.5 rounded text-[11px] font-bold">Case: #KR-8291</span>
+<span class="text-outline text-body-sm">Lead: Dr. Nair</span>
+</div>
+</div>
+</div>
+<div class="flex-1 md:max-w-xs">
+<p class="text-xs text-secondary mb-1">Procedure Progress</p>
+<div class="w-full h-1.5 bg-outline-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[75%]"></div>
+</div>
+</div>
+<div class="flex flex-col md:items-end">
+<span class="px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container text-[12px] font-bold">
+                            Occupied
+                        </span>
+<span class="text-[10px] text-outline mt-1 uppercase tracking-widest font-bold">ETA Cleared: 15:30</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Quick View Summary (Mobile Only) -->
+<div class="md:hidden mt-lg p-md bg-inverse-surface text-inverse-on-surface rounded-xl flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed">check_circle</span>
+<span class="text-sm font-semibold">All systems nominal</span>
+</div>
+<button class="text-primary-fixed text-sm font-bold">Report Issue</button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container-lowest shadow-lg flex justify-around items-center h-20 px-base pb-safe w-full border-t border-outline-variant">
+<a class="flex flex-col items-center justify-center text-secondary p-1 hover:text-primary transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary font-bold bg-primary-container/10 rounded-xl p-1 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inventory</span>
+<span class="font-label-caps text-label-caps mt-1">Rescues</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary p-1 hover:text-primary transition-all active:scale-90 duration-200" href="#">
+<div class="bg-tertiary w-12 h-12 rounded-full flex items-center justify-center -mt-8 shadow-lg border-4 border-surface shadow-tertiary/40">
+<span class="material-symbols-outlined text-on-tertiary">emergency_share</span>
+</div>
+<span class="font-label-caps text-label-caps mt-1">Report</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary p-1 hover:text-primary transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-caps text-label-caps mt-1">Community</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary p-1 hover:text-primary transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps mt-1">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions for tab switching simulation
+        const tabs = document.querySelectorAll('nav button');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => {
+                    t.classList.remove('active-tab', 'text-primary', 'font-bold');
+                    t.classList.add('text-on-surface-variant');
+                });
+                tab.classList.add('active-tab', 'text-primary', 'font-bold');
+                tab.classList.remove('text-on-surface-variant');
+            });
+        });
+
+        // Search highlight effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.querySelector('.material-symbols-outlined').classList.add('text-primary');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.querySelector('.material-symbols-outlined').classList.remove('text-primary');
+        });
+    </script>
+</body></html>

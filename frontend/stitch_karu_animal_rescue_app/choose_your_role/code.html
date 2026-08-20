@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Karuṇā - Choose Your Role</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600;700&amp;family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#eef4ff",
+                    "on-tertiary-fixed": "#341100",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "tertiary-fixed": "#ffdbca",
+                    "tertiary": "#893a00",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#121c28",
+                    "on-secondary": "#ffffff",
+                    "surface": "#f8f9ff",
+                    "outline": "#6e7977",
+                    "error-container": "#ffdad6",
+                    "secondary-container": "#dfe0e0",
+                    "on-secondary-container": "#616363",
+                    "surface-dim": "#d1dbec",
+                    "on-primary-container": "#a3faef",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-primary-fixed": "#00201d",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#e5eeff",
+                    "inverse-surface": "#27313e",
+                    "on-tertiary-container": "#ffe6da",
+                    "secondary": "#5d5f5f",
+                    "outline-variant": "#bdc9c6",
+                    "on-primary-fixed-variant": "#00504a",
+                    "inverse-primary": "#80d5cb",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#9cf2e8",
+                    "primary-container": "#0f766e",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "tertiary-container": "#af4c00",
+                    "surface-container-high": "#dfe9fa",
+                    "primary-fixed-dim": "#80d5cb",
+                    "surface-tint": "#006a63",
+                    "primary": "#005c55",
+                    "secondary-fixed": "#e2e2e2",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#121c28",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "surface-variant": "#d9e3f4",
+                    "on-tertiary-fixed-variant": "#783200",
+                    "surface-bright": "#f8f9ff",
+                    "tertiary-fixed-dim": "#ffb690",
+                    "surface-container-highest": "#d9e3f4",
+                    "on-surface-variant": "#3e4947",
+                    "on-secondary-fixed-variant": "#454747",
+                    "background": "#f8f9ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "md": "20px",
+                    "base": "8px",
+                    "xs": "4px",
+                    "lg": "32px",
+                    "xl": "48px",
+                    "sm": "12px",
+                    "container-margin": "20px"
+            },
+            "fontFamily": {
+                    "label-caps": ["Hanken Grotesk"],
+                    "title-md": ["Hanken Grotesk"],
+                    "display-lg": ["EB Garamond"],
+                    "headline-lg": ["EB Garamond"],
+                    "body-sm": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["EB Garamond"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .jali-pattern {
+            background-color: #f8f9ff;
+            background-image: radial-gradient(#005c55 0.5px, transparent 0.5px), radial-gradient(#005c55 0.5px, #f8f9ff 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            opacity: 0.03;
+        }
+
+        .role-card-active {
+            border-color: #005c55 !important;
+            background-color: #eef4ff !important;
+            transform: scale(0.98);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-lg overflow-x-hidden min-h-screen flex flex-col">
+<!-- Background Decorative Pattern -->
+<div class="fixed inset-0 jali-pattern pointer-events-none"></div>
+<!-- Header / TopAppBar Mock (Suppressed according to Shell Logic for Transactional Page, but keeping title context) -->
+<header class="relative z-10 px-container-margin pt-xl pb-lg animate-fade-in">
+<div class="flex justify-center mb-8">
+<span class="font-display-lg text-primary text-headline-lg-mobile tracking-tight">Karuṇā</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary font-bold text-center mb-2">Choose Your Role</h1>
+<p class="text-on-surface-variant text-center font-body-lg">Select how you want to use Karuṇā</p>
+</header>
+<!-- Role Selection Canvas -->
+<main class="relative z-10 flex-grow px-container-margin space-y-4 pb-32 overflow-y-auto">
+<!-- Citizen Card -->
+<button class="w-full flex items-start p-md bg-white rounded-xl border-l-4 border-primary shadow-sm active:scale-95 transition-all duration-200 text-left animate-fade-in" onclick="selectRole(this)" style="animation-delay: 0.1s;">
+<div class="mr-4 bg-surface-container-low p-3 rounded-lg">
+<span class="text-2xl">🏙️</span>
+</div>
+<div class="flex-grow">
+<h3 class="font-title-md text-title-md text-on-surface">Citizen</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Report injured animals, donate &amp; adopt</p>
+</div>
+<div class="self-center ml-2 text-outline-variant">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</button>
+<!-- NGO Staff Card -->
+<button class="w-full flex items-start p-md bg-white rounded-xl border-l-4 border-blue-600 shadow-sm active:scale-95 transition-all duration-200 text-left animate-fade-in" onclick="selectRole(this)" style="animation-delay: 0.15s;">
+<div class="mr-4 bg-blue-50 p-3 rounded-lg">
+<span class="text-2xl">🏥</span>
+</div>
+<div class="flex-grow">
+<h3 class="font-title-md text-title-md text-on-surface">NGO Staff</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Manage rescue cases &amp; coordinate</p>
+</div>
+<div class="self-center ml-2 text-outline-variant">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</button>
+<!-- Volunteer Responder Card -->
+<button class="w-full flex items-start p-md bg-white rounded-xl border-l-4 border-amber-500 shadow-sm active:scale-95 transition-all duration-200 text-left animate-fade-in" onclick="selectRole(this)" style="animation-delay: 0.2s;">
+<div class="mr-4 bg-amber-50 p-3 rounded-lg">
+<span class="text-2xl">🦺</span>
+</div>
+<div class="flex-grow">
+<h3 class="font-title-md text-title-md text-on-surface">Volunteer Responder</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Accept dispatch &amp; rescue animals</p>
+</div>
+<div class="self-center ml-2 text-outline-variant">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</button>
+<!-- Veterinary Clinic Card -->
+<button class="w-full flex items-start p-md bg-white rounded-xl border-l-4 border-purple-600 shadow-sm active:scale-95 transition-all duration-200 text-left animate-fade-in" onclick="selectRole(this)" style="animation-delay: 0.25s;">
+<div class="mr-4 bg-purple-50 p-3 rounded-lg">
+<span class="text-2xl">🩺</span>
+</div>
+<div class="flex-grow">
+<h3 class="font-title-md text-title-md text-on-surface">Veterinary Clinic</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Treat animals &amp; manage slots</p>
+</div>
+<div class="self-center ml-2 text-outline-variant">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</button>
+</main>
+<!-- Transactional Footer -->
+<div class="fixed bottom-0 left-0 w-full p-container-margin bg-surface bg-opacity-80 backdrop-blur-md z-20">
+<button class="w-full h-14 bg-outline-variant text-white rounded-xl font-title-md flex justify-center items-center gap-2 transition-all duration-300 cursor-not-allowed" disabled="" id="continue-btn">
+            Continue 
+            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<!-- Micro-interaction Script -->
+<script>
+        function selectRole(element) {
+            // Clear existing selections
+            const cards = document.querySelectorAll('button[onclick="selectRole(this)"]');
+            cards.forEach(card => {
+                card.classList.remove('role-card-active', 'ring-2', 'ring-primary', 'ring-offset-2');
+                card.classList.add('bg-white');
+            });
+
+            // Set current selection
+            element.classList.add('role-card-active', 'ring-2', 'ring-primary', 'ring-offset-2');
+            element.classList.remove('bg-white');
+
+            // Enable continue button
+            const continueBtn = document.getElementById('continue-btn');
+            continueBtn.disabled = false;
+            continueBtn.classList.remove('bg-outline-variant', 'cursor-not-allowed');
+            continueBtn.classList.add('bg-primary', 'hover:bg-primary-container', 'shadow-lg');
+            
+            // Haptic feedback simulation
+            if (window.navigator && window.navigator.vibrate) {
+                window.navigator.vibrate(10);
+            }
+        }
+    </script>
+</body></html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Karuṇā NGO Staff Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;700&amp;family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed": "#1a1c1c",
+                    "primary-fixed-dim": "#80d5cb",
+                    "surface-bright": "#f8f9ff",
+                    "surface-container-highest": "#d9e3f4",
+                    "tertiary-fixed-dim": "#ffb690",
+                    "inverse-surface": "#27313e",
+                    "primary-fixed": "#9cf2e8",
+                    "surface": "#f8f9ff",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#006a63",
+                    "inverse-on-surface": "#eaf1ff",
+                    "surface-container-high": "#dfe9fa",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed": "#00201d",
+                    "surface-dim": "#d1dbec",
+                    "on-secondary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "background": "#f8f9ff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#121c28",
+                    "on-primary": "#ffffff",
+                    "surface-container-low": "#eef4ff",
+                    "on-primary-container": "#a3faef",
+                    "tertiary": "#893a00",
+                    "on-tertiary-fixed-variant": "#783200",
+                    "secondary-container": "#dfe0e0",
+                    "surface-variant": "#d9e3f4",
+                    "secondary-fixed": "#e2e2e2",
+                    "primary": "#005c55",
+                    "on-background": "#121c28",
+                    "on-tertiary-container": "#ffe6da",
+                    "on-surface-variant": "#3e4947",
+                    "outline-variant": "#bdc9c6",
+                    "on-tertiary-fixed": "#341100",
+                    "outline": "#6e7977",
+                    "secondary": "#5d5f5f",
+                    "primary-container": "#0f766e",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "on-error": "#ffffff",
+                    "on-secondary-fixed-variant": "#454747",
+                    "tertiary-fixed": "#ffdbca",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-container": "#616363",
+                    "on-primary-fixed-variant": "#00504a",
+                    "tertiary-container": "#af4c00",
+                    "inverse-primary": "#80d5cb",
+                    "surface-container": "#e5eeff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "base": "8px",
+                    "lg": "32px",
+                    "gutter": "16px",
+                    "md": "20px",
+                    "sm": "12px",
+                    "container-margin": "20px",
+                    "xl": "48px"
+            },
+            "fontFamily": {
+                    "body-sm": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["EB Garamond"],
+                    "headline-lg": ["EB Garamond"],
+                    "display-lg": ["EB Garamond"],
+                    "title-md": ["Hanken Grotesk"],
+                    "label-caps": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            -webkit-tap-highlight-color: transparent;
+            background-color: #f8f9ff;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .jali-pattern {
+            background-image: radial-gradient(#006a63 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+            opacity: 0.03;
+        }
+        @keyframes pulse-red {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(186, 26, 26, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(186, 26, 26, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(186, 26, 26, 0); }
+        }
+        .animate-pulse-red {
+            animation: pulse-red 2s infinite;
+        }
+        @keyframes pulse-green {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+        .animate-live-dot {
+            animation: pulse-green 1.5s ease-in-out infinite;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-lg text-on-surface">
+<!-- Top AppBar -->
+<header class="fixed top-0 w-full z-50 bg-primary h-16 flex justify-between items-center px-container-margin shadow-md">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-primary">menu</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-primary">NGO Dashboard</h1>
+</div>
+<div class="relative active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-on-primary text-2xl">notifications</span>
+<span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-tertiary-container ring-2 ring-primary"></span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-20 pb-24 px-container-margin min-h-screen relative overflow-hidden">
+<div class="jali-pattern absolute inset-0 pointer-events-none"></div>
+<!-- 2x2 Stats Grid -->
+<section class="grid grid-cols-2 gap-gutter mb-lg">
+<!-- Total Cases -->
+<div class="bg-primary-container p-md rounded-xl shadow-sm border border-primary/10">
+<p class="font-label-caps text-label-caps text-on-primary-container opacity-80 mb-xs">TOTAL CASES</p>
+<h2 class="font-display-lg text-display-lg text-on-primary-container">47</h2>
+<div class="mt-xs h-1 w-full bg-white/20 rounded-full overflow-hidden">
+<div class="bg-white h-full w-[80%]"></div>
+</div>
+</div>
+<!-- Critical -->
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-sm border border-outline-variant relative overflow-hidden">
+<div class="absolute top-3 right-3 h-2 w-2 bg-error rounded-full animate-pulse-red"></div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-xs">CRITICAL</p>
+<h2 class="font-display-lg text-display-lg text-error">3</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant/70">Urgent action</p>
+</div>
+<!-- Active -->
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-sm border border-outline-variant">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-xs">ACTIVE</p>
+<h2 class="font-display-lg text-display-lg text-primary">12</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant/70">In progress</p>
+</div>
+<!-- Discharged -->
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-sm border border-outline-variant">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-xs">DISCHARGED</p>
+<h2 class="font-display-lg text-display-lg text-secondary">28</h2>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px] text-primary">trending_up</span>
+<span class="text-[12px] font-bold text-primary">+4 today</span>
+</div>
+</div>
+</section>
+<!-- Live Cases Section -->
+<section class="mb-gutter">
+<div class="flex items-center justify-between mb-sm">
+<div class="flex items-center gap-2">
+<span class="block h-2.5 w-2.5 bg-green-500 rounded-full animate-live-dot"></span>
+<h3 class="font-title-md text-title-md text-on-surface uppercase tracking-wider">Live Cases</h3>
+</div>
+<button class="text-primary font-label-caps text-label-caps px-2 py-1 hover:bg-primary-container/10 rounded-lg transition-colors">VIEW ALL</button>
+</div>
+<!-- Case Cards List -->
+<div class="space-y-sm">
+<!-- Case 1: Critical -->
+<div class="bg-surface-container-lowest p-gutter rounded-xl shadow-sm border-l-4 border-error flex flex-col gap-sm active:bg-surface-container transition-colors">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<span class="text-3xl">🐕</span>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface">Indian Pariah (Injured)</h4>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span class="font-body-sm text-body-sm">Sector 45, Gurgaon</span>
+</div>
+</div>
+</div>
+<span class="bg-error-container text-on-error-container font-label-caps text-[10px] px-2 py-1 rounded-full border border-error/20">CRITICAL</span>
+</div>
+<div class="flex justify-between items-center pt-2 border-t border-outline-variant">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Assigned to: <span class="font-semibold text-on-surface">John D.</span></span>
+<div class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-[18px]">ambulance</span>
+<span class="font-label-caps text-label-caps">EN ROUTE</span>
+</div>
+</div>
+</div>
+<!-- Case 2: Urgent -->
+<div class="bg-surface-container-lowest p-gutter rounded-xl shadow-sm border-l-4 border-tertiary flex flex-col gap-sm active:bg-surface-container transition-colors">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<span class="text-3xl">🐈</span>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface">Stray Cat (Skin Infection)</h4>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span class="font-body-sm text-body-sm">Old Town Market</span>
+</div>
+</div>
+</div>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-caps text-[10px] px-2 py-1 rounded-full border border-tertiary/20">URGENT</span>
+</div>
+<div class="flex justify-between items-center pt-2 border-t border-outline-variant">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Assigned to: <span class="font-semibold text-on-surface">Anita R.</span></span>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span class="font-label-caps text-label-caps">ARRIVED</span>
+</div>
+</div>
+</div>
+<!-- Case 3: Routine -->
+<div class="bg-surface-container-lowest p-gutter rounded-xl shadow-sm border-l-4 border-secondary flex flex-col gap-sm active:bg-surface-container transition-colors">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<span class="text-3xl">🐄</span>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface">Brahminy Bull (Checkup)</h4>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span class="font-body-sm text-body-sm">Temple Road Junction</span>
+</div>
+</div>
+</div>
+<span class="bg-secondary-container text-on-secondary-container font-label-caps text-[10px] px-2 py-1 rounded-full border border-outline-variant">ROUTINE</span>
+</div>
+<div class="flex justify-between items-center pt-2 border-t border-outline-variant">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Assigned to: <span class="font-semibold text-on-surface">Suresh V.</span></span>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span class="font-label-caps text-label-caps">PENDING</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Insights Summary (Bento-style add-on) -->
+<section class="mt-lg">
+<h3 class="font-title-md text-title-md text-on-surface mb-gutter uppercase tracking-wider">Weekly Insights</h3>
+<div class="bg-surface-container p-gutter rounded-2xl flex items-center justify-between">
+<div class="space-y-1">
+<p class="font-body-lg text-body-lg text-on-surface font-bold">12% Faster Response</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Avg. 14 mins to reach spot this week.</p>
+</div>
+<div class="h-16 w-16 rounded-full border-4 border-primary border-t-transparent animate-spin duration-[3s] flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">speed</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 pb-safe bg-surface shadow-[0_-4px_10px_rgba(0,106,99,0.05)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="font-label-caps text-label-caps">All Cases</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+<span class="font-label-caps text-label-caps">Analytics</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">diversity_3</span>
+<span class="font-label-caps text-label-caps">Volunteers</span>
+</a>
+</nav>
+<!-- Floating Action Button for Emergency Report (Contextual) -->
+<button class="fixed bottom-24 right-container-margin h-14 w-14 rounded-full bg-tertiary shadow-lg flex items-center justify-center text-white active:scale-95 transition-transform z-40 border-4 border-white/20">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">add_alert</span>
+</button>
+<script>
+        // Micro-interaction: Tapping a card gives visual feedback
+        document.querySelectorAll('.active\\:bg-surface-container').forEach(card => {
+            card.addEventListener('touchstart', () => {
+                card.classList.add('scale-[0.98]');
+            });
+            card.addEventListener('touchend', () => {
+                card.classList.remove('scale-[0.98]');
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>Adopt a Rescued Animal | Karuṇā</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600;700&amp;family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#e2e2e2",
+                        "surface-variant": "#d9e3f4",
+                        "tertiary-fixed-dim": "#ffb690",
+                        "on-primary-fixed-variant": "#00504a",
+                        "on-primary-container": "#a3faef",
+                        "surface-bright": "#f8f9ff",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#e5eeff",
+                        "on-surface": "#121c28",
+                        "tertiary-fixed": "#ffdbca",
+                        "surface-container-high": "#dfe9fa",
+                        "inverse-primary": "#80d5cb",
+                        "on-primary-fixed": "#00201d",
+                        "inverse-on-surface": "#eaf1ff",
+                        "primary-fixed": "#9cf2e8",
+                        "secondary": "#5d5f5f",
+                        "on-secondary-fixed-variant": "#454747",
+                        "inverse-surface": "#27313e",
+                        "primary-fixed-dim": "#80d5cb",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#0f766e",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "surface-container-highest": "#d9e3f4",
+                        "on-surface-variant": "#3e4947",
+                        "error-container": "#ffdad6",
+                        "tertiary": "#893a00",
+                        "outline-variant": "#bdc9c6",
+                        "on-tertiary-fixed-variant": "#783200",
+                        "on-tertiary-container": "#ffe6da",
+                        "secondary-container": "#dfe0e0",
+                        "on-error-container": "#93000a",
+                        "surface-dim": "#d1dbec",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "tertiary-container": "#af4c00",
+                        "on-error": "#ffffff",
+                        "outline": "#6e7977",
+                        "background": "#f8f9ff",
+                        "on-tertiary-fixed": "#341100",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#616363",
+                        "primary": "#005c55",
+                        "surface": "#f8f9ff",
+                        "surface-tint": "#006a63",
+                        "on-background": "#121c28",
+                        "surface-container-low": "#eef4ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-margin": "20px",
+                        "md": "20px",
+                        "lg": "32px",
+                        "sm": "12px",
+                        "xs": "4px",
+                        "gutter": "16px",
+                        "xl": "48px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Hanken Grotesk"],
+                        "body-sm": ["Hanken Grotesk"],
+                        "display-lg": ["EB Garamond"],
+                        "headline-lg-mobile": ["EB Garamond"],
+                        "title-md": ["Hanken Grotesk"],
+                        "headline-lg": ["EB Garamond"],
+                        "body-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "600"}],
+                        "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Subtle texture for Indian aesthetic */
+        .jali-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18l2.5-2.5L20 13v2.5L17.5 13 15 15.5 17.5 18 15 20.5 17.5 23 20 20.5zm0 0l2.5 2.5L25 20.5 22.5 18 25 15.5 22.5 13 20 15.5' fill='%23005c55' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen jali-pattern">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant flex justify-between items-center px-container-margin h-16">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="menu">menu</span>
+<h1 class="font-display-lg text-headline-lg-mobile text-primary">Karuṇā</h1>
+</div>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a young Indian woman with a kind expression, wearing a minimalist modern ethnic outfit in teal tones. The lighting is soft and high-key, reflecting a compassionate and trustworthy persona consistent with the Karuṇā brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiL1pUxQQGjSC_DdjF2-80YFFoiPNJbSik370BGmIVN4_gr2xv4SPrq75KZdMRNf6mnj4jWFLRZlUV06CsfZQGXJ1sttS0543Mk4ChAIatybqrWzhbavylYRzMI61Md3p7e9DGqcoz2zGYC7_N_aY0uF_eWtzOnfWVT10cXDLlPu1QBFKh5wJ8kwjbCmaE5O_qtfOSZSboXRhB38u1pUhlwx2VE63Zp6Dmptqgn2EP6InaGM-ICKcbi2_fCErZnca3ldKQXALZ04U">
+</div>
+</header>
+<main class="pt-20 pb-24 px-container-margin">
+<!-- Hero Title Section -->
+<section class="mb-lg">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2">Adopt a Rescued Animal 🐾</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Find your forever companion among our brave survivors.</p>
+</section>
+<!-- Filter Chips -->
+<nav class="mb-lg overflow-x-auto hide-scrollbar -mx-container-margin px-container-margin flex gap-sm">
+<button class="flex-shrink-0 bg-primary text-on-primary font-label-caps text-label-caps px-4 py-2 rounded-full transition-transform active:scale-95">
+                All
+            </button>
+<button class="flex-shrink-0 bg-surface-container-high text-on-surface-variant font-label-caps text-label-caps px-4 py-2 rounded-full hover:bg-surface-container-highest transition-colors active:scale-95">
+                Dogs
+            </button>
+<button class="flex-shrink-0 bg-surface-container-high text-on-surface-variant font-label-caps text-label-caps px-4 py-2 rounded-full hover:bg-surface-container-highest transition-colors active:scale-95">
+                Cats
+            </button>
+<button class="flex-shrink-0 bg-surface-container-high text-on-surface-variant font-label-caps text-label-caps px-4 py-2 rounded-full hover:bg-surface-container-highest transition-colors active:scale-95">
+                Cows
+            </button>
+<button class="flex-shrink-0 bg-surface-container-high text-on-surface-variant font-label-caps text-label-caps px-4 py-2 rounded-full hover:bg-surface-container-highest transition-colors active:scale-95">
+                Birds
+            </button>
+</nav>
+<!-- Adoption Grid -->
+<div class="grid grid-cols-2 gap-gutter">
+<!-- Card 1: Dog -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-outline-variant">
+<div class="relative aspect-square">
+<img class="w-full h-full object-cover" data-alt="A high-resolution, soulful close-up of a golden Indian Pariah dog sitting in a sun-drenched sanctuary. The lighting is warm and cinematic, highlighting the dog's expressive eyes. The background is a blurred, serene garden with hints of modern teal architecture, embodying the Karuṇā brand's compassionate minimalism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpSLmLJzhhD2Qurc_OPcRlB48pztT38PuemVxmsv6-DHrBts8y3LFnuN87tP-f0SR8rOQNTBQ2EHit7oF3457q43d8Aobqpc0VNJNKvFmbWcasJi2dTZsDUmbClvLQ6jjaGaZhGjZ20sUlWFIpzikf4xOyOnEhjCuagYt8Y9CwEjf5tMnXlrJFsobsx9Lg25PzNdaFznkV5F5oTRfemrfP0L4edLrfURn5Ozv0sWpOhOZl569Bbc59viDhFknetQJgIcw9x5uMQjE">
+<span class="absolute top-2 left-2 bg-primary-container text-on-primary-container text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Available</span>
+</div>
+<div class="p-3">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-title-md text-title-md text-on-surface">Shera</h3>
+<span class="font-label-caps text-[10px] text-primary uppercase">Dog</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant mb-3">
+<span class="material-symbols-outlined text-[14px]" data-icon="location_on">location_on</span>
+<span class="font-body-sm text-[12px]">Mumbai</span>
+</div>
+<p class="font-body-sm text-[12px] text-on-surface-variant mb-4">2 Years • Male</p>
+<button class="w-full py-2 bg-primary text-on-primary font-label-caps text-label-caps rounded-lg active:scale-95 transition-transform">
+                        Meet Me
+                    </button>
+</div>
+</div>
+<!-- Card 2: Cat -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-outline-variant">
+<div class="relative aspect-square">
+<img class="w-full h-full object-cover" data-alt="A beautiful calico cat resting gracefully on a handcrafted marble bench in an airy, minimalist Indian courtyard. The lighting is soft morning light, creating a serene and professional aesthetic. The colors are muted earth tones with deep teal accents in the shadows, reflecting high-end UI quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCH-NJQWc6PdzJAERUTU0Ne-T4iBiltgrakCYTwFyqL8d-PMtJ2cQRPMVyd191saaqzJalFICIWb1OuUxd27wH4JsPPJX2Nw0csfMXpj_6JXp7ABqeqj2qv9jlw4ehubeox1rlUElD4fZkVskl6g_pXa7XiEQyk7xGPHJtGn2MHT8jdXOBjgPpbSucpquN5bEfLorZ927--OPo-2Cxc5QmUjCjEq34cnqh3DH_JUURiWiAPxMJ1Pkhyn32FixX7uZUbcOfz9uK-rjU">
+<span class="absolute top-2 left-2 bg-primary-container text-on-primary-container text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Available</span>
+</div>
+<div class="p-3">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-title-md text-title-md text-on-surface">Mimi</h3>
+<span class="font-label-caps text-[10px] text-primary uppercase">Cat</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant mb-3">
+<span class="material-symbols-outlined text-[14px]" data-icon="location_on">location_on</span>
+<span class="font-body-sm text-[12px]">Pune</span>
+</div>
+<p class="font-body-sm text-[12px] text-on-surface-variant mb-4">6 Mos • Female</p>
+<button class="w-full py-2 bg-primary text-on-primary font-label-caps text-label-caps rounded-lg active:scale-95 transition-transform">
+                        Meet Me
+                    </button>
+</div>
+</div>
+<!-- Card 3: Cow -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-outline-variant">
+<div class="relative aspect-square">
+<img class="w-full h-full object-cover" data-alt="A majestic white rescue cow adorned with a simple, decorative teal tassel, grazing peacefully in a lush green sanctuary. The scene is shot with a shallow depth of field, giving it a premium, humanitarian documentary feel. The overall mood is stable, reliable, and deeply empathetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDungGvoAVOmX-uAcoVnbNtUGU5o4Hybik2m2BnuYx9EKrYXw9SioJ9rPcIhQIm5SuRH7u30WUW5rWA2lBdMbrS-9wDX1UsYz7ByYrhXrImJwRlgN8m8LCquV5rt_6q4RRy5qu2446lZqD1kbiGjyH1g5fW2N3_wSq1qfiBmnMAYrxo2sQxJTKe10n1-wamcsm4Ar_xtT_NLlaLDghTPKTCo1qd5dpBHJhj-znJVUKRk3PWRwpMTs_dh-eL8val_ivCwDZnyKHCwcw">
+<span class="absolute top-2 left-2 bg-primary-container text-on-primary-container text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Available</span>
+</div>
+<div class="p-3">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-title-md text-title-md text-on-surface">Nandi</h3>
+<span class="font-label-caps text-[10px] text-primary uppercase">Cow</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant mb-3">
+<span class="material-symbols-outlined text-[14px]" data-icon="location_on">location_on</span>
+<span class="font-body-sm text-[12px]">Nashik</span>
+</div>
+<p class="font-body-sm text-[12px] text-on-surface-variant mb-4">4 Years • Male</p>
+<button class="w-full py-2 bg-primary text-on-primary font-label-caps text-label-caps rounded-lg active:scale-95 transition-transform">
+                        Meet Me
+                    </button>
+</div>
+</div>
+<!-- Card 4: Bird -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-outline-variant">
+<div class="relative aspect-square">
+<img class="w-full h-full object-cover" data-alt="A vibrant green rose-ringed parakeet perched on a minimal wooden branch against a clean, white background. The lighting is crisp and modern, focusing on the bird's intricate feather details. Subtle teal geometric shapes are visible in the background, maintaining the Karuṇā brand's modern minimalist Indian aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeC2rjo5jmEjzG1dDqT3F3unMB0w5VcosPlYnSRmOfTEy9R7munScGbJtM7OfBDkq0_dnW85YrHgNXGtRkLlEAb4Ee1Gw7z9PDv4zcaarr8u9R_n8rV7JDUjd2brAGXW2fhuvhyeTMqMo4_6IJcsDEsRcHD99D2sBhmyhe8XsmsYyBbTDv4bDgO8oeuQeagc3H8UI4t1fLX1i8sDioPjdMdcepiJE4NgJPM_rxSO0_3eIUmxj31AX4KGZsz2Ubeulmro77wFwxYpc">
+<span class="absolute top-2 left-2 bg-primary-container text-on-primary-container text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Available</span>
+</div>
+<div class="p-3">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-title-md text-title-md text-on-surface">Mithu</h3>
+<span class="font-label-caps text-[10px] text-primary uppercase">Bird</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant mb-3">
+<span class="material-symbols-outlined text-[14px]" data-icon="location_on">location_on</span>
+<span class="font-body-sm text-[12px]">Delhi</span>
+</div>
+<p class="font-body-sm text-[12px] text-on-surface-variant mb-4">1 Year • Unsexed</p>
+<button class="w-full py-2 bg-primary text-on-primary font-label-caps text-label-caps rounded-lg active:scale-95 transition-transform">
+                        Meet Me
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 pb-safe bg-surface shadow-[0_-4px_10px_rgba(0,106,99,0.05)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="pets" style="font-variation-settings: 'FILL' 1;">pets</span>
+<span class="font-label-caps text-label-caps">Rescues</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:scale-90 transition-all" href="#">
+<div class="bg-tertiary-container text-on-tertiary-container p-2 rounded-full -mt-8 shadow-lg">
+<span class="material-symbols-outlined" data-icon="emergency">emergency</span>
+</div>
+<span class="font-label-caps text-label-caps mt-1">Report</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-caps text-label-caps">Community</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple filter chip interaction
+        const chips = document.querySelectorAll('nav.mb-lg button');
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                chips.forEach(c => {
+                    c.classList.remove('bg-primary', 'text-on-primary');
+                    c.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+                });
+                chip.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
+                chip.classList.add('bg-primary', 'text-on-primary');
+            });
+        });
+
+        // Meet Me button feedback
+        const meetButtons = document.querySelectorAll('button:contains("Meet Me")');
+        // Note: Using traditional selection since :contains isn't standard CSS
+        document.querySelectorAll('button').forEach(btn => {
+            if(btn.innerText === "Meet Me") {
+                btn.addEventListener('click', () => {
+                    const originalText = btn.innerText;
+                    btn.innerText = "Interested!";
+                    btn.classList.add('bg-primary-container', 'text-on-primary-container');
+                    setTimeout(() => {
+                        btn.innerText = originalText;
+                        btn.classList.remove('bg-primary-container', 'text-on-primary-container');
+                    }, 2000);
+                });
+            }
+        });
+    </script>
+</body></html>

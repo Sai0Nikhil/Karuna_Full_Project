@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: karuna-postgres
+    environment:
+      POSTGRES_DB: karuna
+      POSTGRES_USER: karuna
+      POSTGRES_PASSWORD: replace-with-a-local-password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U karuna -d karuna"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  mongodb:
+    image: mongo:6-jammy
+    container_name: karuna-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+  ai-service:
+    build:
+      context: ./backend/ai-service
+      dockerfile: Dockerfile
+    container_name: karuna-ai-service
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/ai-service:/app
+      - yolov8_cache:/root/.config/Ultralytics
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend/springboot
+      dockerfile: Dockerfile
+    container_name: karuna-backend
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - POSTGRES_URL=jdbc:postgresql://postgres:5432/karuna
+      - POSTGRES_USERNAME=karuna
+      - POSTGRES_PASSWORD=replace-with-a-local-password
+      - MONGODB_URI=mongodb://mongodb:27017/karuna
+      - KARUNA_JWT_SECRET=replace-with-at-least-32-random-characters
+      - KARUNA_UPLOAD_BASE_URL=http://localhost:8081
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mongodb:
+        condition: service_started
+      ai-service:
+        condition: service_started
+    volumes:
+      - ./backend/springboot/uploads:/app/uploads
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  mongodb_data:
+  yolov8_cache:

@@ -1,0 +1,540 @@
+﻿Karuna: A Community Driven Smartphone Application for
+
+Location Aware Image Based Injury Detection, Reporting
+
+and Rescue of Injured Animals
+
+Vukka Sai Nikhil1, Debabrata Bej2
+
+1Department of Computer Science and Engineering,
+Koneru Lakshmaiah Education Foundation, Green Fields, Vaddeswaram,
+
+Guntur, Andhra Pradesh 522302, India
+Email: reachsainikhil@gmail.com
+
+2Department of Multidisciplinary Innovation & Entrepreneurship (MDI&E),
+and Electronics and Communication Engineering (ECE),
+
+Koneru Lakshmaiah Education Foundation, Green Fields, Vaddeswaram,
+Guntur, Andhra Pradesh 522302, India
+Email: debabrata.bej@gmail.com
+
+April 26, 2026
+
+Abstract
+
+Urban animal rescue is constrained by poor coordination rather than limited resources. Injured animals are reported
+
+through fragmented channels, rescue response times stretch to 24 hours or more, and no single system connects
+
+reporting, treatment, donations, and outcomes for an individual case. This work proposes KARUNA, a unified, AI-
+
+assisted smartphone platform to address these gaps. When a citizen photographs an injured animal, the application
+
+(app) automatically captures GPS and timestamp data, then passes the image to a YOLOv8-based detection model fine-
+
+tuned on Indian street animal injury types. A hybrid triage engine combining veterinary decision rules with gradient-
+
+boosted classification produces a severity score and multilingual first-aid guidance. That severity score feeds directly
+
+into an automated matching algorithm that dispatches the nearest qualified responder without manual intervention. All
+
+subsequent events, including collection, treatment, discharge, donation, and adoption, are logged against a single case
+
+record and shared with all stakeholders in real-time. Per-case donation tracking follows the transparency principles used
+
+by blockchain-based charitable systems, while avoiding blockchain infrastructure complexity through an append-only
+
+per-case event log. The platform is designed for multi-organisation, multi-city deployment, generating standardised,
+
+georeferenced incident data that can directly support municipal ABC programme planning and enable citizen-driven
+
+animal health surveillance.
+
+1 Problem Statement
+
+Walk through any Indian city on a Sunday morning and the odds are good that you will pass a dog or a cow lying injured
+
+on the roadside. What happens next depends entirely on luck. If someone stops, they will likely call a number they
+found online, wait, call another, and eventually give up or take matters into their own hands. There is no single number
+
+to call. There is no guarantee anyone will come. The animal may wait hours, or it may not survive the wait at all.
+This is not a resource problem. NGOs exist. Veterinary clinics exist. Volunteers exist in most cities. The problem
+
+is that none of these actors can see each other. A rescue NGO in Vijayawada has no real-time view of which cases its
+volunteers are already handling. A donor who sent money last month has no idea whether it reached the animal they saw
+
+in a Facebook post. A municipal ABC officer planning sterilisation routes has no incident data to work from. Everyone
+
+1
+
+
+
+is trying, but everyone is working blind. The result is a system that is simultaneously overstretched and underused. The
+same case gets reported three times while another one goes unnoticed entirely, and the animals pay for the gap with their
+lives.
+
+2 Literature Review and Gaps
+
+The research landscape here splits into three reasonably distinct threads, though none of them quite connects to the
+others. The first component is citizen-facing reporting. In [1], researchers showed that a structured web portal could
+replace informal phone calls and route incidents to the right authority. This is a genuine step forward; however, the system
+is limited to a web-based interface, lacks GPS and image capture capabilities, and stops at the routing stage. In [2],
+researchers embedded an AI chatbot into a mobile reporting app that demonstrably reduce triage latency and lowered the
+load on human dispatchers. In the deployed space, platforms like Let It Wag [3], Strayz [4], and PetFinder [5] handle basic
+reporting and NGO routing, but none of them touch treatment tracking, per-case donations, or anything downstream of
+the initial handoff. In the Indian context, Researchers in [6] developed HSIApps, a mobile and web dashboard for street
+dog sterilisation programmes that digitises field data capture, and in [7] researchers separately modelled free-roaming
+dog population management through systems dynamics; both contributions advance specific operational segments but
+neither offers an integrated, citizen-facing rescue-to-outcome platform.
+
+The second thread is computer vision for animals. In [8], researchers benchmarked a cascaded YOLOv8 system on
+animal detection and reported 97% accuracy across species using adaptive preprocessing and multi-feature extraction. In
+[9], researchers developed a YOLOplusUNet deep learning pipeline for automated wound detection and size estimation
+in animal subjects, demonstrating reliable localisation of wound boundaries. None of these, however, were designed for
+the urban stray context in India, and none feed their outputs into any kind of triage or dispatch pipeline. On the triage
+methodology side, in [10], researchers Fernandes et al. demonstrated that supervised ML models can match trained
+nurses on patient triage severity classification. These are human medicine papers, but the hybrid ruleplusML approach
+they validate is directly applicable here.
+
+The third thread is donation transparency and fund accountability. In [11], researchers built a sustainable blockchain
+framework for the financial support of charitable organisations and showed it meaningfully improved donor confidence.
+In [12], researchers went a step further by proposing a comprehensive blockchain-based charity collection framework with
+smart contracts, an economic model, and CharityCoin for end-to-end audit trail. In [11], researchwers demonstrated
+transparent public fund tracking using a blockchain-based charity donation service system during COVID19. Separately,
+in [13], researchers used CatBoost models to predict shelter adoption timelines, which is a useful data point for how
+analytics can drive animal welfare decision making.
+
+What none of this adds up to is a complete picture of a single case. In [14], researchers are direct about this: most
+
+digital systems for zoonotic disease surveillance are built for institutional or passive use, not for citizendriven realtime
+incident management. In [15], researchers reach a similar conclusion from the animal health surveillance side; their
+scoping review finds real gaps in multisector, citizen-driven data collection that current systems simply do not address.
+
+The throughline is obvious: reporting is handled separately from treatment, treatment from donations, and donations
+from any kind of research output. No one has built the thing that connects all of them for a single animal, from the
+
+moment someone finds it on the street to whatever happens to it next.
+The authors reviewed existing literature in this domain to analyse current approaches and identify the research gaps.
+
+Based on functionality, the works are grouped into five categories: (a) Citizen reporting and rescue coordination, (b)
+
+Field operations and programme management, (c) AI detection, triage, and prediction, (d) Financial transparency and
+
+donation systems, and (e) Population modelling and health surveillance.
+The authors have reviewed the existing works on the systems dealing with citizen reporting and rescue in Table- 1. But
+
+there is no end-to-end rescue reporting (by citizens), rescue, traige, treatment, management system. The authors have
+
+also reviewed the existing works on Field operations and programme management, which is presented in Table- 2. but,
+
+the system did not consider citizen facing rescue reporting, AI injury detection triage, automated dispatch and donation
+tracking. In Table- 3, the authors have compared the existing works on AI prediction, detection, triage. However, the
+works are not applicable in real rescue system. In Table- 4, authors have shown different existing works on finance and
+
+donation systems. But these works are only financial. There is no relation with rescue cases or results. A comparative
+
+study on population modelling and health surveillance is given in Table- 5. In this area, available research primarily focus
+
+2
+
+
+
+on aggregate information. There is no real-time action or tracking. In short, there is research in this field. But,End-to-end
+integrated system is still needed. A cyber-physical rescue ecosystem is still needed in this area.
+
+Table 1: Literature review on citizen reporting and rescue coordination
+Sl. Ref. Method used Key Contribution limitations
+No
+1 [1] Web-based report- Structured digital intake replaces adhoc Web only; no GPS or image capture;
+
+ing portal phone reporting; centralised routing to no automated severity scoring; no treat-
+authorities ment tracking
+
+2 [2] AI-assisted report- AI chatbot reduces triage latency and No treatment management, donation
+ing Mobile app with improves report quality tracking, or adoption stage; chatbot
+AI chatbot only, no visual injury detection
+
+3 [3] Mobile app with Image-based incident reporting, NGO No AI triage; no treatment tracking;
+geotagging routing, and adoption listing partnerNGO dependency limits cover-
+
+age
+
+Table 2: Literature review on Field operations and programme management
+Sl. Ref. Method used Key Contribution limitations
+No
+1 [6] HSIApps mobile + Android mobile app and web dashboard Sterilisation-focused; no citizen-facing
+
+web dashboard for field teams during street dog steril- rescue reporting; no AI injury detec-
+isation; digital data capture in Indian tion, triage, or automated dispatch; no
+ABC programmes donation tracking
+
+Table 3: Literature review on AI detection, triage, and prediction
+Sl. Ref. Method used Key Contribution limitations
+No
+1 [8] Cascaded YOLOv8 97% accuracy wildlife detection using Applied to wildlife, not urban street an-
+
+cascaded YOLOv8 with adaptive pre- imals; no injury classification; not inte-
+processing and feature extraction grated with any rescue workflow
+
+2 [9] YOLO + UNet Automated wound detection and Laboratory mouse context; no urban
+size estimation using deep learning; stray injuries; no triage engine; not in-
+YOLObased localisation pipeline tegrated with rescue or dispatch
+
+3 [10] Supervised ML MLassisted triage achieves performance Human medicine context; no animal
+comparable to trained nurses; hybrid welfare application; no imagebased or
+rule + ML outperforms either alone species specific triage
+
+4 [13] CatBoost ML Predicted shelter pet adoption time- Focused on shelterhoused animals; no
+lines; ranked feature importance street animal context; no realtime res-
+
+cue integration
+
+3 Objective
+
+To develop a unified, AI assisted digital platform (KARUNA) that closes the current gaps in urban animal welfare by
+
+integrating image and GPS-based citizen reporting, automated AI triage and First aid, coordinated multistakeholder
+rescue and treatment workflows, and transparent, case wise donation and adoption tracking across multiple Indian cities.
+
+4 Proposed Idea: KARUNA A Unified AI Assisted Rescue Platform
+
+The core idea behind KARUNA is straightforward: one case record, one platform, all the way through. A citizen finds
+
+a dog bleeding on the street. That moment the photograph, the GPS pin, the timestamp is the start of a record that
+stays alive until the animal is either adopted, released, or lost. Every actor who touches that case sees the same record.
+
+Nothing gets lost in a forwarded WhatsApp message. Nothing starts over when the animal moves from the street to a
+clinic.
+
+The overview of the proposed system is presented in Fig. 1. A member of the public reports an injured animal via a
+mobile phone with geolocation and date/time. An YOLOv8-based model automatically identifies injuries and severity.
+
+3
+
+
+
+Table 4: Literature review on Financial transparency and donation systems
+Sl. Ref. Method used Key Contribution Limitations
+No
+1 [11] Blockchain Sustainable blockchain framework for Financial layer only; no rescue opera-
+
+financial support of charitable organi- tions or case outcomes linked
+sations using smart contracts
+
+2 [12] Blockchain + ICO End to end charity collection frame- Generic charity domain; no percase au-
+work using blockchain with Charity- dit trail linked to individual rescue out-
+Coin and smart contracts for audit comes
+
+Table 5: Literature review on Population modelling and health surveillance
+Sl. Ref. Method used Key Contribution Limitations
+No
+1 [7] Systems dynamics Systems model comparing dog popula- Population-level modelling only; no in-
+
+modelling tion management strategies; validates dividual case tracking, citizen-facing
+combined fertility control and respon- rescue coordination, or real-time inci-
+sible ownership approaches dent management
+
+2 [14] Zoonotic surveil- Modern technologies for zoonotic dis- Review scope is institutional surveil-
+lance ease surveillance; GPS and app-based lance; no citizen facing rescue coordi-
+
+reporting discussed nation or case management workflow
+2 [15] Animal health Comprehensive review of syndromic an- Focused on institutional surveillance
+
+surveillance imal health surveillance; identifies gaps systems; no real-time citizen reporting,
+in citizen-driven data collection rescue coordination, or donation track-
+
+ing
+
+The system provides a severity score and multilingual first-aid guidance. Responders are automatically dispatched to
+the location based on urgency. An unified dashboard is used to manage all case details such as, treatment updates, and
+donation. Fig. 2 shows the KARUNA Citizens/Reporters interface.
+
+Figure 1: Overview of the proposed system.
+
+4
+
+
+
+Figure 2: KARUNA Citizens/Reporters interface: from citizen report through mobile/web frontend and API gateway,
+to reporting, first aid guidance engine, and rescue coordination modules..
+
+4.1 How the Platform Works
+
+When a citizen photographs an injured animal, the app captures GPS and a timestamp automatically so the user does not
+need to do anything extra. That image goes to an AI model that identifies the species and any visible injury indicators,
+and comes back with a severity label: critical, urgent, or routine. Based on that, the app generates first aid steps in the
+user’s preferred language, so the case has something concrete to do while they wait. The report becomes a structured
+case record, and a matching algorithm finds the best available responder by weighing distance, current caseload, and
+relevant skills, then sends a notification.
+
+The responder accepts, gets a map link, and starts logging updates as the case moves forward collected, at clinic,
+under treatment, discharged. All of this is visible to the original reporter in real time; they are not left wondering whether
+anyone came. For high cost treatments, a casespecific donation page goes live automatically. Every rupee that comes in
+is logged against that animal’s actual bills, not a general fund. When the animal recovers, it can be listed for adoption
+on the same platform, with adopter verification and postplacement checkins built in. All of it feeds into dashboards that
+
+municipal ABC programmes can use, including hotspot maps, response time trends, disease cluster signals, and real-time
+animal health data.
+
+4.2 Key Components and Technologies
+
+The citizen app is built in React Native or Flutter, which means one codebase covers both Android and iOS. Camera,
+GPS, offline queuing, multilingual first aid instructions these are the basics. The organisational side lives in React.js
+dashboards, each scoped tightly to the user’s role: dispatchers see cases and routing, vets see referrals and treatment
+
+records, admins see analytics and partner management. The backend runs as FastAPI or Node.js microservices with
+REST and GraphQL endpoints. Gemini handles the image identification tasks that are too heavy for an ondevice model.
+
+Auth is JWTbased, and rate limiting plus structured logging sit at the API gateway.
+For data, PostgreSQL handles all relational records cases, users, treatment logs, donation transactions, adoption
+
+history. Firebase Firestore keeps the live case state for realtime dashboard updates. Media goes to AWS S3 or Google
+
+Cloud Storage, served via CDN. Routing is Google Maps with OSRM as a costconscious fallback. Notifications go through
+
+Firebase Cloud Messaging, with Twilio for SMS and WhatsApp when push is unavailable.
+The AI stack is where the technical investment is concentrated. The injury and species detection model is YOLOv8,
+
+finetuned on photographs of Indian street animals covering the injury types that actually show up in urban rescue: open
+
+wounds, suspected fractures, active bleeding, emaciation, and eye injuries. The triage engine takes those outputs and
+
+runs them through a hybrid of veterinary decision rules and a gradientboosted ML classifier, producing a severity level
+and a ranked first aid sequence. The matching engine then uses that severity level alongside GPS coordinates to score
+
+5
+
+
+
+candidate responders. Payments go through Razorpay, PayU, and Stripe. Every donation writes an immutable event
+to a percase financial log, giving the transparency that blockchain-based systems have proven effective for charitable
+accountability without the complexity of an actual blockchain [12] [11].
+
+4.3 Why the Idea Is Unique
+
+It is not that any single component here is unprecedented. YOLOv8 exists. Donation ledgers exist. Rescue reporting apps
+
+exist. Platforms like Let It Wag [3], PetFinder [5], and Strayz [4] handle intake and routing; HSIApps [6] digitises field
+data capture for ABC programmes; systems modelling work [7] quantifies population management strategies. What none
+of these platforms do is connect image-based injury detection, automated severity-driven dispatch, treatment tracking,
+and per-case donation accounting into a single workflow for one animal. KARUNA makes the severity score from the AI
+triage engine a direct input into the matching algorithm. That means the urgency of the triage decision shapes who gets
+dispatched and how fast, without a human dispatcher making that call in between. Based on the reviewed literature,
+this direct coupling between automated image-based triage output and dispatch scoring has not been reported in any
+deployed urban animal rescue platform. The per-case financial ledger is similarly specific: donors can see the animal, the
+bills, and the outcome, not just a receipt confirming that money left their account. And because the platform is designed
+for multi-organisation, multi-city use from the start, its data accumulates in a standardised schema that is actually useful
+for the kind of epidemiological and welfare research that in [14] [15], researchers identify as urgently needed.
+
+5 Technical Specifications
+
+5.1 System Architecture
+
+KARUNA runs as independently deployable microservices across four layers: client apps, API services, AI processing,
+and data storage. Each layer scales on its own, so a spike in media uploads during a flood related rescue surge does not
+drag down the case management API. Everything is containerised in Docker and deployed on AWS or Google Cloud with
+autoscaling on.
+
+Figure 3: KARUNA NGO/Shelter houses interface: from NGO dashboard through API gateway to the platform database
+and analytics layer, vet hospitals, and admin/government panel modules.
+
+5.2 Client Applications
+
+The citizen app is React Native or Flutter one codebase, Android and iOS both covered. It asks for camera and GPS at
+install, keeps a local offline queue for poor connectivity areas, and preloads first aid content so it works even without data.
+
+6
+
+
+
+The organisational dashboards are React.js SPAs. Each role gets a different view: dispatchers see the live case map and
+assignment queue, vets see referrals and treatment records, and admins see platform analytics and partner management.
+Nobody sees more than they need.
+
+5.3 Backend and APIs
+
+The API layer is FastAPI or Node.js, with both REST and GraphQL endpoints depending on what each client needs.
+
+Gemini handles image identification calls that are too heavy for the on-device model. All traffic is HTTPS, with rate
+limiting, input sanitisation, and request logging enforced at the gateway. Auth runs on JWT with role-based access
+control across five user types: citizen, volunteer, NGO staff, veterinarian, and administrator.
+
+5.4 Databases and Storage
+
+PostgreSQL holds everything that needs to be auditable user accounts, case records, triage outputs, treatment logs,
+
+donation transactions, adoption records. Firebase Firestore handles the live state of active cases, pushing status updates
+to dashboards in real time without polling. Images and video go to AWS S3 or Google Cloud Storage and are served via
+CDN, which matters a lot for response times when the platform spans multiple cities.
+
+5.5 AI and Decision Engines
+
+The detection model is YOLOv8, finetuned on a dataset of Indian street animal photographs tagged for the injury
+presentations that actually come up in urban rescue work: open wounds, suspected fractures, active bleeding, severe
+emaciation, and eye injuries. It outputs bounding boxes, a species label, and injury category tags. Those go into the
+triage engine, a hybrid of a veterinary decision tree and a gradient boosted classifier trained on historical case outcomes
+which produces a severity level and a ranked first aid sequence. The severity level then feeds directly into the matching
+engine, which scores candidate responders on distance, specialisation, and current opencase load. That direct connection
+between triage output and dispatch scoring is the design choice that makes this system different from everything else
+reviewed.
+
+5.6 Maps, Routing, and Communication
+
+Turnbyturn routing uses Google Maps Directions, with OSRM as a cost fallback at scale. Push notifications go through
+Firebase Cloud Messaging. For users without smartphones or stable data, the same alerts go via SMS and WhatsApp
+through Twilio. Receipts and case closure reports go by email through Amazon SES or SendGrid.
+
+5.7 Payments and Transparency
+
+Razorpay and PayU handle domestic payments, Stripe for international donors. Every completed transaction writes
+an immutable event to a percase financial log amount, timestamp, donor identifier, and the specific bill it offsets. The
+
+NGO and the donor can export this log as PDF or CSV at any time. While this append-only event log does not
+
+provide the cryptographic immutability of a blockchain, it delivers practical per-case transparency at substantially lower
+infrastructure complexity.
+
+5.8 NonFunctional Specifications
+
+Target p95 API response time is under 500 ms for standard operations. Triage calls, which go to an external model,
+
+should return within three to five seconds under normal load. Database and media storage scale independently of the
+API and AI layers, so a photo upload surge does not slow down case management.
+
+6 Expected Outcome
+
+The pilot runs in Vijayawada and two nearby urban centres chosen because the NGO network there is already active and
+municipal partners have indicated willingness to integrate with ABC planning data. Within year one, the targets are:
+
+median rescue response time down from roughly 24 hours to under two hours; treatment success rate at 85% or above; at
+
+7
+
+
+
+least 40% of recovered animals placed in verified adoptions; and donor retention defined as a second contribution within
+twelve months at 70% or above. The last target is the one most directly tied to the percase transparency model. Indian
+donors do not keep giving to generic NGO accounts. They give when they can see what happened.
+
+7 Novelty
+
+When someone finds an injured animal, no existing app tells them what to actually do with it. Current platforms use the
+photograph to route the report. KARUNA uses it to infer the injury type, classify severity, and generate specific first aid
+steps in the user’s language before anyone professional has arrived. That alone is new. But the more significant novelty
+is what happens next. The severity score does not just get displayed. It becomes an input variable in the matching
+engine’s scoring function. Urgency drives dispatch, automatically. No human dispatcher sits between the AI assessment
+and the field response. Based on the reviewed literature including deployed platforms such as Let It Wag [3], PetFinder
+[5], Strayz [4], and HSIApps [6], as well as academic systems reported in [1], and [2], no urban animal rescue system has
+reported this direct coupling between image-based triage and automated dispatch scoring.
+
+8 Technology Readiness Level (TRL)
+
+Table 6: Technology Readiness Level (TRL).
+TRL Range Stage
+
+1–3 Idea / Proof of Concept
+
+9 Target Beneficiaries
+
+The animals come first. Everything else in this document is in service of the fact that a faster, better coordinated response
+means fewer animals die waiting. NGOs and rescue groups benefit too; they stop receiving the same case through five
+channels and start seeing a clean intake queue with cases already triaged and ranked. Vets receive referrals that arrive
+with images, location history, and a first aid log already attached; they can prepare before the animal walks through the
+door rather than starting from zero. Citizen volunteers get something they currently lack entirely: confirmation. Right
+now, if you report a case, you have no idea whether anyone came. KARUNA closes that loop.
+
+Municipal ABC units get real incident data, not estimates. That changes how sterilisation and vaccination routes
+get planned. Donors get per-case receipts with outcomes, charitable accountability shows is meaningfully better for
+retention than a generic thankyou email. And researchers, epidemiologists, One Health practitioners, urban ecologists
+
+get a structured, geographically tagged, continuously updated dataset that does not currently exist anywhere for Indian
+urban street animals.
+
+10 Legal Framework
+
+A few legal frameworks are directly relevant and worth being precise about. On animal welfare, the Prevention of
+
+Cruelty to Animals Act, 1960 sets the care baseline that all rescue activity on the platform must meet. The Animal
+Birth Control (Dogs) Rules, 2023 are also relevant: they place responsibility for stray dog management on local bodies
+
+and explicitly prohibit relocation. KARUNA’s ABC integration is designed to feed into those programmes, not create a
+parallel structure.
+
+On data, the Digital Personal Data Protection Act, 2023 applies to everything the platform collects location records,
+
+photographs, contact details of reporters and volunteers. The design principle is minimal collection: location is retained
+
+only for the duration of an active case, and all research exports strip identifying information. On fundraising, NGOs
+collecting donations through the platform need to be compliant with FCRA for foreign contributions and with their
+Income Tax Act obligations as charitable organisations. KARUNA itself does not hold funds; money settles directly to
+
+the NGO’s registered account through the payment gateway, with the percase log as the audit trail. On public health,
+
+the data sharing features for municipal ABC units operate within state animal husbandry and ULB guidelines for stray
+animal management and zoonotic disease reporting not outside them.
+
+8
+
+
+
+References
+
+[1] Khubchandani, A., Ray, A., Shenoy, S., Cardoza, C. R., & Chavan, C. P. (2022, April). Emergency Reporting System
+
+for Animals. In 2022 IEEE 7th International conference for Convergence in Technology (I2CT) (pp. 1-6). IEEE.
+
+[2] Rajwani, M., Kannauje, L., Noushad, M., & Tamrakar, A. (2025, June). Enhancing Animal Rescue Efficiency Using
+
+AI for Real-Time Reporting and Assistance. In International Conference on Advances and Applications in Artificial
+Intelligence (ICAAAI 2025) (pp. 1241-1253). Atlantis Press.
+
+[3] Let It Wag. (2026). Let It Wag Mobile app: Stray animal rescue and adoption with geotagging and NGO routing
+
+[Mobile application]. Retrieved 6 March 2026, from https://www.letitwag.in/
+
+[4] Strayz. (2024). Strayz: Platform connecting animal lovers for rescue and care [Mobile app]. Retrieved 19 April 2026,
+
+from Google Play Store: https://play.google.com/store/apps/details?id=com.strayz.remake
+
+[5] Petfinder. (2025). Petfinder: Adopt a pet [Mobile app]. Retrieved 19 April 2026, from Google Play Store:
+
+https://play.google.com/store/apps/details?id=com.discovery.petfinder
+
+[6] Chaudhari, A., Brill, G., Chakravarti, I., Drees, T., Verma, S., Avinash, N., ... & Polak, K. (2022). Technology for
+
+improving street dog welfare and capturing data in digital format during street dog sterilisation programmes. Animals,
+12(15), 2000.
+
+[7] Smith, L. M., Quinnell, R. J., Goold, C., Munteanu, A. M., Hartmann, S., & Collins, L. M. (2022). Assessing the
+impact of free-roaming dog population management through systems modelling. Scientific reports, 12(1), 11452.
+
+[8] Chappidi, J., & Sundaram, D. M. (2024). Novel animal detection system: Cascaded YOLOv8 with adaptive prepro-
+cessing and feature extraction. Ieee Access, 12, 110575-110587.
+
+[9] Carrión, H., Jafari, M., Bagood, M. D., Yang, H. Y., Isseroff, R. R., & Gomez, M. (2022). Automatic wound detection
+and size estimation using deep learning algorithms. PLoS computational biology, 18(3), e1009852.
+
+[10] Fernandes, M., Vieira, S. M., Leite, F., Palos, C., Finkelstein, S., & Sousa, J. M. (2020). Clinical decision support
+systems for triage in the emergency department using intelligent systems: a review. Artificial intelligence in medicine,
+102, 101762.
+
+[11] Wu, H., & Zhu, X. (2020). Developing a reliable service system of charity donation during the covid-19 outbreak.
+Ieee Access, 8, 154848-154860.
+
+[12] Farooq, M. S., Iftikhar, U., & Khelifi, A. (2022). A framework to make voting system transparent using blockchain
+
+technology. IEEE Access, 10, 59959-59969.
+
+[13] Sazara, C., & Gao, X. (2022, October). Predicting Animal Shelter Pet Adoption Times and Feature Importance
+
+Analysis using CatBoost. In 2022 IEEE 11th International Conference on Intelligent Systems (IS) (pp. 1-4). IEEE.
+
+[14] Zhang, L., Guo, W., & Lv, C. (2024). Modern technologies and solutions to enhance surveillance and response
+systems for emerging zoonotic diseases. Science in One Health, 3, 100061.
+
+[15] Shapiro, J. T., Cazeau, G., DiBiagio, R., Dupuy, C., Morignat, E., Dórea, F., ... & Amat, J. P. (2025). Current
+practice and future directions in syndromic surveillance for animal health: A scoping review and analysis. Preventive
+Veterinary Medicine, 241, 106532.
+
+9

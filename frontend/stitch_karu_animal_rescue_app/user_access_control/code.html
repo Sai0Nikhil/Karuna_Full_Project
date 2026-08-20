@@ -1,0 +1,460 @@
+<!DOCTYPE html><html lang="en" class="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><meta charset="utf-8"><script id="tailwind-config">try{
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#e5e2e1",
+                    "error": "#ffb4ab",
+                    "secondary-fixed": "#89f5e7",
+                    "primary-container": "#0f766e",
+                    "primary-fixed-dim": "#80d5cb",
+                    "on-primary": "#003733",
+                    "on-secondary": "#003732",
+                    "on-secondary-fixed": "#00201d",
+                    "inverse-surface": "#e5e2e1",
+                    "on-secondary-container": "#00302b",
+                    "surface-tint": "#80d5cb",
+                    "on-error": "#690005",
+                    "tertiary-fixed": "#d8e2ff",
+                    "on-background": "#e5e2e1",
+                    "background": "#131313",
+                    "on-primary-fixed": "#00201d",
+                    "on-tertiary": "#002e6a",
+                    "surface-bright": "#3a3939",
+                    "outline-variant": "#3e4947",
+                    "secondary-container": "#29a195",
+                    "tertiary-fixed-dim": "#adc6ff",
+                    "on-tertiary-fixed": "#001a42",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-highest": "#353534",
+                    "error-container": "#93000a",
+                    "inverse-on-surface": "#313030",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-tertiary-container": "#e4eaff",
+                    "surface-variant": "#353534",
+                    "on-tertiary-fixed-variant": "#004395",
+                    "surface-container-high": "#2a2a2a",
+                    "tertiary-container": "#0165d8",
+                    "primary": "#80d5cb",
+                    "inverse-primary": "#006a63",
+                    "tertiary": "#adc6ff",
+                    "surface": "#131313",
+                    "on-secondary-fixed-variant": "#005049",
+                    "surface-dim": "#131313",
+                    "surface-container-low": "#1c1b1b",
+                    "primary-fixed": "#9cf2e8",
+                    "on-primary-container": "#a3faef",
+                    "surface-container": "#201f1f",
+                    "secondary-fixed-dim": "#6bd8cb",
+                    "secondary": "#6bd8cb",
+                    "outline": "#889391",
+                    "on-surface-variant": "#bdc9c6",
+                    "on-primary-fixed-variant": "#00504a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1440px",
+                    "gutter": "24px",
+                    "margin-desktop": "40px",
+                    "margin-mobile": "16px",
+                    "base-unit": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Outfit"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Outfit"],
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Outfit"],
+                    "label-md": ["Inter"],
+                    "display-lg": ["Outfit"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    }catch(_e){}</script></head><body class="font-body-md text-body-md mesh-gradient min-h-screen">
+<!-- Background Shader -->
+
+<!-- Side Navigation -->
+<nav class="fixed left-0 top-0 h-screen flex flex-col py-margin-desktop bg-surface/60 backdrop-blur-xl h-full w-[280px] border-r border-white/10 z-50">
+<div class="px-8 mb-12">
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary">RescueCore</h1>
+<p class="text-on-surface-variant font-label-md text-label-md">Premium Management</p>
+</div>
+<div class="flex-1 flex flex-col gap-2 px-4">
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md">Dashboard Summary</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="verified">verified</span>
+<span class="font-label-md">NGO Registration</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="pets">pets</span>
+<span class="font-label-md">Case Supervision</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-primary border-l-2 border-primary bg-primary/10 shadow-[0_0_15px_rgba(128,213,203,0.3)] transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-md">Access Control</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="font-label-md">AI Training Hub</span>
+</a>
+</div>
+<div class="px-4 flex flex-col gap-2">
+<button class="bg-primary-container text-on-primary-container py-3 px-4 rounded-xl font-label-md font-bold mb-4 flex items-center justify-center gap-2 scale-[0.98] active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+<span class="">New Case</span>
+</button>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-md">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Header & Main Content Wrapper -->
+<div class="ml-[280px] flex flex-col min-h-screen">
+<!-- Top App Bar -->
+<header class="flex justify-between items-center px-margin-desktop w-full h-16 bg-surface/40 backdrop-blur-md border-b border-white/5 sticky top-0 z-40">
+<div class="flex items-center gap-4">
+<h2 class="font-headline-md text-headline-md font-extrabold text-primary">RescueCore AI</h2>
+<div class="h-6 w-px bg-white/10 mx-2"></div>
+<nav class="flex gap-6">
+<a class="text-primary font-bold font-label-md" href="#">User Access</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">Activity Logs</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">Permissions Matrix</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant text-[20px]" data-icon="search">search</span>
+<input class="bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 text-sm w-64 focus:ring-1 focus:ring-primary/50 text-on-surface" placeholder="Search system nodes..." type="text">
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<button class="material-symbols-outlined hover:text-primary transition-colors" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined hover:text-primary transition-colors" data-icon="help">help</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-primary/30">
+<img class="w-full h-full object-cover" data-alt="A professional close-up portrait of a technology administrator with a focused, intelligent expression, wearing modern glasses. The lighting is dramatic and cinematic, with cool blue and teal highlights reflecting off their face. The background is a blurred server room with glowing green status lights, maintaining a high-tech premium aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBk2MVlsQ7Qlk0IdwjKtfmYhJqF3i3SBKFEIk3trK1J6cj0ZXGfSjF_hnAfcuXPo9omokep6NN_C_6l8_fLtalvUodzc5k-p8srlvtc0Oz0WhXgAZ32P1VpXi9Zy2Bl8mioFk7vAm5GzQHClh7zfn26SNv5PCa53JL_AAbZHiZiVuYzR07znZ0GbvRNZc6ihFoeGcoGJshXX_uhd-uCLu5TGprF3g2IMg6Qpof6Loa046lX_unxgOLzkYkmONuyddo8PCTpmRCz8yE">
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="p-margin-desktop space-y-8 max-w-[1440px]">
+<!-- Bento Dashboard Header -->
+<div class="grid grid-cols-12 gap-6">
+<div class="col-span-12 md:col-span-8 space-y-2">
+<h1 class="font-headline-lg text-headline-lg">Access &amp; Identity Control</h1>
+<p class="text-on-surface-variant max-w-2xl">Manage system privileges for all entities within the RescueCore ecosystem. Dynamically revoke access, adjust operational roles, and verify NGO affiliations.</p>
+</div>
+<div class="col-span-12 md:col-span-4 flex justify-end items-end gap-3">
+<button class="glass-card px-6 py-3 rounded-xl flex items-center gap-2 hover:bg-white/10 active:scale-95">
+<span class="material-symbols-outlined text-[20px]" data-icon="file_download">file_download</span>
+<span class="font-label-md">Export Audit</span>
+</button>
+<button class="text-on-primary px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-[0_0_20px_rgba(128,213,203,0.3)] hover:scale-105 transition-all bg-primary-container"><span class="material-symbols-outlined text-[20px]" data-icon="person_add">person_add</span><span class="font-label-md">Provision User</span></button>
+</div>
+</div>
+<!-- Management Table Container -->
+<div class="glass-card rounded-[2rem] overflow-hidden">
+<div class="p-8 border-b border-white/5 flex flex-wrap justify-between items-center gap-4">
+<div class="flex gap-4">
+<button class="px-4 py-2 bg-primary/20 text-primary border border-primary/30 rounded-lg text-sm font-bold">All Users</button>
+<button class="px-4 py-2 hover:bg-white/5 text-on-surface-variant rounded-lg text-sm transition-colors">Volunteers</button>
+<button class="px-4 py-2 hover:bg-white/5 text-on-surface-variant rounded-lg text-sm transition-colors">Vets</button>
+<button class="px-4 py-2 hover:bg-white/5 text-on-surface-variant rounded-lg text-sm transition-colors">Citizens</button>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-sm" data-icon="filter_list">filter_list</span>
+<span class="">Filtered by: <span class="text-on-surface">Recent Activity</span></span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-white/[0.02] text-on-surface-variant font-label-md">
+<th class="px-8 py-5 font-semibold">Name</th>
+<th class="px-8 py-5 font-semibold">Role</th>
+<th class="px-8 py-5 font-semibold">Linked NGO</th>
+<th class="px-8 py-5 font-semibold">Join Date</th>
+<th class="px-8 py-5 font-semibold">Status</th>
+<th class="px-8 py-5 font-semibold text-right">Revoke Access</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5">
+<!-- User Row 1 -->
+<tr class="hover:bg-white/[0.02] transition-colors group">
+<td class="px-8 py-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high border border-white/10 flex items-center justify-center text-primary font-bold overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a male veterinarian in a minimalist clinic setting, wearing a clean grey uniform. The background shows soft out-of-focus surgical equipment and cool blue ambient lighting. He has a professional and empathetic expression. The aesthetic is sharp, modern, and perfectly aligned with a high-end medical software interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqcvGfRM2Ha0I06HPtrnQV5ma9NIQn7IrbXGLKlwNLo4W9WhD2lWepQsDJe6YwgHCUQqQt5nb0KMbrBUr7YDhq-RZ73f-gKhzi_hXozEoZyI6u6GjRXOT9_KeA86aQucJqGSkqcBrVQxtwmn5uyt796gx9dpK4KTLf6htCBJ44kRWuaMd57BCMLJQDVK9ncRY2a8br9aK39hChmsjSnbmzlH10rpRp9-5niO9PGqvVZTnQ_Z6TCZ2KloNPru944yiyfQWAqEFeKYo">
+</div>
+<div>
+<div class="font-bold text-on-surface">Dr. Elias Thorne</div>
+<div class="text-xs text-on-surface-variant">elias.v@rescuecore.io</div>
+</div>
+</div>
+</td>
+<td class="px-8 py-6">
+<select class="bg-transparent border-none text-tertiary font-medium p-0 focus:ring-0 cursor-pointer appearance-none">
+<option selected="" value="vet">Veterinary Expert</option>
+<option value="volunteer">Field Volunteer</option>
+<option value="citizen">Reporting Citizen</option>
+<option value="admin">System Admin</option>
+</select>
+</td>
+<td class="px-8 py-6">
+<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-container/20 text-secondary-fixed text-xs font-bold border border-secondary-fixed/20">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed"></span>
+                                        GreenPaw International
+                                    </span>
+</td>
+<td class="px-8 py-6 text-on-surface-variant">Oct 12, 2023</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[18px]" data-icon="check_circle">check_circle</span>
+<span class="text-xs font-bold uppercase tracking-wider">Active</span>
+</div>
+</td>
+<td class="px-8 py-6 text-right">
+<label class="switch">
+<input checked="" type="checkbox">
+<span class="slider"></span>
+</label>
+</td>
+</tr>
+<!-- User Row 2 -->
+<tr class="hover:bg-white/[0.02] transition-colors group">
+<td class="px-8 py-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high border border-white/10 flex items-center justify-center text-primary font-bold overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a young woman who is an active field volunteer. She is outdoors at dusk with warm golden lighting highlighting her features against a soft, dark forest background. She wears a tactical high-visibility vest with subtle branding. The atmosphere is determined and adventurous, consistent with a high-fidelity administrative dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa0gZf9VVGWXJTaiYdPaLEfH0eGNSFWcVnPemapHDayMKNlt8K3rFbjacFewqHHG5bX1sUZ7tjGihwmxcAVRKzv3H41yuolbnICGH0DGGC9Y1wHBuMMl-FzySJ60yxXQQK_uC8aAz3SSNkzEZBsFLXn8oySriGzNEdiyaH3tsLPAR2C_oEMvujO78YpbwHzlPssiYfrmPBZtCGSeM1DhO092pYSvopArTP-5K91ju5AGP0YcKtqzKE5XMWfvB8fXzjEzrbIZPms6w">
+</div>
+<div>
+<div class="font-bold text-on-surface">Sarah Jenkins</div>
+<div class="text-xs text-on-surface-variant">s.jenkins@gmail.com</div>
+</div>
+</div>
+</td>
+<td class="px-8 py-6">
+<select class="bg-transparent border-none text-tertiary font-medium p-0 focus:ring-0 cursor-pointer appearance-none">
+<option value="vet">Veterinary Expert</option>
+<option selected="" value="volunteer">Field Volunteer</option>
+<option value="citizen">Reporting Citizen</option>
+<option value="admin">System Admin</option>
+</select>
+</td>
+<td class="px-8 py-6">
+<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-tertiary-container/20 text-tertiary text-xs font-bold border border-tertiary/20">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                                        Urban Rescue Hub
+                                    </span>
+</td>
+<td class="px-8 py-6 text-on-surface-variant">Jan 05, 2024</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[18px]" data-icon="check_circle">check_circle</span>
+<span class="text-xs font-bold uppercase tracking-wider">Active</span>
+</div>
+</td>
+<td class="px-8 py-6 text-right">
+<label class="switch">
+<input checked="" type="checkbox">
+<span class="slider"></span>
+</label>
+</td>
+</tr>
+<!-- User Row 3 (Suspended) -->
+<tr class="hover:bg-white/[0.02] transition-colors group opacity-70">
+<td class="px-8 py-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high border border-white/10 flex items-center justify-center text-primary font-bold overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a male citizen in a casual but modern urban setting. Cold street lighting with purple and magenta neon accents in the background. The individual has a neutral expression, looking directly into the camera. High-end photography with shallow depth of field, suitable for a premium dark mode UI profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIaswYJf3_0TDKW7KTDwQsbauy2gWsIU4GXLBXd4aowN6hk0G9i8lm5H5WUe-I6JeM3EO8L1Jj5723NX31BAMdk-XJBTJu_1G_0xjB8RjPDiE2gDyP7xJ_7pfNU1mvNWL2opiMjYNAHDuydyVn1WgwKegOvEckfzJv5N0xiPhq1wQcWaOIIJXxxdKrzuKNKr_2KmGtr6H2_YH7V9a1XMc3V3kBuGcS0wJ9ZDmz41-o90tsk9ZP_iYvb7aVparMlPNTxWGduHnL73I">
+</div>
+<div>
+<div class="font-bold text-on-surface">Mark Rodriguez</div>
+<div class="text-xs text-on-surface-variant">m.rodriguez@outlook.com</div>
+</div>
+</div>
+</td>
+<td class="px-8 py-6">
+<select class="bg-transparent border-none text-tertiary font-medium p-0 focus:ring-0 cursor-pointer appearance-none">
+<option value="vet">Veterinary Expert</option>
+<option value="volunteer">Field Volunteer</option>
+<option selected="" value="citizen">Reporting Citizen</option>
+<option value="admin">System Admin</option>
+</select>
+</td>
+<td class="px-8 py-6">
+<span class="text-xs text-on-surface-variant italic">Unlinked / Independent</span>
+</td>
+<td class="px-8 py-6 text-on-surface-variant">Mar 22, 2024</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-2 text-error">
+<span class="material-symbols-outlined text-[18px]" data-icon="error">error</span>
+<span class="text-xs font-bold uppercase tracking-wider">Suspended</span>
+</div>
+</td>
+<td class="px-8 py-6 text-right">
+<label class="switch">
+<input type="checkbox">
+<span class="slider"></span>
+</label>
+</td>
+</tr>
+<!-- User Row 4 -->
+<tr class="hover:bg-white/[0.02] transition-colors group">
+<td class="px-8 py-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high border border-white/10 flex items-center justify-center text-primary font-bold overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of a female veterinary surgeon in a dark, high-tech operating room. The lighting is focused and clinical, with sharp shadows and turquoise light beams. She is wearing dark surgical scrubs. The mood is highly professional, precise, and technologically sophisticated, reflecting the AI-driven core of the application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRbrqRxtXnaJyAUrdhTwGt09C_LDqhmeJcnhRpRBjldPz-Ck_UNxlvtNgtR6DrRvpsNDF0q0Fv2oFF8nQs7MtuMEcNs2gAw9Quj3VzLU8eDwI6ejQ37BNf51yY6eij1-DuMYATnZMnCRr2lHo-VKt20Vxi0scvY7P9i7Uzb3vyyoh7P-cwZonNpOn3SekI2loubEnTSC5OHvtllqZDSDs03pD8L8x1g5KiayufBwF48yJAHszQIBTaaykfCytuPUdvTwQIGYgDdgU">
+</div>
+<div>
+<div class="font-bold text-on-surface">Dr. Helena Zhang</div>
+<div class="text-xs text-on-surface-variant">h.zhang@vetcenter.org</div>
+</div>
+</div>
+</td>
+<td class="px-8 py-6">
+<select class="bg-transparent border-none text-tertiary font-medium p-0 focus:ring-0 cursor-pointer appearance-none">
+<option selected="" value="vet">Veterinary Expert</option>
+<option value="volunteer">Field Volunteer</option>
+<option value="citizen">Reporting Citizen</option>
+<option value="admin">System Admin</option>
+</select>
+</td>
+<td class="px-8 py-6">
+<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-container/20 text-secondary-fixed text-xs font-bold border border-secondary-fixed/20">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed"></span>
+                                        Wildlife Defense
+                                    </span>
+</td>
+<td class="px-8 py-6 text-on-surface-variant">Nov 30, 2023</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[18px]" data-icon="check_circle">check_circle</span>
+<span class="text-xs font-bold uppercase tracking-wider">Active</span>
+</div>
+</td>
+<td class="px-8 py-6 text-right">
+<label class="switch">
+<input checked="" type="checkbox">
+<span class="slider"></span>
+</label>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-8 bg-white/[0.01] flex justify-between items-center text-sm text-on-surface-variant">
+<div class="">Showing <span class="text-on-surface">4</span> of <span class="text-on-surface">1,248</span> users</div>
+<div class="flex gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-white/10 hover:bg-white/5 disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined text-[16px]" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-primary text-on-primary font-bold">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-white/10 hover:bg-white/5">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-white/10 hover:bg-white/5">3</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-white/10 hover:bg-white/5">
+<span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Contextual Insights / Asymmetric Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="glass-card p-6 rounded-3xl space-y-4">
+<div class="flex justify-between items-start">
+<div class="p-3 rounded-xl bg-primary/10 text-primary">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+</div>
+<span class="text-xs font-bold text-primary px-2 py-1 bg-primary/5 rounded border border-primary/20">+12% this month</span>
+</div>
+<div>
+<div class="text-on-surface-variant text-sm">Security Coverage</div>
+<div class="text-2xl font-bold text-on-surface">98.4%</div>
+</div>
+<div class="w-full bg-white/5 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[98%] shadow-[0_0_10px_rgba(128,213,203,0.5)]"></div>
+</div>
+</div>
+<div class="glass-card p-6 rounded-3xl space-y-4 border-l-4 border-l-tertiary">
+<div class="flex justify-between items-start">
+<div class="p-3 rounded-xl bg-tertiary/10 text-tertiary">
+<span class="material-symbols-outlined" data-icon="block">block</span>
+</div>
+<span class="text-xs font-bold text-error px-2 py-1 bg-error/5 rounded border border-error/20">Critical Alert</span>
+</div>
+<div>
+<div class="text-on-surface-variant text-sm">Recent Revocations</div>
+<div class="text-2xl font-bold text-on-surface">14 Pending</div>
+</div>
+<p class="text-xs text-on-surface-variant">Manual review required for entities flagged by AI Risk Assessment.</p>
+</div>
+<div class="glass-card p-6 rounded-3xl relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-50"></div>
+<div class="relative z-10 space-y-4">
+<div class="text-sm font-bold text-primary uppercase tracking-widest">AI Core Status</div>
+<h3 class="text-xl font-bold">Dynamic Permissions</h3>
+<p class="text-sm text-on-surface-variant">The AI is currently managing 85% of standard role transitions based on performance metrics.</p>
+<button class="text-sm font-bold text-on-surface border-b border-primary/50 pb-0.5 hover:border-primary transition-all">View Automation Logic</button>
+</div>
+<div class="absolute bottom-[-20px] right-[-20px] opacity-10 group-hover:scale-110 group-hover:opacity-20 transition-all">
+<span class="material-symbols-outlined text-[100px]" data-icon="psychology">psychology</span>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Floating Action for Quick Add (Contextual Suppression Logic applied) -->
+<!-- Suppressed on detail pages, but visible on this management page -->
+<button class="fixed bottom-10 right-10 w-14 h-14 bg-primary text-on-primary rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all z-50 neon-border-teal">
+<span class="material-symbols-outlined text-[28px]" data-icon="bolt">bolt</span>
+</button>
+<script>
+        // Micro-interactions for glass cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // Quick Search Interaction
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('scale-105');
+            searchInput.parentElement.classList.add('shadow-[0_0_20px_rgba(128,213,203,0.1)]');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('scale-105');
+            searchInput.parentElement.classList.remove('shadow-[0_0_20px_rgba(128,213,203,0.1)]');
+        });
+    </script>
+
+</body></html>

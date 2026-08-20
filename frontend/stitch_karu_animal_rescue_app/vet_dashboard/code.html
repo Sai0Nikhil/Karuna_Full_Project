@@ -1,0 +1,300 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>Karuṇā - Vet Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600;700&amp;family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .custom-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .jali-pattern {
+            background-color: #f8f9ff;
+            background-image: radial-gradient(#bdc9c6 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+            opacity: 0.2;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "on-secondary-fixed-variant": "#454747",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#eaf1ff",
+                        "inverse-primary": "#80d5cb",
+                        "on-background": "#121c28",
+                        "primary": "#005c55",
+                        "on-secondary-container": "#616363",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-primary-container": "#a3faef",
+                        "surface-container-low": "#eef4ff",
+                        "outline": "#6e7977",
+                        "on-error": "#ffffff",
+                        "primary-container": "#0f766e",
+                        "primary-fixed": "#9cf2e8",
+                        "on-primary": "#ffffff",
+                        "secondary": "#5d5f5f",
+                        "on-primary-fixed-variant": "#00504a",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "on-surface": "#121c28",
+                        "on-error-container": "#93000a",
+                        "background": "#f8f9ff",
+                        "tertiary-fixed": "#ffdbca",
+                        "tertiary-container": "#af4c00",
+                        "surface": "#f8f9ff",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#d9e3f4",
+                        "on-primary-fixed": "#00201d",
+                        "tertiary": "#893a00",
+                        "surface-tint": "#006a63",
+                        "surface-container-high": "#dfe9fa",
+                        "on-tertiary-fixed-variant": "#783200",
+                        "on-surface-variant": "#3e4947",
+                        "surface-container-highest": "#d9e3f4",
+                        "surface-container": "#e5eeff",
+                        "inverse-surface": "#27313e",
+                        "secondary-container": "#dfe0e0",
+                        "outline-variant": "#bdc9c6",
+                        "on-tertiary-fixed": "#341100",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#80d5cb",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-dim": "#d1dbec",
+                        "tertiary-fixed-dim": "#ffb690",
+                        "surface-bright": "#f8f9ff",
+                        "on-tertiary-container": "#ffe6da"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "md": "20px",
+                        "container-margin": "20px",
+                        "base": "8px",
+                        "lg": "32px",
+                        "xl": "48px",
+                        "sm": "12px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["EB Garamond"],
+                        "title-md": ["Hanken Grotesk"],
+                        "body-sm": ["Hanken Grotesk"],
+                        "headline-lg": ["EB Garamond"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "display-lg": ["EB Garamond"],
+                        "body-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", { "lineHeight": "34px", "fontWeight": "600" }],
+                        "title-md": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-24 relative overflow-x-hidden font-body-lg text-body-lg">
+<div class="fixed inset-0 jali-pattern pointer-events-none -z-10"></div>
+<!-- TopAppBar Mapping -->
+<header class="w-full top-0 sticky z-40 bg-primary h-16 flex items-center justify-between px-container-margin shadow-sm">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-primary text-2xl">pets</span>
+<div class="flex flex-col">
+<h1 class="font-headline-lg-mobile text-on-primary text-xl leading-tight">Vet Dashboard</h1>
+<span class="font-label-caps text-[10px] text-on-primary-container opacity-90 uppercase tracking-widest">Karuṇā Mobile Clinic</span>
+</div>
+</div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:opacity-80 active:scale-95 transition-all text-on-primary">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</header>
+<main class="px-container-margin pt-6 space-y-8 max-w-md mx-auto">
+<!-- Summary Cards Section -->
+<section class="grid grid-cols-3 gap-3">
+<div class="bg-primary-container p-3 rounded-xl flex flex-col justify-between shadow-sm active:scale-95 transition-transform">
+<span class="text-on-primary-container font-headline-lg-mobile text-2xl">3</span>
+<p class="font-label-caps text-on-primary-container text-[10px]">Appointments</p>
+</div>
+<div class="bg-error-container p-3 rounded-xl flex flex-col justify-between shadow-sm active:scale-95 transition-transform">
+<span class="text-on-error-container font-headline-lg-mobile text-2xl">2</span>
+<p class="font-label-caps text-on-error-container text-[10px]">Emergencies</p>
+</div>
+<div class="bg-surface-container-highest p-3 rounded-xl flex flex-col justify-between shadow-sm active:scale-95 transition-transform">
+<span class="text-primary font-headline-lg-mobile text-2xl">1</span>
+<p class="font-label-caps text-on-surface-variant text-[10px]">Slot Open</p>
+</div>
+</section>
+<!-- Incoming Cases (Asymmetric Layout) -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-headline-lg-mobile text-xl text-primary">Incoming Cases</h2>
+<button class="font-label-caps text-primary text-xs hover:underline">VIEW ALL</button>
+</div>
+<div class="space-y-4">
+<!-- Case Card 1 -->
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant flex flex-col gap-3">
+<div class="flex justify-between items-start">
+<div class="flex gap-3">
+<div class="w-12 h-12 rounded-lg bg-surface-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A close-up studio photograph of a golden retriever puppy with gentle, soulful eyes. The lighting is soft and warm, capturing the texture of its clean fur. The background is a minimalist, clinical white with subtle teal accents, reflecting a professional and compassionate veterinary environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1tb7M91xCY02a6JyuP89tXiRKWY4ZLVsNVSn6JVNzQHN8U5jKQ0P5and5d17YHKrhppiHAFoM--3789TEca6oTp-TWbNVn8atTxS79O-n9yZKRV6FLluS-qLQMdV_K4TtfZlyCdAhBTuoN7xVBnyns9vvAak6wqgYW9YmKIUUr3kNebxpAQsfxkcgqHdeRgiMxMWQQoZI6QClh82bLBzBBmzoAp7nSq8Oe5O40DH2rX4qwcJ5r2HxZGYiHEZ8LHgd4SxZWGoB7V4">
+</div>
+<div>
+<h3 class="font-title-md text-on-surface">Street Dog (Indie)</h3>
+<p class="font-body-sm text-on-surface-variant">Trauma / Leg Injury</p>
+</div>
+</div>
+<span class="bg-error-container text-on-error-container font-label-caps text-[10px] px-2 py-1 rounded-full uppercase">Critical</span>
+</div>
+<div class="flex gap-2 pt-2 border-t border-outline-variant">
+<button class="flex-1 bg-primary text-on-primary font-label-caps py-2 rounded-lg hover:opacity-90 active:scale-[0.98] transition-all">ACCEPT</button>
+<button class="px-4 border border-outline text-on-surface-variant font-label-caps py-2 rounded-lg hover:bg-surface-variant active:scale-[0.98] transition-all">DECLINE</button>
+</div>
+</div>
+<!-- Case Card 2 -->
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant flex flex-col gap-3">
+<div class="flex justify-between items-start">
+<div class="flex gap-3">
+<div class="w-12 h-12 rounded-lg bg-surface-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a domestic tabby cat looking calm and curious. The image has a clean, professional aesthetic with high-key lighting. The setting is modern and minimalist, utilizing a color palette of soft greys and deep teals. The overall mood is serene and hopeful, emphasizing high-quality animal care." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAH0ReDvGUqO1WvwTCBup8oaQmpuP0uuHD-z0oCsnXuR1YO3mG4c5ZYdlBI1EaxyIgi4XzfuijAoGGCHQkeJpFEa1nC-B3CiJOPrzESWtXbUEbxNdqx-sdohlbsKQRYZx9BeaFgnm5RAMKVSEGQusKEVb8KJZXmAV9-B3OwAelauWKTOlscRq0l7zojJt1QhHDgc5fD3e7Mi28tZ4xkCz2uwsaV3NKGdtucnps1fYsmb0642fqXJwm0qCROhyPhV6xOXTrc0OYJ0TU">
+</div>
+<div>
+<h3 class="font-title-md text-on-surface">Feral Cat</h3>
+<p class="font-body-sm text-on-surface-variant">Skin Condition / Rash</p>
+</div>
+</div>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-caps text-[10px] px-2 py-1 rounded-full uppercase">Stable</span>
+</div>
+<div class="flex gap-2 pt-2 border-t border-outline-variant">
+<button class="flex-1 bg-primary text-on-primary font-label-caps py-2 rounded-lg hover:opacity-90 active:scale-[0.98] transition-all">ACCEPT</button>
+<button class="px-4 border border-outline text-on-surface-variant font-label-caps py-2 rounded-lg hover:bg-surface-variant active:scale-[0.98] transition-all">DECLINE</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Quick Slots (Horizontal Layout) -->
+<section>
+<h2 class="font-headline-lg-mobile text-xl text-primary mb-4">My Available Slots</h2>
+<div class="flex gap-3 overflow-x-auto pb-2 custom-scrollbar">
+<button class="flex-shrink-0 bg-primary-container text-on-primary-container px-6 py-3 rounded-full font-title-md border border-primary-container hover:shadow-md transition-shadow">
+                    14:30
+                </button>
+<button class="flex-shrink-0 border border-primary text-primary px-6 py-3 rounded-full font-title-md hover:bg-primary/10 transition-colors">
+                    16:00
+                </button>
+<button class="flex-shrink-0 border border-primary text-primary px-6 py-3 rounded-full font-title-md hover:bg-primary/10 transition-colors">
+                    17:30
+                </button>
+<button class="flex-shrink-0 border border-primary text-primary px-6 py-3 rounded-full font-title-md hover:bg-primary/10 transition-colors">
+                    19:00
+                </button>
+</div>
+</section>
+<!-- Today's Schedule Timeline -->
+<section>
+<h2 class="font-headline-lg-mobile text-xl text-primary mb-4">Today's Schedule</h2>
+<div class="relative space-y-6 before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-outline-variant">
+<!-- Appointment 1 -->
+<div class="flex gap-6 relative">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center z-10 shadow-sm">
+<div class="w-2 h-2 rounded-full bg-white"></div>
+</div>
+<div class="flex-1 -mt-1 bg-surface-container-low p-4 rounded-xl border border-outline-variant/30">
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-caps text-primary text-[11px]">10:00 AM</span>
+<span class="bg-surface-container-highest text-on-surface-variant font-label-caps text-[9px] px-2 py-0.5 rounded uppercase">In Progress</span>
+</div>
+<h4 class="font-title-md text-on-surface">Labrador — Post-Op Check</h4>
+<p class="font-body-sm text-on-surface-variant">Clinical Ward A</p>
+</div>
+</div>
+<!-- Appointment 2 -->
+<div class="flex gap-6 relative">
+<div class="w-6 h-6 rounded-full bg-surface-container-highest flex items-center justify-center z-10 shadow-sm">
+<div class="w-2 h-2 rounded-full bg-outline"></div>
+</div>
+<div class="flex-1 -mt-1 bg-surface-container-lowest p-4 rounded-xl border border-outline-variant/30">
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-caps text-on-surface-variant text-[11px]">11:30 AM</span>
+<span class="bg-secondary-container text-on-secondary-container font-label-caps text-[9px] px-2 py-0.5 rounded uppercase">Upcoming</span>
+</div>
+<h4 class="font-title-md text-on-surface">Cow (Local) — General Exam</h4>
+<p class="font-body-sm text-on-surface-variant">Mobile Van Location: Sector 12</p>
+</div>
+</div>
+<!-- Appointment 3 -->
+<div class="flex gap-6 relative opacity-70">
+<div class="w-6 h-6 rounded-full bg-primary-fixed-dim flex items-center justify-center z-10 shadow-sm">
+<span class="material-symbols-outlined text-[14px] text-on-primary-fixed-variant">check</span>
+</div>
+<div class="flex-1 -mt-1 bg-surface-container-low p-4 rounded-xl border border-outline-variant/30 grayscale">
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-caps text-on-surface-variant text-[11px]">09:00 AM</span>
+<span class="bg-primary/20 text-primary font-label-caps text-[9px] px-2 py-0.5 rounded uppercase">Completed</span>
+</div>
+<h4 class="font-title-md text-on-surface line-through">Kitten — Vaccination</h4>
+<p class="font-body-sm text-on-surface-variant">OPD Counter 1</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar Mapping -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface-container-lowest flex justify-around items-center px-4 py-2 pb-safe border-t border-outline-variant shadow-sm">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-caps text-[10px]">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 transition-colors hover:bg-surface-variant/10 active:scale-90" href="#">
+<span class="material-symbols-outlined">medical_services</span>
+<span class="font-label-caps text-[10px]">Cases</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 transition-colors hover:bg-surface-variant/10 active:scale-90" href="#">
+<span class="material-symbols-outlined">event_note</span>
+<span class="font-label-caps text-[10px]">Schedule</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 transition-colors hover:bg-surface-variant/10 active:scale-90" href="#">
+<span class="material-symbols-outlined">local_hospital</span>
+<span class="font-label-caps text-[10px]">Clinic</span>
+</a>
+</nav>
+<!-- FAB Integration -->
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-tertiary-container text-on-tertiary-container rounded-full shadow-lg flex items-center justify-center active:scale-95 transition-transform z-50">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<script>
+        // Micro-interaction for case acceptance
+        document.querySelectorAll('button').forEach(btn => {
+            if(btn.innerText === 'ACCEPT') {
+                btn.addEventListener('click', function() {
+                    this.closest('.bg-surface-container-lowest').style.opacity = '0.5';
+                    this.innerText = 'ACCEPTED';
+                    this.disabled = true;
+                    this.nextElementSibling.style.display = 'none';
+                });
+            }
+        });
+    </script>
+</body></html>

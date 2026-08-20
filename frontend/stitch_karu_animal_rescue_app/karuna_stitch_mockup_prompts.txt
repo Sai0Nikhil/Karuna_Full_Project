@@ -1,0 +1,357 @@
+================================================================
+KARUNA APP — GOOGLE STITCH MOCKUP PROMPTS
+Flutter Mobile App UI Design Reference
+================================================================
+Project: Karuṇā — Animal Rescue & Welfare Platform
+Author:  Vukka Sai Nikhil, KL University
+Design:  Teal (#0F766E) primary brand color
+================================================================
+
+
+----------------------------------------------------------------
+SCREEN 1 — SPLASH SCREEN
+----------------------------------------------------------------
+Mobile app splash screen for "Karuṇā" animal rescue app.
+Dark teal background (#0F766E). Large white paw print emoji in center.
+App name "Karuṇā" in white bold serif font below the paw.
+Tagline "Rescue. Heal. Adopt." in small white text.
+Loading spinner at bottom in white. Indian mobile app aesthetic. Clean, minimal.
+
+
+----------------------------------------------------------------
+SCREEN 2 — CHOOSE ROLE SCREEN
+----------------------------------------------------------------
+Mobile app role selection screen. White background (#F8FAFD).
+Title "Choose Your Role" bold dark text, subtitle "Select how you want to use Karuṇā".
+4 role cards stacked vertically, each with rounded corners, subtle shadow:
+Card 1 — teal left border, city emoji, "Citizen" bold, subtitle "Report injured animals, donate & adopt"
+Card 2 — blue left border, hospital emoji, "NGO Staff" bold, subtitle "Manage rescue cases & coordinate"
+Card 3 — amber left border, rescue vest emoji, "Volunteer Responder" bold, subtitle "Accept dispatch & rescue animals"
+Card 4 — purple left border, stethoscope emoji, "Veterinary Clinic" bold, subtitle "Treat animals & manage slots"
+Selected card has colored background tint and checkmark circle.
+Teal "Continue →" button at bottom, disabled until a card is selected.
+
+
+----------------------------------------------------------------
+SCREEN 3 — LOGIN SCREEN
+----------------------------------------------------------------
+Mobile login screen for "Karuṇā" animal rescue app.
+Clean white background. Teal paw icon at top center in rounded square container.
+"Welcome back!" bold dark heading. "Sign in to continue to Karuṇā" gray subtitle.
+Email text field with envelope icon prefix.
+Password field with lock icon prefix and eye toggle suffix.
+"Forgot Password?" right-aligned teal link.
+Full-width teal "Sign In" rounded button.
+Divider with "or" in middle.
+"Don't have an account? Register" link in teal at bottom.
+
+
+----------------------------------------------------------------
+SCREEN 4 — REGISTER SCREEN
+----------------------------------------------------------------
+Mobile register screen for "Karuṇā" animal rescue app.
+Clean white background. Teal paw icon at top center.
+"Create Account" bold dark heading. "Join the rescue community" gray subtitle.
+Full name text field with person icon.
+Email text field with envelope icon.
+Password text field with lock icon and eye toggle.
+Phone number field with phone icon (optional label).
+Role selection dropdown showing: Citizen, NGO Staff, Volunteer, Vet.
+Full-width teal "Create Account" rounded button.
+"Already have an account? Sign In" teal link at bottom.
+
+
+----------------------------------------------------------------
+SCREEN 5 — CITIZEN HOME SCREEN
+----------------------------------------------------------------
+Mobile home screen for citizen animal rescue app.
+Teal top section with "Good Morning!" greeting and user name.
+Teal rounded search bar below greeting.
+Large "Report an Injured Animal" call-to-action card with orange-teal gradient, paw icon, white arrow button.
+2x2 grid of quick action cards: "Donate 💛" blue card, "Adopt 🐾" green card, "First Aid 🩺" purple card, "My Cases 📋" teal card.
+Section "Recent Cases Nearby" with 2 case cards showing species emoji, title, severity badge (red/orange/green pill), location text, status pill.
+Bottom navigation bar in solid teal: Home, Report, Donate, Adopt, My Cases — white icons, active icon fully white, inactive at 60% opacity.
+
+
+----------------------------------------------------------------
+SCREEN 6 — REPORT FLOW STEP 1 (PHOTO + LOCATION)
+----------------------------------------------------------------
+Mobile step-by-step report flow screen, Step 1 of 4.
+Progress stepper at top showing 4 steps: Photo, Analysis, Details, Confirm. Step 1 active in teal.
+"Report an Injured Animal" bold title below stepper.
+Large dashed border upload area in center with teal camera icon and text "Tap to take photo or choose from gallery". When photo selected, shows image thumbnail with edit overlay.
+"📍 Get My Location" teal outlined button with GPS icon.
+Location confirmed state shows: green checkmark, coordinates text in small gray font.
+Optional text area "Describe what you see (optional)" with light gray background.
+"Next →" large teal filled button at bottom.
+
+
+----------------------------------------------------------------
+SCREEN 7 — REPORT FLOW STEP 2 (AI TRIAGE RESULT)
+----------------------------------------------------------------
+Mobile AI triage result screen for animal rescue app. Step 2 of 4.
+"🤖 AI Analysis Complete" section header with robot icon.
+Small photo thumbnail top right corner.
+Large result card with white background, rounded corners, subtle shadow:
+  - Species row: dog icon "Dog 🐕"
+  - Injury Type row: "Wound / Laceration"
+  - Severity: large "URGENT" badge in orange pill
+  - Confidence: "85% confidence" with small progress bar
+"Probable Condition" section: italic description text in gray.
+"First Aid Steps" numbered list with small medical cross icon per step.
+"Estimated Treatment Cost: ₹2,000–₹4,500" in teal bold.
+Two buttons: "Edit Details" teal outlined, "Submit Report ✓" teal filled.
+
+
+----------------------------------------------------------------
+SCREEN 8 — REPORT FLOW STEP 3 (CASE DETAILS FORM)
+----------------------------------------------------------------
+Mobile case details form. Step 3 of 4.
+"Case Details" bold heading.
+Pre-filled fields editable by user:
+  - Species dropdown (Dog selected)
+  - Injury Type dropdown (Wound selected)
+  - Severity auto-filled from AI (shown as read-only orange badge)
+  - Location label text field
+  - Additional notes multi-line text area
+"Case Title" text field auto-generated, editable.
+"Next →" large teal button at bottom.
+
+
+----------------------------------------------------------------
+SCREEN 9 — REPORT FLOW STEP 4 (CONFIRM & SUBMIT)
+----------------------------------------------------------------
+Mobile case confirmation screen. Step 4 of 4.
+"Review & Submit" bold heading.
+Summary card:
+  - Photo thumbnail left, species + injury type right
+  - Severity badge prominent
+  - Location text
+  - AI confidence displayed
+"By submitting, a volunteer will be dispatched automatically." info note in teal box with info icon.
+"Submit Report" large teal filled button.
+"Edit" link above button.
+Success state after submit: teal checkmark animation, "Case Reported! 🐾", "Case #1042 has been created. A volunteer has been notified." text. "View My Case" and "Report Another" buttons.
+
+
+----------------------------------------------------------------
+SCREEN 10 — MY CASES SCREEN
+----------------------------------------------------------------
+Mobile "My Cases" list screen for citizen.
+Teal app bar "My Cases" with case count badge.
+Filter chips row: All, Reported, Assigned, In Treatment, Discharged.
+List of case cards, each showing:
+  - Species emoji + case title bold
+  - Severity badge pill top right (CRITICAL red / URGENT orange / ROUTINE green)
+  - Status pill (Reported / Assigned / At Clinic etc)
+  - Location text with pin icon
+  - Date reported in small gray
+  - "View" arrow button right side
+Empty state: paw icon, "No cases yet", "Tap Report to help an injured animal" text.
+
+
+----------------------------------------------------------------
+SCREEN 11 — CITIZEN CASE DETAIL SCREEN
+----------------------------------------------------------------
+Mobile case detail screen for citizen.
+Teal app bar with case ID.
+Photo card full width with rounded corners.
+URGENT orange severity badge + ASSIGNED teal status pill.
+Timeline progress bar horizontal: Reported → Assigned → Collected → At Clinic → Treatment → Discharged.
+Info section with icons: Species, Injury Type, Location, Volunteer Name Assigned, NGO Name.
+"🤖 AI Summary" card: condition + first aid steps.
+"💛 Donate to this case" teal gradient button showing amount raised.
+"Download Certificate" outlined button (after discharge).
+"Chat with Sita" floating button bottom right in teal.
+
+
+----------------------------------------------------------------
+SCREEN 12 — DONATE SCREEN
+----------------------------------------------------------------
+Mobile donation screen for animal rescue app.
+Teal gradient header "Help Save Animals 💛".
+Case card at top showing which animal needs help: species emoji, title, severity badge.
+"Amount Raised: ₹3,500 / ₹8,000" with teal progress bar.
+Quick amount chips: ₹100, ₹250, ₹500, ₹1000, "Custom".
+Custom amount text field with ₹ prefix.
+Donor name and message optional fields.
+"Donate Now 💛" large amber/teal button.
+Recent donors list below: avatar initials, name, amount, time ago.
+
+
+----------------------------------------------------------------
+SCREEN 13 — ADOPT SCREEN
+----------------------------------------------------------------
+Mobile adoption listing screen.
+"Adopt a Rescued Animal 🐾" teal header.
+Filter chips: All, Dogs, Cats, Cows, Birds.
+Grid of adoption cards (2 columns):
+  Each card: animal photo or emoji, name, species badge, age, location, "Meet Me" button.
+Card overlay shows "Available" green tag top-left.
+Empty state if no animals: paw icon, "No animals available" text.
+
+
+----------------------------------------------------------------
+SCREEN 14 — FIRST AID SCREEN
+----------------------------------------------------------------
+Mobile first aid guide screen.
+"🩺 Emergency First Aid" bold title with teal medical icon.
+Language selector chips: English, Telugu, Hindi, Tamil, Kannada.
+Species selector row of icon chips: 🐕 Dog, 🐈 Cat, 🐄 Cow, 🐦 Bird.
+Injury type selector chips: Wound, Fracture, Bleeding, Emaciation, Eye Injury.
+"Get First Aid Steps" teal button.
+Result card appears below with numbered steps, "Do NOT do" red section, "When to call vet" amber section.
+"Chat with Sita for live help →" link at bottom.
+
+
+----------------------------------------------------------------
+SCREEN 15 — SITA AI CHAT SCREEN
+----------------------------------------------------------------
+Mobile AI chatbot screen "Sita — Your Rescue Guide".
+Dark teal gradient background (top: #0D9488, bottom: #115E59).
+Header row: white back arrow, Sita avatar (animated teal circle glowing with paw emoji, pulse ring), "Sita" white bold name, "AI Rescue Guide" white small subtitle, language dropdown right.
+Chat area: white rounded bubble for Sita messages (left-aligned), teal rounded bubble for user (right-aligned).
+Sita welcome message: "Namaste! 🙏 I'm Sita, your AI animal rescue guide. Tell me about the animal you found."
+"Listening..." state: large pulsing white microphone button center, green sound wave animation.
+Text input bar at bottom: white rounded field, teal mic icon left, teal send arrow right.
+"End Chat" button top right.
+
+
+----------------------------------------------------------------
+SCREEN 16 — NGO DASHBOARD SCREEN
+----------------------------------------------------------------
+Mobile NGO staff dashboard screen.
+Dark teal app bar "NGO Dashboard" with notification bell icon showing red badge.
+4 stat cards 2x2 grid with soft shadows:
+  "Total Cases 47" teal, "Critical 3" red with pulse dot, "Active 12" blue, "Discharged 28" green.
+"🔴 Live Cases" section header with animated green dot.
+3 case cards in list, each showing:
+  Species emoji + title, CRITICAL/URGENT severity badge, location, "Assigned to: John" in small text, status pill.
+  "View" and "Navigate" buttons.
+Bottom nav: Dashboard, All Cases, Analytics, Volunteers — teal active pill indicator.
+
+
+----------------------------------------------------------------
+SCREEN 17 — NGO CASE LIST SCREEN
+----------------------------------------------------------------
+Mobile NGO all cases list screen.
+Teal app bar "All Cases (47)" with search and filter icons.
+Filter chips row: All, Critical, Urgent, Routine, Assigned, Discharged.
+List of case cards, each with:
+  - Species emoji, bold title, severity badge, status pill
+  - Location text with pin icon
+  - Volunteer name assigned or "Unassigned" in red
+  - Created date small
+  - "View" arrow
+Pull-to-refresh indicator in teal.
+
+
+----------------------------------------------------------------
+SCREEN 18 — NGO ANALYTICS SCREEN
+----------------------------------------------------------------
+Mobile NGO analytics screen.
+Teal app bar "Analytics".
+2x3 stat grid: Total Cases, Discharged (green), Critical (red), Urgent (orange), Routine (gray), Active (blue).
+"Species Breakdown" section header.
+Progress bar rows:
+  🐕 Dog — 42% — teal bar
+  🐈 Cat — 28% — teal bar
+  🐄 Cow — 18% — teal bar
+  🐦 Bird — 12% — teal bar
+"Severity Distribution" section.
+3 colored horizontal bars: Critical red, Urgent orange, Routine green with counts.
+
+
+----------------------------------------------------------------
+SCREEN 19 — NGO VOLUNTEERS SCREEN
+----------------------------------------------------------------
+Mobile NGO volunteers management screen.
+Teal app bar "Volunteers (12)".
+List of volunteer cards each showing:
+  - Circular avatar with initials, teal border if available
+  - Name bold, "Skills: First Aid, Veterinary" in small gray
+  - "Active cases: 2" small text
+  - Toggle switch right side: green = Available, gray = Unavailable
+  - Teal border on card when available, gray border when not
+Pull-to-refresh. Empty state with volunteer icon.
+
+
+----------------------------------------------------------------
+SCREEN 20 — VOLUNTEER HOME SCREEN (MY CASES)
+----------------------------------------------------------------
+Mobile volunteer responder home screen. "My Assigned Cases" teal app bar, "3 active" subtitle.
+List of assigned case cards each showing:
+  - CRITICAL / URGENT / ROUTINE badge pill top left
+  - STATUS pill top right (Assigned / Collected etc.)
+  - Species emoji + animal title bold
+  - Location with pin icon
+  - "Navigate" teal outlined button + "View Details" teal filled button side by side.
+Empty state: assignment icon, "No Assigned Cases", subtitle text.
+Bottom nav: My Cases (clipboard icon), Open Cases (compass icon).
+
+
+----------------------------------------------------------------
+SCREEN 21 — VOLUNTEER OPEN CASES SCREEN
+----------------------------------------------------------------
+Mobile volunteer open cases screen.
+Teal app bar "Open Cases Nearby" with refresh icon.
+List of open case cards each showing:
+  - Species emoji large left, title right, severity badge
+  - Location text small
+  - "View" outlined button + "Accept" teal filled button side by side.
+Empty state: green checkmark icon, "No open cases right now!", "All animals are being cared for."
+
+
+----------------------------------------------------------------
+SCREEN 22 — VOLUNTEER CASE DETAIL (STATUS STEPPER)
+----------------------------------------------------------------
+Mobile volunteer case detail screen.
+Teal app bar with case title.
+URGENT severity badge + ASSIGNED status pill at top.
+Animal photo full width card rounded.
+Info rows with icons: Species, Injury Type, Location, GPS coordinates.
+"🤖 AI Triage Result" white card: condition description + numbered first aid steps.
+"👤 Reporter" card: name and contact number.
+"📋 Status Progress" vertical stepper:
+  ✅ Reported — green filled circle + checkmark
+  ✅ Assigned — green filled circle + checkmark
+  ○ Collected — gray empty circle (current next step)
+  ○ At Clinic — gray
+  ○ In Treatment — gray
+  ○ Discharged — gray
+"Navigate via Google Maps" outlined teal button full width.
+"Mark as Collected ✓" large teal filled button.
+
+
+----------------------------------------------------------------
+SCREEN 23 — MAP ROUTING SCREEN
+----------------------------------------------------------------
+Mobile map routing screen for volunteer navigation.
+OpenStreetMap full-screen map.
+Blue "You are here" marker (volunteer location).
+Red animated pulsing marker at animal location.
+Bottom sheet card (draggable):
+  Animal title + severity badge.
+  "Distance: 2.3 km" with car icon.
+  "Estimated arrival: 8 mins" with clock icon.
+  "Open in Google Maps" teal button full width.
+  "Mark as Collected" button below.
+Teal app bar with back arrow and "Navigate to Animal" title.
+
+
+----------------------------------------------------------------
+SCREEN 24 — VETERINARY HOME SCREEN
+----------------------------------------------------------------
+Mobile veterinary clinic home screen.
+Teal app bar "Vet Dashboard" with clinic name subtitle.
+Today's summary: "3 Appointments", "2 Emergency Cases", "1 Slot Available" — 3 colored cards.
+"Incoming Cases" section: list of cases sent to clinic, each with severity badge, species, "Accept / Decline" buttons.
+"Today's Schedule" timeline list: time, patient species, treatment type, status pill.
+"My Available Slots" quick section showing open slot times.
+Bottom nav: Dashboard, Cases, Schedule, Clinic.
+
+
+================================================================
+END OF PROMPTS
+Total Screens: 24
+================================================================

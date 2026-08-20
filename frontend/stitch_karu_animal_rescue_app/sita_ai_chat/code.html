@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Sita — Your Rescue Guide</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600;700&family=Hanken+Grotesk:wght@400;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@100..900&family=Hanken+Grotesk:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .chat-gradient {
+            background: radial-gradient(circle at top right, #0f766e, #00201d);
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.3; }
+            100% { transform: scale(0.8); opacity: 0.5; }
+        }
+        .animate-pulse-ring {
+            animation: pulse-ring 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        .glow-avatar {
+            box-shadow: 0 0 15px rgba(156, 242, 232, 0.4);
+        }
+        .jali-pattern {
+            background-image: radial-gradient(#ffffff 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+            opacity: 0.05;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "on-secondary-fixed-variant": "#454747",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#eaf1ff",
+                        "inverse-primary": "#80d5cb",
+                        "on-background": "#121c28",
+                        "primary": "#005c55",
+                        "on-secondary-container": "#616363",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-primary-container": "#a3faef",
+                        "surface-container-low": "#eef4ff",
+                        "outline": "#6e7977",
+                        "on-error": "#ffffff",
+                        "primary-container": "#0f766e",
+                        "primary-fixed": "#9cf2e8",
+                        "on-primary": "#ffffff",
+                        "secondary": "#5d5f5f",
+                        "on-primary-fixed-variant": "#00504a",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "on-surface": "#121c28",
+                        "on-error-container": "#93000a",
+                        "background": "#f8f9ff",
+                        "tertiary-fixed": "#ffdbca",
+                        "tertiary-container": "#af4c00",
+                        "surface": "#f8f9ff",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#d9e3f4",
+                        "on-primary-fixed": "#00201d",
+                        "tertiary": "#893a00",
+                        "surface-tint": "#006a63",
+                        "surface-container-high": "#dfe9fa",
+                        "on-tertiary-fixed-variant": "#783200",
+                        "on-surface-variant": "#3e4947",
+                        "surface-container-highest": "#d9e3f4",
+                        "surface-container": "#e5eeff",
+                        "inverse-surface": "#27313e",
+                        "secondary-container": "#dfe0e0",
+                        "outline-variant": "#bdc9c6",
+                        "on-tertiary-fixed": "#341100",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#80d5cb",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-dim": "#d1dbec",
+                        "tertiary-fixed-dim": "#ffb690",
+                        "surface-bright": "#f8f9ff",
+                        "on-tertiary-container": "#ffe6da"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "md": "20px",
+                        "container-margin": "20px",
+                        "base": "8px",
+                        "lg": "32px",
+                        "xl": "48px",
+                        "sm": "12px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["EB Garamond"],
+                        "title-md": ["Hanken Grotesk"],
+                        "body-sm": ["Hanken Grotesk"],
+                        "headline-lg": ["EB Garamond"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "display-lg": ["EB Garamond"],
+                        "body-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "600"}],
+                        "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body-lg text-on-surface overflow-hidden h-screen flex flex-col">
+<!-- Main Content Area with Dark Teal Gradient Background -->
+<main class="flex-grow flex flex-col chat-gradient relative overflow-hidden">
+<!-- Subtle Jali Background Pattern Overlay -->
+<div class="absolute inset-0 jali-pattern pointer-events-none"></div>
+<!-- Custom Header -->
+<header class="flex items-center px-container-margin py-base z-10 pt-12 pb-4">
+<button class="mr-base p-xs text-white transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[28px]">arrow_back</span>
+</button>
+<div class="relative">
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center glow-avatar relative overflow-visible">
+<!-- Animated Pulse Circle -->
+<div class="absolute inset-0 rounded-full bg-primary-fixed-dim animate-pulse-ring"></div>
+<span class="material-symbols-outlined text-on-primary-fixed text-[24px] relative z-10" data-weight="fill">pets</span>
+</div>
+</div>
+<div class="ml-base">
+<h1 class="font-title-md text-title-md text-white">Sita</h1>
+<p class="font-body-sm text-body-sm text-primary-fixed opacity-90">AI Rescue Guide</p>
+</div>
+<div class="ml-auto">
+<div class="flex items-center gap-1 bg-white/10 px-sm py-xs rounded-full border border-white/10">
+<div class="w-2 h-2 rounded-full bg-primary-fixed animate-pulse"></div>
+<span class="text-[10px] text-white font-label-caps tracking-widest uppercase">Active</span>
+</div>
+</div>
+</header>
+<!-- Scrollable Chat Canvas -->
+<section class="flex-grow overflow-y-auto px-container-margin py-md flex flex-col gap-lg z-10" id="chat-canvas">
+<!-- Sita Message Bubble -->
+<div class="flex flex-col gap-xs max-w-[85%] self-start">
+<div class="bg-white text-on-surface p-md rounded-2xl rounded-tl-none shadow-lg">
+<p class="font-body-lg text-body-lg">Namaste! 🙏 I'm Sita, your AI animal rescue guide. Tell me about the animal you found.</p>
+</div>
+<span class="font-label-caps text-label-caps text-white/60 ml-1">JUST NOW</span>
+</div>
+<!-- Listening State UI (Conditional) -->
+<div class="flex flex-col items-center justify-center py-xl gap-lg" id="listening-state">
+<div class="relative">
+<!-- Ripple effect circles -->
+<div class="absolute inset-0 rounded-full border-2 border-white/20 scale-150 animate-[ping_3s_infinite]"></div>
+<div class="absolute inset-0 rounded-full border-2 border-white/40 scale-125 animate-[ping_2s_infinite]"></div>
+<button class="w-24 h-24 rounded-full bg-white text-primary flex items-center justify-center shadow-2xl transition-transform active:scale-90 relative z-20">
+<span class="material-symbols-outlined text-[48px]" data-weight="fill">mic</span>
+</button>
+</div>
+<div class="flex flex-col items-center gap-base">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-white text-center">Listening...</h2>
+<div class="flex gap-1 h-4 items-center">
+<div class="w-1 bg-primary-fixed rounded-full animate-[bounce_0.8s_infinite] h-2"></div>
+<div class="w-1 bg-primary-fixed rounded-full animate-[bounce_0.8s_infinite_0.1s] h-4"></div>
+<div class="w-1 bg-primary-fixed rounded-full animate-[bounce_0.8s_infinite_0.2s] h-3"></div>
+<div class="w-1 bg-primary-fixed rounded-full animate-[bounce_0.8s_infinite_0.3s] h-5"></div>
+<div class="w-1 bg-primary-fixed rounded-full animate-[bounce_0.8s_infinite_0.4s] h-2"></div>
+</div>
+</div>
+</div>
+<!-- User Message Bubble (Example) -->
+<!-- 
+            <div class="flex flex-col gap-xs max-w-[85%] self-end">
+                <div class="bg-primary-container text-on-primary-container p-md rounded-2xl rounded-tr-none shadow-lg">
+                    <p class="font-body-lg text-body-lg">I found a stray dog near the park gate. It looks like it has a leg injury.</p>
+                </div>
+                <span class="font-label-caps text-label-caps text-white/60 text-right mr-1">10:02 AM</span>
+            </div> 
+            -->
+</section>
+<!-- Bottom Interaction Bar -->
+<footer class="p-container-margin pb-safe z-20">
+<div class="flex items-center gap-base bg-white rounded-full p-2 shadow-xl border border-white/20">
+<!-- Secondary Mic Icon -->
+<button class="w-10 h-10 rounded-full text-primary hover:bg-surface-container-low transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">mic</span>
+</button>
+<!-- Text Input -->
+<input class="flex-grow border-none focus:ring-0 bg-transparent text-on-surface font-body-lg placeholder:text-outline-variant py-2" placeholder="Type a message..." type="text"/>
+<!-- Send Action Button -->
+<button class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center transition-all active:scale-95 shadow-md">
+<span class="material-symbols-outlined text-[20px]">arrow_upward</span>
+</button>
+</div>
+<!-- Quick Suggestions (Asymmetric chips) -->
+<div class="flex flex-wrap gap-xs mt-base overflow-x-auto pb-2 whitespace-nowrap scrollbar-hide">
+<button class="glass-panel text-white font-label-caps text-[10px] px-md py-xs rounded-full border border-white/20 hover:bg-white/20 transition-colors">REPORT INJURY</button>
+<button class="glass-panel text-white font-label-caps text-[10px] px-md py-xs rounded-full border border-white/20 hover:bg-white/20 transition-colors">STRAY PUPPIES</button>
+<button class="glass-panel text-white font-label-caps text-[10px] px-md py-xs rounded-full border border-white/20 hover:bg-white/20 transition-colors">BIRD RESCUE</button>
+</div>
+</footer>
+</main>
+<!-- Script for simple interactions -->
+<script>
+        // Toggle listening state visual for demo
+        const micButton = document.querySelector('#listening-state button');
+        const listeningContainer = document.getElementById('listening-state');
+        const inputField = document.querySelector('input');
+        const sendButton = document.querySelector('footer button:last-child');
+        const chatCanvas = document.getElementById('chat-canvas');
+
+        micButton.addEventListener('click', () => {
+            listeningContainer.style.opacity = '0';
+            setTimeout(() => {
+                listeningContainer.classList.add('hidden');
+                addMessage('user', 'I found a kitten stuck in a drain pipe near MG Road.');
+                setTimeout(() => {
+                    addMessage('sita', 'Oh no! Please stay where you are. Can you see if the mother is around or if the pipe is filled with water? I am alerting the Karuṇā rapid response team in MG Road.');
+                }, 1000);
+            }, 300);
+        });
+
+        function addMessage(sender, text) {
+            const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            const bubble = document.createElement('div');
+            bubble.className = `flex flex-col gap-xs max-w-[85%] ${sender === 'user' ? 'self-end' : 'self-start'} animate-[fadeIn_0.5s_ease-out]`;
+            
+            const isUser = sender === 'user';
+            bubble.innerHTML = `
+                <div class="${isUser ? 'bg-primary-container text-on-primary-container rounded-tr-none' : 'bg-white text-on-surface rounded-tl-none'} p-md rounded-2xl shadow-lg">
+                    <p class="font-body-lg text-body-lg">${text}</p>
+                </div>
+                <span class="font-label-caps text-label-caps text-white/60 ${isUser ? 'text-right mr-1' : 'ml-1'}">${time}</span>
+            `;
+            
+            chatCanvas.appendChild(bubble);
+            chatCanvas.scrollTo({ top: chatCanvas.scrollHeight, behavior: 'smooth' });
+        }
+
+        // Send message on click
+        sendButton.addEventListener('click', () => {
+            if (inputField.value.trim()) {
+                listeningContainer.classList.add('hidden');
+                addMessage('user', inputField.value);
+                inputField.value = '';
+                // Simple mock reply
+                setTimeout(() => {
+                    addMessage('sita', 'Thank you for that information. Help is on the way. Please keep the area clear and try to keep the animal calm.');
+                }, 1500);
+            }
+        });
+
+        // Trigger on enter
+        inputField.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendButton.click();
+        });
+    </script>
+<style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</body></html>

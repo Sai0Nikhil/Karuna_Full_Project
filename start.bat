@@ -129,17 +129,17 @@ exit /b 1
 :run_backend
 if "%MVN_PATH%"=="" call :find_mvn
 if "%MVN_PATH%"=="" ( echo Error: Maven not found. & exit /b 1 )
-cd /d "%~dp0karuna-backend"
+cd /d "%~dp0backend\springboot"
 call "%MVN_PATH%" spring-boot:run
 exit /b
 
 :run_citizen
-cd /d "%~dp0website\citizen"
+cd /d "%~dp0frontend\website\citizen"
 npm.cmd run dev
 exit /b
 
 :run_ngo
-cd /d "%~dp0website\ngo"
+cd /d "%~dp0frontend\website\ngo"
 npm.cmd run dev
 exit /b
 

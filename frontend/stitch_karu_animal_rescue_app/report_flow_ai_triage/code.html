@@ -1,0 +1,242 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>Karuṇā - AI Triage Analysis</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600;700&amp;family=Hanken+Grotesk:wght@400;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container": "#e5eeff",
+                    "primary-fixed-dim": "#80d5cb",
+                    "surface-dim": "#d1dbec",
+                    "on-secondary-fixed-variant": "#454747",
+                    "inverse-on-surface": "#eaf1ff",
+                    "tertiary-fixed": "#ffdbca",
+                    "secondary-fixed": "#e2e2e2",
+                    "on-surface-variant": "#3e4947",
+                    "on-error-container": "#93000a",
+                    "on-error": "#ffffff",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#121c28",
+                    "secondary": "#5d5f5f",
+                    "tertiary": "#893a00",
+                    "surface-container-high": "#dfe9fa",
+                    "outline-variant": "#bdc9c6",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#ffb690",
+                    "surface-container-highest": "#d9e3f4",
+                    "on-tertiary-fixed-variant": "#783200",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-container": "#616363",
+                    "on-primary-fixed": "#00201d",
+                    "on-tertiary-fixed": "#341100",
+                    "surface-variant": "#d9e3f4",
+                    "inverse-surface": "#27313e",
+                    "primary": "#005c55",
+                    "inverse-primary": "#80d5cb",
+                    "on-tertiary-container": "#ffe6da",
+                    "on-primary-fixed-variant": "#00504a",
+                    "surface-tint": "#006a63",
+                    "surface-container-low": "#eef4ff",
+                    "background": "#f8f9ff",
+                    "secondary-container": "#dfe0e0",
+                    "primary-container": "#0f766e",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "on-secondary": "#ffffff",
+                    "on-background": "#121c28",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#9cf2e8",
+                    "tertiary-container": "#af4c00",
+                    "surface-bright": "#f8f9ff",
+                    "outline": "#6e7977",
+                    "surface": "#f8f9ff",
+                    "error-container": "#ffdad6",
+                    "on-primary-container": "#a3faef"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "xs": "4px",
+                    "xl": "48px",
+                    "sm": "12px",
+                    "lg": "32px",
+                    "md": "20px",
+                    "container-margin": "20px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["EB Garamond"],
+                    "body-sm": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "label-caps": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["EB Garamond"],
+                    "display-lg": ["EB Garamond"],
+                    "title-md": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "600"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+        .jali-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l30 30-30 30L0 30z' fill='%23005c55' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        .step-transition {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-lg antialiased jali-pattern pb-24">
+<!-- Top Navigation -->
+<header class="fixed top-0 w-full z-50 bg-surface shadow-sm h-16 flex justify-between items-center px-container-margin">
+<div class="flex items-center gap-base active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</div>
+<h1 class="font-display-lg text-[24px] text-primary tracking-tight">Karuṇā</h1>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A small, professional circular profile avatar of a female veterinarian with a kind expression, wearing a clinical white coat. The background is a soft, blurred clinical setting with warm, empathetic lighting and a minimalist, modern aesthetic consistent with a high-end medical platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN2ot1o0RzZlrvTjGh3B9DT3FrDL8k9tfZRMWMtANnjZRhnfScEnvu_4s1RSTvpjIXUpbHr3CVY8HobkRFm7kxH90M3v7VD1oQWuj6s8kY0iH2_1eOct38eFTWGmSpjzSY58hRAcU67lJV4rXOEIWBcGAGmYG3iMpNXdPqR3NsS6Ig4GoOrcls77gTjIn4NYgaS1osTUEHtkxOVrqN1gitF2jM2MqcpBt-WBIFQF8I4vE5CXrVqL2F-GKVJ8tZtgATlEIBPMEg6AM">
+</div>
+</header>
+<main class="pt-20 px-container-margin max-w-md mx-auto">
+<!-- Step Indicator -->
+<div class="flex items-center justify-between mb-lg">
+<div class="flex gap-xs">
+<div class="h-1 w-8 rounded-full bg-primary"></div>
+<div class="h-1 w-8 rounded-full bg-primary"></div>
+<div class="h-1 w-8 rounded-full bg-surface-variant"></div>
+<div class="h-1 w-8 rounded-full bg-surface-variant"></div>
+</div>
+<span class="font-label-caps text-on-surface-variant">STEP 2 OF 4</span>
+</div>
+<!-- Section Header -->
+<div class="flex justify-between items-start mb-md">
+<div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">🤖 AI Analysis Complete</h2>
+<p class="font-body-sm text-on-surface-variant mt-1">Assessment based on visual evidence</p>
+</div>
+<div class="w-20 h-20 rounded-xl overflow-hidden shadow-md border-2 border-surface-container-highest rotate-3">
+<img class="w-full h-full object-cover" data-alt="A close-up, high-quality photograph of a stray dog's leg showing a visible but clean laceration, captured in natural outdoor lighting. The image is framed as a medical thumbnail, focusing on the injury for triage purposes. The overall visual style is professional, clinical, and empathetic, avoiding gore while maintaining medical accuracy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDt1mGu-BfH-HxXoew2_a-uZztCwimEWHIo8I9TGqlRkHfRKAm1poBloYljjxjdImU7fHBXV71b4ZVk0lbkALGc_QHCKSsDuFSEl32HpOmQGOvxaLedkP_jj0_bXba9KhSeQTnHruT8MiA9PI8nfBlV_Fa3ceLOXDh4DOhDOL1fAdkQGDi_Z9EZo9FmC5P0D0LXPcxGkoyUxCVmzunye_llZCIvMA3O3xWD9FZhQiuAGX9kwviH9BAfV2DWzqXHyDunXWpk7QSzNPU">
+</div>
+</div>
+<!-- Result Card -->
+<div class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant shadow-sm mb-lg">
+<div class="space-y-md">
+<!-- Species & Confidence -->
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-base">
+<span class="text-2xl">🐕</span>
+<span class="font-title-md text-title-md">Dog</span>
+</div>
+<div class="bg-surface-container px-3 py-1 rounded-full">
+<span class="font-label-caps text-primary">85% CONFIDENCE</span>
+</div>
+</div>
+<hr class="border-outline-variant opacity-50">
+<!-- Injury Details -->
+<div>
+<label class="font-label-caps text-on-surface-variant block mb-1">DETECTION</label>
+<p class="font-title-md text-title-md text-on-surface">Wound / Laceration</p>
+</div>
+<div>
+<label class="font-label-caps text-on-surface-variant block mb-1">SEVERITY</label>
+<span class="inline-flex items-center px-4 py-1.5 rounded-full bg-tertiary-container text-on-tertiary font-title-md text-sm uppercase tracking-wider">
+<span class="material-symbols-outlined text-[18px] mr-1">priority_high</span>
+                        URGENT
+                    </span>
+</div>
+<!-- Treatment Cost -->
+<div class="bg-primary-container/10 p-md rounded-lg border border-primary/10">
+<label class="font-label-caps text-primary block mb-1">ESTIMATED TREATMENT COST</label>
+<p class="font-headline-lg-mobile text-primary font-bold">₹2,000–₹4,500</p>
+<p class="font-body-sm text-on-surface-variant mt-1">Based on local NGO averages</p>
+</div>
+</div>
+</div>
+<!-- First Aid Steps -->
+<section class="mb-xl">
+<h3 class="font-title-md text-title-md mb-md flex items-center gap-base">
+<span class="material-symbols-outlined text-primary">medical_services</span>
+                First Aid Steps
+            </h3>
+<div class="space-y-md">
+<div class="flex gap-md">
+<div class="flex-shrink-0 w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary border border-primary/20">1</div>
+<p class="font-body-lg text-on-surface-variant">Approach the animal slowly and use a calm voice to avoid startling them.</p>
+</div>
+<div class="flex gap-md">
+<div class="flex-shrink-0 w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary border border-primary/20">2</div>
+<p class="font-body-lg text-on-surface-variant">Apply gentle pressure to the wound with a clean cloth to stop any bleeding.</p>
+</div>
+<div class="flex gap-md">
+<div class="flex-shrink-0 w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary border border-primary/20">3</div>
+<p class="font-body-lg text-on-surface-variant">Stay with the animal until the rescue team arrives, keeping it warm and calm.</p>
+</div>
+</div>
+</section>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-md">
+<button class="w-full h-14 bg-primary text-on-primary rounded-xl font-title-md flex items-center justify-center gap-base shadow-lg active:scale-95 transition-all">
+                Submit Report
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0">check_circle</span>
+</button>
+<button class="w-full h-14 border-2 border-primary text-primary rounded-xl font-title-md flex items-center justify-center gap-base active:bg-primary/5 transition-colors">
+                Edit Details
+                <span class="material-symbols-outlined">edit</span>
+</button>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center py-2 px-base pb-safe bg-surface shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-50 rounded-t-xl">
+<div class="flex flex-col items-center justify-center text-on-secondary-container active:scale-90 transition-all duration-150">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-all duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">pets</span>
+<span class="font-label-caps mt-1">Rescues</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-secondary-container active:scale-90 transition-all duration-150">
+<span class="material-symbols-outlined">emergency_share</span>
+<span class="font-label-caps mt-1">Report</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-secondary-container active:scale-90 transition-all duration-150">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps mt-1">Profile</span>
+</div>
+</nav>
+<script>
+        // Simple micro-interaction for buttons
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                let ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Karuṇā - Sign In</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600;700&amp;family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .jali-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l30 30-30 30L0 30z' fill='%23005c55' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        input:focus + span, input:not(:placeholder-shown) + span {
+            transform: translateY(-20px) scale(0.85);
+            color: #005c55;
+        }
+        .transition-soft {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#616363",
+                        "primary-fixed": "#9cf2e8",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "surface-container": "#e5eeff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#454747",
+                        "secondary-fixed": "#e2e2e2",
+                        "surface-container-low": "#eef4ff",
+                        "on-tertiary-fixed-variant": "#783200",
+                        "surface-tint": "#006a63",
+                        "secondary": "#5d5f5f",
+                        "on-tertiary-fixed": "#341100",
+                        "surface-variant": "#d9e3f4",
+                        "tertiary-container": "#af4c00",
+                        "inverse-on-surface": "#eaf1ff",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "secondary-container": "#dfe0e0",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#ffdbca",
+                        "on-primary-fixed-variant": "#00504a",
+                        "on-primary-fixed": "#00201d",
+                        "background": "#f8f9ff",
+                        "tertiary": "#893a00",
+                        "on-surface": "#121c28",
+                        "outline-variant": "#bdc9c6",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#f8f9ff",
+                        "primary": "#005c55",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#a3faef",
+                        "surface-container-high": "#dfe9fa",
+                        "inverse-surface": "#27313e",
+                        "outline": "#6e7977",
+                        "primary-fixed-dim": "#80d5cb",
+                        "tertiary-fixed-dim": "#ffb690",
+                        "surface": "#f8f9ff",
+                        "on-tertiary-container": "#ffe6da",
+                        "surface-container-highest": "#d9e3f4",
+                        "inverse-primary": "#80d5cb",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#121c28",
+                        "surface-dim": "#d1dbec",
+                        "primary-container": "#0f766e",
+                        "on-surface-variant": "#3e4947",
+                        "on-secondary-fixed": "#1a1c1c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "sm": "12px",
+                        "container-margin": "20px",
+                        "xs": "4px",
+                        "md": "20px",
+                        "lg": "32px",
+                        "gutter": "16px",
+                        "xl": "48px"
+                    },
+                    "fontFamily": {
+                        "title-md": ["Hanken Grotesk"],
+                        "body-sm": ["Hanken Grotesk"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["EB Garamond"],
+                        "headline-lg": ["EB Garamond"],
+                        "display-lg": ["EB Garamond"],
+                        "body-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-lg text-body-lg min-h-screen flex flex-col jali-pattern">
+<!-- Top Navigation (Suppressed per task context, but Header remains for logo) -->
+<header class="h-16 flex items-center justify-center px-container-margin">
+<h1 class="font-display-lg text-display-lg text-primary">Karuṇā</h1>
+</header>
+<main class="flex-grow flex flex-col px-container-margin pb-xl">
+<!-- Brand Icon Section -->
+<div class="flex justify-center mt-lg mb-lg">
+<div class="w-20 h-20 bg-surface-container-low rounded-xl flex items-center justify-center shadow-sm border border-outline-variant/30">
+<span class="material-symbols-outlined text-primary text-[48px]" data-weight="fill">pets</span>
+</div>
+</div>
+<!-- Heading Section -->
+<div class="text-center mb-lg">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-xs">Welcome back!</h2>
+<p class="text-on-surface-variant font-body-lg">Sign in to continue to Karuṇā</p>
+</div>
+<!-- Form Section -->
+<form class="space-y-gutter" onsubmit="event.preventDefault();">
+<!-- Email Field -->
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</div>
+<input class="w-full bg-transparent border-0 border-b-2 border-outline-variant py-4 pl-10 pr-4 focus:ring-0 focus:border-primary transition-soft font-body-lg outline-none placeholder:text-outline/50" id="email" placeholder="Email Address" type="email">
+</div>
+<!-- Password Field -->
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</div>
+<input class="w-full bg-transparent border-0 border-b-2 border-outline-variant py-4 pl-10 pr-12 focus:ring-0 focus:border-primary transition-soft font-body-lg outline-none placeholder:text-outline/50" id="password" placeholder="Password" type="password">
+<button class="absolute inset-y-0 right-0 pr-3 flex items-center text-outline hover:text-primary transition-colors" onclick="togglePassword()" type="button">
+<span class="material-symbols-outlined text-[20px]" id="eye-icon">visibility</span>
+</button>
+</div>
+<!-- Forgot Password Link -->
+<div class="flex justify-end pt-xs">
+<a class="text-primary font-title-md text-title-md hover:underline decoration-2 underline-offset-4 transition-all" href="#">Forgot Password?</a>
+</div>
+<!-- Sign In Button -->
+<button class="w-full bg-primary text-on-primary py-4 rounded-xl font-title-md text-title-md shadow-lg shadow-primary/20 active:scale-95 transition-all duration-200 mt-md" type="submit">
+                Sign In
+            </button>
+</form>
+<!-- Divider -->
+<div class="flex items-center my-lg">
+<div class="flex-grow h-[1px] bg-outline-variant/50"></div>
+<span class="px-gutter text-outline font-label-caps text-label-caps uppercase">or</span>
+<div class="flex-grow h-[1px] bg-outline-variant/50"></div>
+</div>
+<!-- Social Login Placeholder (Implicit Design Space) -->
+<div class="grid grid-cols-2 gap-gutter mb-lg">
+<button class="flex items-center justify-center py-3 border border-outline-variant rounded-xl hover:bg-surface-container transition-colors">
+<div class="w-5 h-5 bg-contain bg-no-repeat bg-center" data-alt="Minimalist Google G logo with clean, modern vector lines in original brand colors, set against a soft white background for a professional login interface." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDqngQq8KPvIfXg2MUO2S2zLc6uY6Mgl5E3cAXXP5xPTI8qcRCdf-5LMKgZBe7IotiHv46vNnhF0aCt_43JBMe8b8X8hhufS501MQE7uyEydAFpO3arLTQXOL9mlC1sNPU4UG84n3e4HyvUEZGEeiOvMZDtf5obBTP7zEV2D-7iNn-Oo-z5i6cmdm75TrX_-qPbRkPv24HH8j80gL0b362fzxEzlHERV0gI6Nc8Z9Ajun4FeiTVzAxyoAEhLfl_WPJTYZyZz6yjyC8')"></div>
+<span class="ml-2 font-title-md text-body-sm">Google</span>
+</button>
+<button class="flex items-center justify-center py-3 border border-outline-variant rounded-xl hover:bg-surface-container transition-colors">
+<div class="w-5 h-5 bg-contain bg-no-repeat bg-center" data-alt="Apple logo in a sleek black minimalist vector style, centered on a clean white background, designed for high-end mobile application authentication screens." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBB7PMhVphxm1gOWBZVeAuhGOc4mPwfipSs5AQ9jXjab4u1y4W1YjB78sWf7gE5VWu3bxaUQzod1Lm_dsRzfQ6BVbhclY3OnF4IqUfpIP9Cs6hG4HJQVnyk0PV_hPvenJjw9KGxBxvCFldvSMu2F9eXB3alG77MH0mhro7oG5R6BSk26vDq2wn1jQxBttiGbLmYzMScf_w91HD-7VDGMxZnqZgaveejYOsjTMLTl7x93I6Xa8P7LwlGGG-TGKZVQf5EPNXzwDLjK_I')"></div>
+<span class="ml-2 font-title-md text-body-sm">Apple</span>
+</button>
+</div>
+<!-- Registration Link -->
+<div class="mt-auto text-center">
+<p class="text-on-surface-variant font-body-lg">
+                Don't have an account? 
+                <a class="text-primary font-title-md text-title-md ml-1 hover:underline decoration-2 underline-offset-4" href="#">Register</a>
+</p>
+</div>
+</main>
+<!-- Visual Element: Compassionate Imagery -->
+<div class="px-container-margin mb-xl overflow-hidden rounded-xl">
+<div class="relative h-32 w-full group">
+<div class="w-full h-full bg-cover bg-center rounded-xl opacity-80 group-hover:opacity-100 transition-opacity duration-500" data-alt="A warm, high-quality photograph of a human hand gently stroking a rescued dog's head. The lighting is soft and golden, creating a serene and empathetic atmosphere. The style is modern minimalist with a focus on connection and compassion, using a palette of warm earth tones and soft whites." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCUiZjUkSNqP6qB_caBejnF4-Wyonp0cH0qbPsKZDPQ_Y16SfUnh2G8Pjj-I--vSQIpha724VjKI3PIijNMyVkVEZin7vgZ9kOWRThKG-TSSDpb-c4NmmqZEcDSIBWMOCm462l1BHjbCw6jQqNBWvgFUKFycODBWbrUNtYTe5x8b_A2f0Bx7pbSbcnLtOlrfeL7npb-VyLBL1qBuc9LC4V7MHj2ZXDzyQw8YtR6xZ0Gfa0X4PyoBCexiPdIwrdmStEswIcBfDyRcAY')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
+</div>
+</div>
+<script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('eye-icon');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.textContent = 'visibility_off';
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.textContent = 'visibility';
+            }
+        }
+
+        // Simple interaction for buttons
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => btn.classList.add('scale-95'));
+            btn.addEventListener('mouseup', () => btn.classList.remove('scale-95'));
+            btn.addEventListener('mouseleave', () => btn.classList.remove('scale-95'));
+        });
+    </script>
+</body></html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>Karuṇā - Volunteer Open Cases</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600;700&amp;family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-container": "#a3faef",
+                    "surface-tint": "#006a63",
+                    "tertiary-fixed": "#ffdbca",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#af4c00",
+                    "tertiary-fixed-dim": "#ffb690",
+                    "surface-container-low": "#eef4ff",
+                    "on-primary-fixed": "#00201d",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#9cf2e8",
+                    "outline-variant": "#bdc9c6",
+                    "outline": "#6e7977",
+                    "secondary": "#5d5f5f",
+                    "on-secondary-container": "#616363",
+                    "surface": "#f8f9ff",
+                    "surface-bright": "#f8f9ff",
+                    "on-secondary": "#ffffff",
+                    "on-surface": "#121c28",
+                    "error": "#ba1a1a",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "surface-container-highest": "#d9e3f4",
+                    "on-tertiary-fixed-variant": "#783200",
+                    "on-tertiary-fixed": "#341100",
+                    "on-error": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#e5eeff",
+                    "on-background": "#121c28",
+                    "primary-container": "#0f766e",
+                    "on-primary-fixed-variant": "#00504a",
+                    "primary-fixed-dim": "#80d5cb",
+                    "surface-variant": "#d9e3f4",
+                    "on-tertiary-container": "#ffe6da",
+                    "surface-container-high": "#dfe9fa",
+                    "on-surface-variant": "#3e4947",
+                    "secondary-fixed": "#e2e2e2",
+                    "on-secondary-fixed-variant": "#454747",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#80d5cb",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "tertiary": "#893a00",
+                    "surface-dim": "#d1dbec",
+                    "inverse-surface": "#27313e",
+                    "primary": "#005c55",
+                    "secondary-container": "#dfe0e0",
+                    "background": "#f8f9ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "48px",
+                    "sm": "12px",
+                    "base": "8px",
+                    "gutter": "16px",
+                    "container-margin": "20px",
+                    "md": "20px",
+                    "xs": "4px",
+                    "lg": "32px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["EB Garamond"],
+                    "headline-lg-mobile": ["EB Garamond"],
+                    "body-sm": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "display-lg": ["EB Garamond"],
+                    "label-caps": ["Hanken Grotesk"],
+                    "title-md": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+        .jali-pattern {
+            background-color: transparent;
+            background-image: radial-gradient(#006a63 0.5px, transparent 0.5px);
+            background-size: 20px 20px;
+            opacity: 0.03;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-container-margin h-16 bg-surface border-b border-outline-variant">
+<div class="flex items-center gap-3">
+<button class="active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Open Cases Nearby</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="active:rotate-180 transition-transform duration-500" id="refresh-btn">
+<span class="material-symbols-outlined text-primary">refresh</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary-fixed">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a young Indian woman, a volunteer animal rescuer, with a warm and empathetic expression. She is wearing a dark teal polo shirt with a subtle logo. The lighting is soft and natural, emphasizing a calm and reliable atmosphere consistent with a modern humanitarian mobile application's high-end aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDP1i2oFwI63s56vJuXyE6cTFEV-WN88MNGLSlfoJKLusX8RBgHXwrDp6Pfep3-np6sgY2ydXX_F-lsRsdme2-AtBQNcm_azg-CzRAuYAZ9ZaBAjuVhHPktZ5HithGzHuNnYrYKOIjbzxBAqGAIA2X5Hadnd_OPUyW8ryKcfGvlhspmyaxSrVSjGp4sOftuYA7Ywtp_t-XNzdhAkyXixZjFPKq7TQzWNXTFRpCeu9bDmujAbwq1D_wcRNx2jngEwbKB6osYwgNoOo4">
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="pt-20 pb-24 px-container-margin">
+<!-- Jali Background Watermark -->
+<div class="fixed inset-0 jali-pattern pointer-events-none"></div>
+<!-- Filter/Status Row -->
+<div class="flex gap-2 overflow-x-auto pb-4 no-scrollbar">
+<span class="bg-primary-container text-on-primary-container px-4 py-1.5 rounded-full font-label-caps text-label-caps whitespace-nowrap">ALL SPECIES</span>
+<span class="bg-surface-container-high text-on-surface-variant px-4 py-1.5 rounded-full font-label-caps text-label-caps whitespace-nowrap">CRITICAL</span>
+<span class="bg-surface-container-high text-on-surface-variant px-4 py-1.5 rounded-full font-label-caps text-label-caps whitespace-nowrap">NEAR ME</span>
+</div>
+<!-- Case Cards Container -->
+<div class="space-y-4 relative z-10" id="cases-list">
+<!-- Case Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow active:scale-[0.98] transition-transform">
+<div class="p-4 flex gap-4">
+<div class="w-16 h-16 bg-surface-container-high rounded-lg flex items-center justify-center text-3xl shrink-0">
+                        🐕
+                    </div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-title-md text-title-md truncate text-on-surface">Injured Stray Dog</h3>
+<span class="bg-error-container text-on-error-container px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">CRITICAL</span>
+</div>
+<div class="flex items-center text-on-surface-variant gap-1 mb-3">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<p class="font-body-sm text-body-sm truncate">Colaba Causeway, Mumbai • 0.8km away</p>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 border border-primary text-primary py-2 rounded-lg font-label-caps text-label-caps hover:bg-surface-container-high transition-colors">VIEW</button>
+<button class="flex-1 bg-primary text-on-primary py-2 rounded-lg font-label-caps text-label-caps hover:brightness-110 transition-all">ACCEPT</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Case Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow active:scale-[0.98] transition-transform">
+<div class="p-4 flex gap-4">
+<div class="w-16 h-16 bg-surface-container-high rounded-lg flex items-center justify-center text-3xl shrink-0">
+                        🐈
+                    </div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-title-md text-title-md truncate text-on-surface">Kitten in Drainage</h3>
+<span class="bg-tertiary-container text-on-tertiary-container px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">URGENT</span>
+</div>
+<div class="flex items-center text-on-surface-variant gap-1 mb-3">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<p class="font-body-sm text-body-sm truncate">Worli Sea Face, Mumbai • 2.4km away</p>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 border border-primary text-primary py-2 rounded-lg font-label-caps text-label-caps hover:bg-surface-container-high transition-colors">VIEW</button>
+<button class="flex-1 bg-primary text-on-primary py-2 rounded-lg font-label-caps text-label-caps hover:brightness-110 transition-all">ACCEPT</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Case Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow active:scale-[0.98] transition-transform">
+<div class="p-4 flex gap-4">
+<div class="w-16 h-16 bg-surface-container-high rounded-lg flex items-center justify-center text-3xl shrink-0">
+                        🕊️
+                    </div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-title-md text-title-md truncate text-on-surface">Injured Pigeon</h3>
+<span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">STABLE</span>
+</div>
+<div class="flex items-center text-on-surface-variant gap-1 mb-3">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<p class="font-body-sm text-body-sm truncate">Bandra West, Mumbai • 5.1km away</p>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 border border-primary text-primary py-2 rounded-lg font-label-caps text-label-caps hover:bg-surface-container-high transition-colors">VIEW</button>
+<button class="flex-1 bg-primary text-on-primary py-2 rounded-lg font-label-caps text-label-caps hover:brightness-110 transition-all">ACCEPT</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Empty State (Hidden by default) -->
+<div class="hidden py-20 flex flex-col items-center justify-center text-center" id="empty-state">
+<div class="w-20 h-20 bg-primary-container rounded-full flex items-center justify-center mb-6 shadow-lg shadow-primary/10">
+<span class="material-symbols-outlined text-on-primary-container text-4xl">check_circle</span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-2">No open cases right now!</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-[280px]">Great job, volunteer. The local community is currently safe and cared for.</p>
+</div>
+</div>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-tertiary text-on-tertiary rounded-2xl shadow-xl flex items-center justify-center active:scale-90 transition-transform z-40">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 pb-safe bg-surface shadow-[0_-4px_10px_rgba(0,106,99,0.05)] rounded-t-xl">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<!-- Rescues (Active Intent: Open Cases) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">pets</span>
+<span class="font-label-caps text-label-caps">Rescues</span>
+</a>
+<!-- Report -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined">emergency</span>
+<span class="font-label-caps text-label-caps">Report</span>
+</a>
+<!-- Community -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-caps text-label-caps">Community</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for refresh
+        const refreshBtn = document.getElementById('refresh-btn');
+        const casesList = document.getElementById('cases-list');
+        const emptyState = document.getElementById('empty-state');
+        
+        refreshBtn.addEventListener('click', () => {
+            // Simulated toggle for demo purposes
+            const cards = casesList.querySelectorAll('.bg-surface-container-lowest');
+            
+            // Fade out
+            casesList.style.opacity = '0.5';
+            
+            setTimeout(() => {
+                const isEmpty = !emptyState.classList.contains('hidden');
+                
+                if (isEmpty) {
+                    emptyState.classList.add('hidden');
+                    cards.forEach(card => card.classList.remove('hidden'));
+                } else {
+                    emptyState.classList.remove('hidden');
+                    cards.forEach(card => card.classList.add('hidden'));
+                }
+                
+                casesList.style.opacity = '1';
+            }, 600);
+        });
+
+        // Simple pull-to-refresh effect placeholder
+        let touchstartY = 0;
+        let touchendY = 0;
+
+        document.addEventListener('touchstart', e => {
+            touchstartY = e.changedTouches[0].screenY;
+        });
+
+        document.addEventListener('touchend', e => {
+            touchendY = e.changedTouches[0].screenY;
+            if (touchendY > touchstartY + 100) {
+                refreshBtn.click();
+            }
+        });
+    </script>
+</body></html>

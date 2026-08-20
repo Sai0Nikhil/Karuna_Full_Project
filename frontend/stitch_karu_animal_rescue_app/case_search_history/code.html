@@ -1,0 +1,334 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>Karuṇā - Case History &amp; Search</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600;700&amp;family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#5d5f5f",
+                    "on-tertiary-fixed-variant": "#783200",
+                    "surface-bright": "#f8f9ff",
+                    "on-tertiary-fixed": "#341100",
+                    "tertiary-container": "#af4c00",
+                    "primary": "#005c55",
+                    "on-secondary-fixed-variant": "#454747",
+                    "on-surface-variant": "#3e4947",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#6e7977",
+                    "primary-container": "#0f766e",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb690",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "surface-container": "#e5eeff",
+                    "inverse-surface": "#27313e",
+                    "secondary-container": "#dfe0e0",
+                    "background": "#f8f9ff",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "on-primary-fixed": "#00201d",
+                    "error-container": "#ffdad6",
+                    "on-background": "#121c28",
+                    "surface-container-highest": "#d9e3f4",
+                    "on-surface": "#121c28",
+                    "on-primary-container": "#a3faef",
+                    "surface": "#f8f9ff",
+                    "inverse-primary": "#80d5cb",
+                    "surface-container-low": "#eef4ff",
+                    "on-tertiary-container": "#ffe6da",
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#eaf1ff",
+                    "surface-variant": "#d9e3f4",
+                    "outline-variant": "#bdc9c6",
+                    "surface-dim": "#d1dbec",
+                    "on-primary-fixed-variant": "#00504a",
+                    "tertiary-fixed": "#ffdbca",
+                    "surface-container-high": "#dfe9fa",
+                    "secondary-fixed": "#e2e2e2",
+                    "on-secondary-container": "#616363",
+                    "primary-fixed": "#9cf2e8",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "tertiary": "#893a00",
+                    "surface-tint": "#006a63",
+                    "primary-fixed-dim": "#80d5cb"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "32px",
+                    "container-margin": "20px",
+                    "xl": "48px",
+                    "gutter": "16px",
+                    "base": "8px",
+                    "md": "20px",
+                    "xs": "4px",
+                    "sm": "12px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["EB Garamond"],
+                    "body-sm": ["Hanken Grotesk"],
+                    "title-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "label-caps": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["EB Garamond"],
+                    "display-lg": ["EB Garamond"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "600"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            -webkit-tap-highlight-color: transparent;
+            font-family: 'Hanken Grotesk', sans-serif;
+            background-color: #f8f9ff;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 1;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #bdc9c6;
+            border-radius: 10px;
+        }
+        .jali-pattern {
+            background-image: radial-gradient(#005c55 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+            opacity: 0.03;
+        }
+        .card-shadow {
+            box-shadow: 0 4px 20px -2px rgba(0, 92, 85, 0.08);
+        }
+        .status-pill {
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface shadow-sm flex items-center justify-between px-container-margin h-16">
+<div class="flex items-center gap-4">
+<button class="hover:bg-surface-container-low transition-colors p-2 rounded-full active:scale-95 duration-150">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Karuṇā</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20">
+<img class="w-full h-10 object-cover" data-alt="A professional headshot of a veterinarian with a warm, compassionate expression. The background is a clean, modern clinical setting with soft teal accents and warm wood textures. The lighting is bright and professional, creating a sense of calm reliability and expertise." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5kVs4U4gekngNjVB_dKSlKf2BpJpyMLkS4NMJ54lkhrTJrErbu3SYryV7t8INc3ih-u6K6I2kDtqYH2miryoyVd5Bc7Y4H6FVEinGSv8is4JuefSJaCF-BZvnzrDHRVh90ogfJHELgzwktRrSyl3nhQ_AInJGGoIR82WzWiw8HVsNz4lO7i-YpwHq1LBUZujE3-HqTzHax7jbkPN3OqXYDtnw0CrYGEGVmOls3jLVp9RPG1Ey3fxVZjnW-4rWU-hXAGoq2Htapck">
+</div>
+</header>
+<main class="pt-20 pb-28 px-container-margin">
+<!-- Jali Watermark -->
+<div class="fixed inset-0 jali-pattern pointer-events-none z-0"></div>
+<section class="relative z-10">
+<div class="mb-6">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-1">Case Archive</h2>
+<p class="font-body-sm text-body-sm text-secondary">Review past rescues and clinical records.</p>
+</div>
+<!-- Search Area -->
+<div class="bg-white rounded-xl shadow-sm p-base mb-gutter border border-outline-variant">
+<div class="flex items-center gap-3 px-3 py-2 bg-surface-container-low rounded-lg focus-within:ring-2 ring-primary/20 transition-all">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 w-full font-body-lg text-body-lg text-on-surface placeholder:text-outline/60" placeholder="Search by Case ID, species, or location..." type="text">
+</div>
+</div>
+<!-- Advanced Filters Accordion/Tray -->
+<div class="mb-gutter">
+<div class="flex items-center justify-between mb-sm">
+<span class="font-label-caps text-label-caps text-secondary">ADVANCED FILTERS</span>
+<button class="text-primary font-label-caps text-label-caps hover:underline transition-all">Reset Filters</button>
+</div>
+<!-- Filter Chips Horizontal Scroll -->
+<div class="flex gap-2 overflow-x-auto pb-2 custom-scrollbar no-scrollbar">
+<button class="flex items-center gap-1.5 whitespace-nowrap px-4 py-2 bg-primary-container text-on-primary-container rounded-full font-title-md text-[14px]">
+<span>Species: All</span>
+<span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+<button class="flex items-center gap-1.5 whitespace-nowrap px-4 py-2 bg-white border border-outline-variant text-on-surface-variant rounded-full font-title-md text-[14px]">
+<span>Status: Any</span>
+<span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+<button class="flex items-center gap-1.5 whitespace-nowrap px-4 py-2 bg-white border border-outline-variant text-on-surface-variant rounded-full font-title-md text-[14px]">
+<span>Severity: All</span>
+<span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+<button class="flex items-center gap-1.5 whitespace-nowrap px-4 py-2 bg-white border border-outline-variant text-on-surface-variant rounded-full font-title-md text-[14px]">
+<span>Date Range</span>
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+</button>
+</div>
+</div>
+<!-- Results Summary -->
+<div class="flex justify-between items-center mb-sm">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Showing <span class="font-bold text-primary">128</span> recorded cases</span>
+<button class="flex items-center gap-1 text-primary hover:bg-primary/5 p-1 rounded transition-colors">
+<span class="material-symbols-outlined text-[20px]">sort</span>
+<span class="font-label-caps text-label-caps">Latest First</span>
+</button>
+</div>
+<!-- History List -->
+<div class="space-y-4">
+<!-- Case Card 1 -->
+<div class="bg-white rounded-xl card-shadow border border-outline-variant p-sm flex gap-4 active:scale-[0.98] transition-transform duration-150">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A portrait of a rescued stray dog, a beautiful golden-brown Indian Pariah, sitting calmly in a sunlit garden after recovery. The dog has clear, healthy eyes and a shiny coat. The soft focus background shows lush green leaves and a modern wooden fence, reflecting a serene and successful rescue story." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBk8IK8y_q-pqhV4nrY_xTf4jypm2faCWxTGPz75kazpdFDdh7g0YzoMngHYPsDhQYkfcxf-7lZmeJ18tK75uRBfliLk8MXRXGWiCEkve_csAiO4U-iYqA-hX9nqB2g_ZrqpqHHwyPDWtZZMW62oF7MW_RsefZ1-Kw6tuaB-1ME95xvgKQW6qdxCZquTH8oWUjn5dYDvevNfeAZ4a3ComN2on67s0zPAICAHiAkoZEXoIqXAARSVNjzC8itRS5fQ4Rkm_JXiipR8JY">
+</div>
+<div class="flex-grow flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-title-md text-title-md text-primary">Case #KR-4822</h3>
+<span class="status-pill bg-green-100 text-green-800">Discharged</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary -mt-1">Oct 24, 2023 • Indiranagar</p>
+</div>
+<div class="flex items-center gap-4 text-outline text-[12px] font-bold">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">pets</span> Canine</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">medical_services</span> Routine</span>
+</div>
+</div>
+</div>
+<!-- Case Card 2 -->
+<div class="bg-white rounded-xl card-shadow border border-outline-variant p-sm flex gap-4 active:scale-[0.98] transition-transform duration-150">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close-up of a small, calico cat being gently held by a volunteer's hands. The cat looks calm and content. The setting is a bright, minimalist veterinary clinic with high-key lighting and a palette of warm whites and soft teals. The image conveys a profound sense of human-animal bond and professional care." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBr1i8nairmcMjnsHqEjlInyHlO_kcXxKJym4_3_n8YfJK6EO1BqHs5UCra-UChgyjSVC8cxL-OM-mUtj0G_UBESJEdBPZ99rDoF28HuZGy11i8j54-EpeSzom59ui04UWu_fZv9gZYExQsRO2rMolv8KpQFxIpJxP6q0w5MhS18Qs-Fmrag-4B8EnczCamrCWHAFGHeqCnOODur3Bkr6VDD8VF0lXCoDevDeuUZVsOqpYErp5ZQNJIKZKhO_gm2qKa_6dxNJhubWk">
+</div>
+<div class="flex-grow flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-title-md text-title-md text-primary">Case #KR-4819</h3>
+<span class="status-pill bg-gray-100 text-gray-700">Closed</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary -mt-1">Oct 21, 2023 • Koramangala</p>
+</div>
+<div class="flex items-center gap-4 text-outline text-[12px] font-bold">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">pets</span> Feline</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">warning</span> Urgent</span>
+</div>
+</div>
+</div>
+<!-- Case Card 3 -->
+<div class="bg-white rounded-xl card-shadow border border-outline-variant p-sm flex gap-4 active:scale-[0.98] transition-transform duration-150 opacity-80">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-outline text-3xl">image</span>
+</div>
+<div class="flex-grow flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-title-md text-title-md text-primary">Case #KR-4790</h3>
+<span class="status-pill bg-green-100 text-green-800">Discharged</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary -mt-1">Oct 15, 2023 • Whitefield</p>
+</div>
+<div class="flex items-center gap-4 text-outline text-[12px] font-bold">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">pets</span> Bovine</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">error</span> Critical</span>
+</div>
+</div>
+</div>
+<!-- Case Card 4 -->
+<div class="bg-white rounded-xl card-shadow border border-outline-variant p-sm flex gap-4 active:scale-[0.98] transition-transform duration-150">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A macro shot of a small brown bird resting safely in a cardboard nest lined with soft cloths. The lighting is diffused and gentle, highlighting the intricate patterns of the bird's feathers. The background is a minimalist, modern laboratory or rehabilitation center with a clean, surgical aesthetic. Compassionate and focused tone." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcvTWx0wuNLyhy9g_2QCSuBQ5TiuiZ9IF7VTkk40KbMb14MDlpn-7OOUYSXiM5zLRH8QuVhSXxApyMfBxFw4YGN-LnIlqfliV6DxwHa6pfv2ONfUWXH_mTlzmIKHD9NMcCL4KF5rFFoVTAaPsereq-ez_H-VJ0N83qFvvKKWxZhvZRc2oX8CmEhowTDxx9laD9UgVQBmeujWLflByYQRVkAdbbQlK7TPQx4d6xkljFgJLlIx67g61cvGKg7GddAsY6QdcQNixpE-E">
+</div>
+<div class="flex-grow flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-title-md text-title-md text-primary">Case #KR-4782</h3>
+<span class="status-pill bg-gray-100 text-gray-700">Closed</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary -mt-1">Oct 12, 2023 • Malleshwaram</p>
+</div>
+<div class="flex items-center gap-4 text-outline text-[12px] font-bold">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">flight</span> Avian</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">medical_services</span> Routine</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Loading Spinner / More Indicator -->
+<div class="flex flex-col items-center justify-center py-12 text-outline/50">
+<span class="material-symbols-outlined animate-spin mb-2">progress_activity</span>
+<span class="font-label-caps text-label-caps">Loading archive...</span>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container-lowest shadow-lg border-t border-outline-variant flex justify-around items-center h-20 px-base pb-safe">
+<a class="flex flex-col items-center justify-center text-secondary p-1 hover:text-primary-container transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary font-bold bg-primary-container/10 rounded-xl p-1 transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">pets</span>
+<span class="font-label-caps text-label-caps">Rescues</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary p-1 hover:text-primary-container transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">emergency_share</span>
+<span class="font-label-caps text-label-caps">Report</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary p-1 hover:text-primary-container transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-caps text-label-caps">Community</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary p-1 hover:text-primary-container transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</nav>
+<!-- Floating Action Button - Search Context (Not rendered as per suppression rule, but I'll add a subtle filter trigger if needed, though search is prominent) -->
+<script>
+        // Simple search feedback interaction
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-primary/40');
+            searchInput.parentElement.classList.add('bg-white');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-primary/40');
+            searchInput.parentElement.classList.remove('bg-white');
+        });
+
+        // Toggle Filter Active State
+        const filters = document.querySelectorAll('.overflow-x-auto button');
+        filters.forEach(filter => {
+            filter.addEventListener('click', () => {
+                filters.forEach(f => {
+                    f.classList.remove('bg-primary-container', 'text-on-primary-container');
+                    f.classList.add('bg-white', 'text-on-surface-variant', 'border-outline-variant');
+                });
+                filter.classList.add('bg-primary-container', 'text-on-primary-container');
+                filter.classList.remove('bg-white', 'text-on-surface-variant', 'border-outline-variant');
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>NGO Analytics | Karuṇā</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600;700&amp;family=Hanken+Grotesk:wght@400;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .jali-pattern {
+            background-color: #f8f9ff;
+            background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+            background-opacity: 0.05;
+        }
+        .progress-glow {
+            box-shadow: 0 0 12px rgba(0, 92, 85, 0.15);
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-slide-up {
+            animation: slideUp 0.6s ease-out forwards;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-container": "#a3faef",
+                      "surface-tint": "#006a63",
+                      "tertiary-fixed": "#ffdbca",
+                      "on-error-container": "#93000a",
+                      "tertiary-container": "#af4c00",
+                      "tertiary-fixed-dim": "#ffb690",
+                      "surface-container-low": "#eef4ff",
+                      "on-primary-fixed": "#00201d",
+                      "surface-container-lowest": "#ffffff",
+                      "primary-fixed": "#9cf2e8",
+                      "outline-variant": "#bdc9c6",
+                      "outline": "#6e7977",
+                      "secondary": "#5d5f5f",
+                      "on-secondary-container": "#616363",
+                      "surface": "#f8f9ff",
+                      "surface-bright": "#f8f9ff",
+                      "on-secondary": "#ffffff",
+                      "on-surface": "#121c28",
+                      "error": "#ba1a1a",
+                      "inverse-on-surface": "#eaf1ff",
+                      "on-secondary-fixed": "#1a1c1c",
+                      "surface-container-highest": "#d9e3f4",
+                      "on-tertiary-fixed-variant": "#783200",
+                      "on-tertiary-fixed": "#341100",
+                      "on-error": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "surface-container": "#e5eeff",
+                      "on-background": "#121c28",
+                      "primary-container": "#0f766e",
+                      "on-primary-fixed-variant": "#00504a",
+                      "primary-fixed-dim": "#80d5cb",
+                      "surface-variant": "#d9e3f4",
+                      "on-tertiary-container": "#ffe6da",
+                      "surface-container-high": "#dfe9fa",
+                      "on-surface-variant": "#3e4947",
+                      "secondary-fixed": "#e2e2e2",
+                      "on-secondary-fixed-variant": "#454747",
+                      "on-primary": "#ffffff",
+                      "inverse-primary": "#80d5cb",
+                      "error-container": "#ffdad6",
+                      "secondary-fixed-dim": "#c6c6c7",
+                      "tertiary": "#893a00",
+                      "surface-dim": "#d1dbec",
+                      "inverse-surface": "#27313e",
+                      "primary": "#005c55",
+                      "secondary-container": "#dfe0e0",
+                      "background": "#f8f9ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xl": "48px",
+                      "sm": "12px",
+                      "base": "8px",
+                      "gutter": "16px",
+                      "container-margin": "20px",
+                      "md": "20px",
+                      "xs": "4px",
+                      "lg": "32px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["EB Garamond"],
+                      "headline-lg-mobile": ["EB Garamond"],
+                      "body-sm": ["Hanken Grotesk"],
+                      "body-lg": ["Hanken Grotesk"],
+                      "display-lg": ["EB Garamond"],
+                      "label-caps": ["Hanken Grotesk"],
+                      "title-md": ["Hanken Grotesk"]
+              },
+              "fontSize": {
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-surface font-body-lg min-h-screen pb-24">
+<!-- Top App Bar (Mapped from JSON) -->
+<header class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant flex justify-between items-center px-container-margin h-16">
+<div class="flex items-center gap-4">
+<button class="active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Analytics</h1>
+</div>
+<div class="flex items-center">
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional studio headshot of a female NGO administrator in a modern office. She has a warm, empathetic expression and is dressed in professional Indian attire. The lighting is soft and natural, with a shallow depth of field highlighting her presence against a minimalist, clean background in tones of teal and white." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDd083kdJB48mDV6wKx22_UNYK1Ue5zA_9ruO3pOLAsZsIANdcHxMvnFy6FiJVvLeaNEdO0wbqVHBNbiypxNdu6CpI7kGiYsR6BBDJ5wICL4oNJaNdR4ObwPXbAKhodGNcChYz1_ZGLgTyXj8zdNFa8G4v6XnBeGre6xA8BmTz0zdQvkN2Y2XN_0EzBiEWtjfxRc4E-K9lRs9l7KBSCbyMDSyzfOxzav496fxvF6yFyAJEOw2Xljw4tQApinZPLO7aWx9hdMuIfr4I">
+</div>
+</div>
+</header>
+<main class="pt-20 px-container-margin space-y-lg animate-slide-up">
+<!-- Welcome / Summary Header -->
+<section class="mt-4">
+<p class="font-label-caps text-label-caps text-secondary uppercase tracking-widest mb-1">Impact Overview</p>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Rescue Performance</h2>
+</section>
+<!-- 2x3 Stat Grid -->
+<div class="grid grid-cols-2 gap-gutter">
+<!-- Total Cases -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between mb-2">
+<span class="material-symbols-outlined text-primary text-[20px]">assignment</span>
+<span class="text-xs font-bold text-outline">+12%</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-on-surface">1,248</div>
+<div class="font-label-caps text-label-caps text-secondary">Total Cases</div>
+</div>
+<!-- Discharged (Green) -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between mb-2">
+<span class="material-symbols-outlined text-green-600 text-[20px]">check_circle</span>
+<div class="w-2 h-2 rounded-full bg-green-500"></div>
+</div>
+<div class="font-headline-lg text-headline-lg text-green-700">842</div>
+<div class="font-label-caps text-label-caps text-secondary">Discharged</div>
+</div>
+<!-- Critical (Red) -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between mb-2">
+<span class="material-symbols-outlined text-error text-[20px]">emergency_home</span>
+<div class="w-2 h-2 rounded-full bg-error"></div>
+</div>
+<div class="font-headline-lg text-headline-lg text-error">42</div>
+<div class="font-label-caps text-label-caps text-secondary">Critical</div>
+</div>
+<!-- Urgent (Orange) -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between mb-2">
+<span class="material-symbols-outlined text-tertiary text-[20px]">warning</span>
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+</div>
+<div class="font-headline-lg text-headline-lg text-tertiary">156</div>
+<div class="font-label-caps text-label-caps text-secondary">Urgent</div>
+</div>
+<!-- Routine (Gray) -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between mb-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">inventory_2</span>
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+</div>
+<div class="font-headline-lg text-headline-lg text-secondary">210</div>
+<div class="font-label-caps text-label-caps text-secondary">Routine</div>
+</div>
+<!-- Active (Blue) -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between mb-2">
+<span class="material-symbols-outlined text-blue-600 text-[20px]">monitor_heart</span>
+<div class="w-2 h-2 rounded-full bg-blue-500"></div>
+</div>
+<div class="font-headline-lg text-headline-lg text-blue-700">406</div>
+<div class="font-label-caps text-label-caps text-secondary">Active</div>
+</div>
+</div>
+<!-- Species Breakdown Section -->
+<section class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant">
+<div class="flex items-center gap-2 mb-gutter">
+<span class="material-symbols-outlined text-primary">pets</span>
+<h3 class="font-title-md text-title-md text-on-surface">Species Breakdown</h3>
+</div>
+<div class="space-y-md">
+<!-- Dog -->
+<div class="space-y-1">
+<div class="flex justify-between text-body-sm font-semibold">
+<span class="text-on-surface">Dog</span>
+<span class="text-primary">42%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 42%;"></div>
+</div>
+</div>
+<!-- Cat -->
+<div class="space-y-1">
+<div class="flex justify-between text-body-sm font-semibold">
+<span class="text-on-surface">Cat</span>
+<span class="text-primary">28%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary/80 rounded-full" style="width: 28%;"></div>
+</div>
+</div>
+<!-- Cow -->
+<div class="space-y-1">
+<div class="flex justify-between text-body-sm font-semibold">
+<span class="text-on-surface">Cow</span>
+<span class="text-primary">18%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary/60 rounded-full" style="width: 18%;"></div>
+</div>
+</div>
+<!-- Bird -->
+<div class="space-y-1">
+<div class="flex justify-between text-body-sm font-semibold">
+<span class="text-on-surface">Bird</span>
+<span class="text-primary">12%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary/40 rounded-full" style="width: 12%;"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Severity Distribution Section -->
+<section class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant">
+<div class="flex items-center gap-2 mb-gutter">
+<span class="material-symbols-outlined text-primary">analytics</span>
+<h3 class="font-title-md text-title-md text-on-surface">Severity Distribution</h3>
+</div>
+<div class="space-y-lg">
+<!-- Critical -->
+<div class="flex items-center gap-4">
+<div class="flex-1">
+<div class="flex justify-between items-baseline mb-1">
+<span class="font-label-caps text-label-caps text-error">Critical</span>
+<span class="font-title-md text-on-surface">42</span>
+</div>
+<div class="h-3 w-full bg-error-container rounded-full overflow-hidden">
+<div class="h-full bg-error" style="width: 10%;"></div>
+</div>
+</div>
+</div>
+<!-- Urgent -->
+<div class="flex items-center gap-4">
+<div class="flex-1">
+<div class="flex justify-between items-baseline mb-1">
+<span class="font-label-caps text-label-caps text-tertiary">Urgent</span>
+<span class="font-title-md text-on-surface">156</span>
+</div>
+<div class="h-3 w-full bg-tertiary-fixed rounded-full overflow-hidden">
+<div class="h-full bg-tertiary" style="width: 35%;"></div>
+</div>
+</div>
+</div>
+<!-- Routine -->
+<div class="flex items-center gap-4">
+<div class="flex-1">
+<div class="flex justify-between items-baseline mb-1">
+<span class="font-label-caps text-label-caps text-green-600">Routine</span>
+<span class="font-title-md text-on-surface">210</span>
+</div>
+<div class="h-3 w-full bg-green-100 rounded-full overflow-hidden">
+<div class="h-full bg-green-500" style="width: 55%;"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contextual Visual (Compassion Element) -->
+<section class="relative h-48 rounded-xl overflow-hidden mb-8 border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A heart-warming, high-quality photograph of a vet gently tending to a rescued puppy in a clean, modern animal clinic. The lighting is soft and golden, highlighting the empathetic connection between the human and the animal. The background is slightly blurred, maintaining focus on the healing moment. Professional, high-end photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD78iBY6bcci3Z7kagXCxL_8zaZ8zZ-IiLD6SrLVzPQtz8p7bVpbV_6uejAwhSASPYHyUdrw5jl9jtm0x3ptwtv5gYGHTCS5-tmBBpgqAIFjEy1eiDx5r3vxrPT1k2cgW68hk9A0q2QgUPZ_uD7u2jt4Nq2G0P0V-tEThh-H0-rbqZIT2fBIOvJC9e1GWJUEjywm8eg3MNekrG66W8mdU9O3IWQeJweJI0cwnHfxSUseA6Qdbxpm4zGsRh5RvsQiIpLkU_FxqjFyBE">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex flex-col justify-end p-md">
+<p class="text-white font-headline-lg text-headline-lg-mobile leading-tight">Every data point is a life saved.</p>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation (Mapped from JSON) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 pb-safe bg-surface shadow-lg rounded-t-xl border-t border-outline-variant/10">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">pets</span>
+<span class="font-label-caps text-label-caps">Rescues</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">emergency</span>
+<span class="font-label-caps text-label-caps">Report</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-caps text-label-caps">Community</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</nav>
+<!-- FAB (Suppressed on analytics per shell logic, but included here if considered a top-level dash action for "Emergency") -->
+<!-- Not included as this is a focused Analytics report screen -->
+</body></html>

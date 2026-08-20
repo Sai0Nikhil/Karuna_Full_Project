@@ -1,0 +1,311 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>Karuṇā - Volunteer Navigation</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600;700&amp;family=Hanken+Grotek:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Design System Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-container": "#a3faef",
+                    "surface-tint": "#006a63",
+                    "tertiary-fixed": "#ffdbca",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#af4c00",
+                    "tertiary-fixed-dim": "#ffb690",
+                    "surface-container-low": "#eef4ff",
+                    "on-primary-fixed": "#00201d",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#9cf2e8",
+                    "outline-variant": "#bdc9c6",
+                    "outline": "#6e7977",
+                    "secondary": "#5d5f5f",
+                    "on-secondary-container": "#616363",
+                    "surface": "#f8f9ff",
+                    "surface-bright": "#f8f9ff",
+                    "on-secondary": "#ffffff",
+                    "on-surface": "#121c28",
+                    "error": "#ba1a1a",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "surface-container-highest": "#d9e3f4",
+                    "on-tertiary-fixed-variant": "#783200",
+                    "on-tertiary-fixed": "#341100",
+                    "on-error": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#e5eeff",
+                    "on-background": "#121c28",
+                    "primary-container": "#0f766e",
+                    "on-primary-fixed-variant": "#00504a",
+                    "primary-fixed-dim": "#80d5cb",
+                    "surface-variant": "#d9e3f4",
+                    "on-tertiary-container": "#ffe6da",
+                    "surface-container-high": "#dfe9fa",
+                    "on-surface-variant": "#3e4947",
+                    "secondary-fixed": "#e2e2e2",
+                    "on-secondary-fixed-variant": "#454747",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#80d5cb",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "tertiary": "#893a00",
+                    "surface-dim": "#d1dbec",
+                    "inverse-surface": "#27313e",
+                    "primary": "#005c55",
+                    "secondary-container": "#dfe0e0",
+                    "background": "#f8f9ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "48px",
+                    "sm": "12px",
+                    "base": "8px",
+                    "gutter": "16px",
+                    "container-margin": "20px",
+                    "md": "20px",
+                    "xs": "4px",
+                    "lg": "32px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["EB Garamond"],
+                    "headline-lg-mobile": ["EB Garamond"],
+                    "body-sm": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "display-lg": ["EB Garamond"],
+                    "label-caps": ["Hanken Grotesk"],
+                    "title-md": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            vertical-align: middle;
+        }
+
+        .pulse-red {
+            animation: pulse-red 2s infinite;
+        }
+
+        @keyframes pulse-red {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(186, 26, 26, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(186, 26, 26, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(186, 26, 26, 0); }
+        }
+
+        .grab-handle {
+            width: 32px;
+            height: 4px;
+            border-radius: 2px;
+            background-color: #bdc9c6;
+            margin: 8px auto;
+        }
+
+        #bottom-sheet {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .map-pattern {
+            background-image: radial-gradient(circle at 2px 2px, #005c55 1px, transparent 0);
+            background-size: 24px 24px;
+            opacity: 0.05;
+        }
+
+        body {
+            overscroll-behavior-y: none;
+            font-family: 'Hanken Grotesk', sans-serif;
+        }
+        
+        .eb-garamond {
+            font-family: 'EB Garamond', serif;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface overflow-hidden h-screen flex flex-col">
+<!-- Top Navigation Bar (JSON Anchor Mapping) -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-container-margin h-16 bg-primary dark:bg-primary-container text-on-primary">
+<div class="flex items-center gap-4">
+<button class="active:scale-95 transition-transform p-2 rounded-full hover:bg-white/10">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="eb-garamond text-headline-lg-mobile font-headline-lg-mobile">Navigate to Animal</h1>
+</div>
+<button class="active:scale-95 transition-transform p-2 rounded-full hover:bg-white/10">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</header>
+<!-- Full Screen Map Container -->
+<main class="relative flex-grow w-full mt-16 overflow-hidden">
+<!-- Mock Map Background -->
+<div class="absolute inset-0 bg-[#eef2f3] map-pattern"></div>
+<div class="absolute inset-0" data-alt="A clean, minimalist vector-style city map focused on a quiet residential neighborhood with soft teal and off-white color tones. The map features elegant, thin lines for streets and large green spaces for parks, maintaining a calm and professional rescue-oriented aesthetic in high-key lighting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAlhmT-y52bAKca2mNi5cN44Jp8ECF1cvdQKAtdBszmnelMbHY6ff64qYIbCIeTHD37vccq2roGGcBF1-pFIcCZy86EwbtFka0IzVWpECSdPtjlkbvk9MP_75cj4zZoxmj3CBJN0IN_xlHcqDiFmzz2B2pIQJnV89VEUeAil4w-riNif04ECleWGOoQq3dTs4QWz5JRXqwiOyTmH-g8SraK5cuYAPIVqRqU5mB63Qrl_gHU1YN1eUwmM1tizLLP-p-aB2gc854f4yE')">
+</div>
+<!-- Marker: You Are Here (Blue) -->
+<div class="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center" id="user-marker">
+<div class="relative">
+<div class="w-12 h-12 bg-blue-500/20 rounded-full animate-ping absolute -inset-1"></div>
+<div class="w-6 h-6 bg-blue-600 border-2 border-white rounded-full shadow-lg relative z-10"></div>
+</div>
+<div class="mt-2 bg-white/90 backdrop-blur px-3 py-1 rounded-full shadow-sm border border-outline-variant">
+<p class="text-[10px] font-bold text-blue-700 uppercase tracking-wider">Current Location</p>
+</div>
+</div>
+<!-- Marker: Animal Location (Red Pulsing) -->
+<div class="absolute top-1/3 right-1/4 translate-x-1/2 -translate-y-1/2 flex flex-col items-center" id="animal-marker">
+<div class="relative pulse-red rounded-full">
+<span class="material-symbols-outlined text-error text-[40px] drop-shadow-md" data-icon="location_on" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+<div class="mt-2 bg-error text-on-error px-3 py-1 rounded-full shadow-lg">
+<p class="text-[10px] font-bold uppercase tracking-wider">Distress Signal</p>
+</div>
+</div>
+<!-- Map Controls -->
+<div class="absolute top-4 right-4 flex flex-col gap-2">
+<button class="w-12 h-12 bg-surface border border-outline-variant rounded-xl shadow-md flex items-center justify-center text-primary active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="my_location">my_location</span>
+</button>
+<button class="w-12 h-12 bg-surface border border-outline-variant rounded-xl shadow-md flex items-center justify-center text-on-surface-variant active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="layers">layers</span>
+</button>
+</div>
+</main>
+<!-- Draggable Bottom Sheet -->
+<div class="fixed bottom-0 left-0 w-full z-50 bg-surface rounded-t-[2rem] shadow-[0_-8px_30px_rgba(0,0,0,0.1)] border-t border-outline-variant transform translate-y-0 transition-transform duration-300" id="bottom-sheet">
+<!-- Handle Area -->
+<div class="w-full h-12 cursor-grab active:cursor-grabbing flex flex-col items-center justify-center" id="sheet-handle">
+<div class="grab-handle"></div>
+</div>
+<!-- Content Area -->
+<div class="px-container-margin pb-xl pt-2">
+<!-- Header Info -->
+<div class="flex items-start justify-between gap-4 mb-6">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="bg-error-container text-on-error-container px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-tighter">Critical Severity</span>
+<span class="text-on-surface-variant text-body-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="schedule">schedule</span>
+                            8 mins away
+                        </span>
+</div>
+<h2 class="eb-garamond text-headline-lg-mobile text-on-surface">Injured Golden Retriever</h2>
+<p class="text-on-surface-variant text-body-sm mt-1">Sector 14, Near Community Park Gate 2</p>
+</div>
+<div class="w-20 h-20 rounded-2xl overflow-hidden shadow-sm border border-outline-variant shrink-0">
+<img class="w-full h-full object-cover" data-alt="A close-up, high-quality photograph of a golden retriever puppy looking into the camera with soft, pleading eyes. The lighting is warm and cinematic, suggesting early morning or late afternoon sun. The dog is slightly blurred in the background to emphasize its gentle expression, maintaining a compassionate and empathetic professional UI aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-fbAKnzSyNnr_6a1ZBLpaXKDFWO-Hr1afUdxZqFizqjtCxQbFDlyOK3-KlTUzoGQs2FDgiuGqA4frW-m48eW_LNkZOVl5_CkgKAJVql3l_2FzKGROOwHIruFFZSDlvtBWa8K9bIH33vBkFACZqloPmIbqPM4fIfPKWp5MJrGaJSsekitX0evhY2J-2F56b3YXGplUzytlwRSXDX1nNsl6vNBqOAS3W0fdVAtgqih2QftEcTtMqCM8sEoJbmMazo_C_xmSpFPCV5s">
+</div>
+</div>
+<!-- Stats Bento Grid -->
+<div class="grid grid-cols-2 gap-3 mb-8">
+<div class="bg-surface-container-low p-4 rounded-2xl border border-outline-variant/30 flex items-center gap-4">
+<div class="w-10 h-10 bg-primary-container/20 rounded-full flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="distance">distance</span>
+</div>
+<div>
+<p class="text-on-surface-variant text-label-caps uppercase">Distance</p>
+<p class="text-title-md font-bold text-on-surface">2.3 km</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-2xl border border-outline-variant/30 flex items-center gap-4">
+<div class="w-10 h-10 bg-tertiary-container/20 rounded-full flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="traffic">traffic</span>
+</div>
+<div>
+<p class="text-on-surface-variant text-label-caps uppercase">Arrival</p>
+<p class="text-title-md font-bold text-on-surface">8 mins</p>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="space-y-4">
+<button class="w-full bg-primary text-on-primary h-14 rounded-full font-bold flex items-center justify-center gap-3 shadow-lg active:scale-95 transition-all hover:bg-surface-tint">
+<span class="material-symbols-outlined" data-icon="navigation">navigation</span>
+                    Open in Google Maps
+                </button>
+<div class="flex gap-3">
+<button class="flex-1 border border-outline text-primary h-14 rounded-full font-bold flex items-center justify-center gap-2 active:scale-95 transition-all hover:bg-primary/5">
+<span class="material-symbols-outlined" data-icon="phone">phone</span>
+                        Call Reporter
+                    </button>
+<button class="w-14 h-14 border border-outline text-on-surface-variant rounded-full flex items-center justify-center active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Script for interaction -->
+<script>
+        const sheet = document.getElementById('bottom-sheet');
+        const handle = document.getElementById('sheet-handle');
+        let startY;
+        let startTransform;
+        let isDragging = false;
+
+        handle.addEventListener('touchstart', (e) => {
+            startY = e.touches[0].clientY;
+            isDragging = true;
+            sheet.classList.remove('transition-transform');
+        });
+
+        window.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            const currentY = e.touches[0].clientY;
+            const deltaY = currentY - startY;
+            if (deltaY > 0) { // Only allow dragging down
+                sheet.style.transform = `translateY(${deltaY}px)`;
+            }
+        });
+
+        window.addEventListener('touchend', (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            sheet.classList.add('transition-transform');
+            
+            const currentY = e.changedTouches[0].clientY;
+            const deltaY = currentY - startY;
+            
+            if (deltaY > 100) {
+                // Collapse logic - keep 100px visible
+                sheet.style.transform = `translateY(calc(100% - 100px))`;
+            } else {
+                // Reset to open
+                sheet.style.transform = `translateY(0)`;
+            }
+        });
+
+        // Click to toggle if on desktop
+        handle.addEventListener('click', () => {
+            if (sheet.style.transform === 'translateY(calc(100% - 100px))') {
+                sheet.style.transform = 'translateY(0)';
+            } else {
+                sheet.style.transform = 'translateY(calc(100% - 100px))';
+            }
+        });
+    </script>
+</body></html>

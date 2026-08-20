@@ -1,0 +1,299 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>Karuṇā - Emergency First Aid</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600;700&amp;family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .jali-pattern {
+            background-color: #f8f9ff;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20L0 0h40L20 20zm0 0L0 40h40L20 20z' fill='%23006a63' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#e2e2e2",
+                    "surface-variant": "#d9e3f4",
+                    "tertiary-fixed-dim": "#ffb690",
+                    "on-primary-fixed-variant": "#00504a",
+                    "on-primary-container": "#a3faef",
+                    "surface-bright": "#f8f9ff",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#e5eeff",
+                    "on-surface": "#121c28",
+                    "tertiary-fixed": "#ffdbca",
+                    "surface-container-high": "#dfe9fa",
+                    "inverse-primary": "#80d5cb",
+                    "on-primary-fixed": "#00201d",
+                    "inverse-on-surface": "#eaf1ff",
+                    "primary-fixed": "#9cf2e8",
+                    "secondary": "#5d5f5f",
+                    "on-secondary-fixed-variant": "#454747",
+                    "inverse-surface": "#27313e",
+                    "primary-fixed-dim": "#80d5cb",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#0f766e",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "surface-container-highest": "#d9e3f4",
+                    "on-surface-variant": "#3e4947",
+                    "error-container": "#ffdad6",
+                    "tertiary": "#893a00",
+                    "outline-variant": "#bdc9c6",
+                    "on-tertiary-fixed-variant": "#783200",
+                    "on-tertiary-container": "#ffe6da",
+                    "secondary-container": "#dfe0e0",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#d1dbec",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "tertiary-container": "#af4c00",
+                    "on-error": "#ffffff",
+                    "outline": "#6e7977",
+                    "background": "#f8f9ff",
+                    "on-tertiary-fixed": "#341100",
+                    "on-secondary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-secondary-container": "#616363",
+                    "primary": "#005c55",
+                    "surface": "#f8f9ff",
+                    "surface-tint": "#006a63",
+                    "on-background": "#121c28",
+                    "surface-container-low": "#eef4ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-margin": "20px",
+                    "md": "20px",
+                    "lg": "32px",
+                    "sm": "12px",
+                    "xs": "4px",
+                    "gutter": "16px",
+                    "xl": "48px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "label-caps": ["Hanken Grotesk"],
+                    "body-sm": ["Hanken Grotesk"],
+                    "display-lg": ["EB Garamond"],
+                    "headline-lg-mobile": ["EB Garamond"],
+                    "title-md": ["Hanken Grotesk"],
+                    "headline-lg": ["EB Garamond"],
+                    "body-lg": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                    "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                    "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                    "headline-lg-mobile": ["28px", { "lineHeight": "34px", "fontWeight": "600" }],
+                    "title-md": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                    "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                    "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-lg text-body-lg min-h-screen jali-pattern">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant flex justify-between items-center px-container-margin h-16 shadow-sm">
+<div class="flex items-center gap-2">
+<button class="material-symbols-outlined text-primary p-2 active:scale-95 transition-transform" data-icon="arrow_back">arrow_back</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Emergency First Aid</h1>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a compassionate animal welfare volunteer in India, soft natural lighting, warm and approachable atmosphere, minimalist composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUxODfWwkzYVfWYZ84Khjiy3hEDcfvLBAjqzqhM788PZPQvfK3Myz3sxl9DR3F5K5y-lnavsiRl2Y3Ryo2sqX7N0PpHU6oZwvwO6Nl8yFcJ_-7kwOPG3ftSYV8nmhAy4cBSb1Icv50vhIPRuUy-7IhN7pxLk-4nzCsnGRRD-SZSAqM-x1jCiPIoIsZqVqnG-y3dJMhY6GQo1O2q9wsTVC0IooLOHGWRRZnwTipernerXurKV9yteXSf5dEKmzJRiugahqCNI9beDk">
+</div>
+</header>
+<main class="pt-24 pb-32 px-container-margin max-w-md mx-auto">
+<!-- Language Selector -->
+<section class="mb-lg">
+<div class="flex justify-between items-center mb-sm">
+<span class="font-label-caps text-label-caps text-on-surface-variant">SELECT LANGUAGE</span>
+<span class="material-symbols-outlined text-primary" data-icon="translate">translate</span>
+</div>
+<div class="flex gap-2 overflow-x-auto hide-scrollbar pb-2">
+<button class="px-4 py-2 rounded-full bg-primary text-on-primary font-title-md text-sm whitespace-nowrap shadow-sm">English</button>
+<button class="px-4 py-2 rounded-full bg-surface-container text-on-surface-variant font-title-md text-sm whitespace-nowrap hover:bg-surface-container-high transition-colors">తెలుగు</button>
+<button class="px-4 py-2 rounded-full bg-surface-container text-on-surface-variant font-title-md text-sm whitespace-nowrap hover:bg-surface-container-high transition-colors">हिन्दी</button>
+<button class="px-4 py-2 rounded-full bg-surface-container text-on-surface-variant font-title-md text-sm whitespace-nowrap hover:bg-surface-container-high transition-colors">தமிழ்</button>
+<button class="px-4 py-2 rounded-full bg-surface-container text-on-surface-variant font-title-md text-sm whitespace-nowrap hover:bg-surface-container-high transition-colors">ಕನ್ನಡ</button>
+</div>
+</section>
+<!-- Species Selector -->
+<section class="mb-lg">
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-sm">AFFECTED SPECIES</span>
+<div class="grid grid-cols-4 gap-gutter">
+<div class="flex flex-col items-center gap-2">
+<button class="w-full aspect-square rounded-2xl bg-primary-container text-on-primary-container flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-3xl" data-icon="pets">pets</span>
+</button>
+<span class="font-label-caps text-label-caps">DOG</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<button class="w-full aspect-square rounded-2xl bg-surface-container text-on-surface-variant flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-3xl" data-icon="cat">cast</span>
+</button>
+<span class="font-label-caps text-label-caps">CAT</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<button class="w-full aspect-square rounded-2xl bg-surface-container text-on-surface-variant flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-3xl" data-icon="nature">nature</span>
+</button>
+<span class="font-label-caps text-label-caps">COW</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<button class="w-full aspect-square rounded-2xl bg-surface-container text-on-surface-variant flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-3xl" data-icon="flutter_dash">flutter_dash</span>
+</button>
+<span class="font-label-caps text-label-caps">BIRD</span>
+</div>
+</div>
+</section>
+<!-- Injury Chips -->
+<section class="mb-xl">
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-sm">TYPE OF INJURY</span>
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-2 rounded-xl border border-outline text-on-surface-variant font-title-md text-sm active:bg-primary active:text-white transition-all">Wound</button>
+<button class="px-4 py-2 rounded-xl border border-primary bg-primary-container text-on-primary-container font-title-md text-sm">Fracture</button>
+<button class="px-4 py-2 rounded-xl border border-outline text-on-surface-variant font-title-md text-sm active:bg-primary active:text-white transition-all">Bleeding</button>
+<button class="px-4 py-2 rounded-xl border border-outline text-on-surface-variant font-title-md text-sm active:bg-primary active:text-white transition-all">Poisoning</button>
+<button class="px-4 py-2 rounded-xl border border-outline text-on-surface-variant font-title-md text-sm active:bg-primary active:text-white transition-all">Burn</button>
+<button class="px-4 py-2 rounded-xl border border-outline text-on-surface-variant font-title-md text-sm active:bg-primary active:text-white transition-all">Heat Stroke</button>
+</div>
+</section>
+<!-- Guide Content -->
+<section class="space-y-gutter">
+<!-- Life Saving Steps -->
+<div class="bg-surface-container-lowest rounded-3xl p-md shadow-sm border border-outline-variant">
+<div class="flex items-center gap-3 mb-md">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+</div>
+<h2 class="font-title-md text-title-md text-primary">Emergency Steps: Fracture</h2>
+</div>
+<div class="space-y-lg relative before:absolute before:left-[11px] before:top-8 before:bottom-0 before:w-px before:bg-outline-variant">
+<div class="flex gap-4 relative">
+<div class="z-10 w-6 h-6 rounded-full bg-primary flex items-center justify-center text-[10px] font-bold text-on-primary shrink-0 mt-1">1</div>
+<div>
+<p class="font-title-md text-sm mb-1">Secure the Scene</p>
+<p class="text-body-sm text-on-surface-variant">Ensure the animal is in a safe, quiet location away from traffic. Use a leash or towel to gently restrain them.</p>
+</div>
+</div>
+<div class="flex gap-4 relative">
+<div class="z-10 w-6 h-6 rounded-full bg-primary flex items-center justify-center text-[10px] font-bold text-on-primary shrink-0 mt-1">2</div>
+<div>
+<p class="font-title-md text-sm mb-1">Minimize Movement</p>
+<p class="text-body-sm text-on-surface-variant">Do not try to "set" the bone. Keep the animal as still as possible on a firm, flat surface like a board or thick cardboard.</p>
+</div>
+</div>
+<div class="flex gap-4 relative">
+<div class="z-10 w-6 h-6 rounded-full bg-primary flex items-center justify-center text-[10px] font-bold text-on-primary shrink-0 mt-1">3</div>
+<div>
+<p class="font-title-md text-sm mb-1">Control Bleeding</p>
+<p class="text-body-sm text-on-surface-variant">If the bone has broken the skin, apply very light pressure with a clean cloth to stop bleeding without moving the limb.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Warning Section (Red) -->
+<div class="bg-error-container rounded-3xl p-md border border-error/20">
+<div class="flex items-center gap-3 mb-sm">
+<span class="material-symbols-outlined text-error" data-icon="block">block</span>
+<h3 class="font-title-md text-title-md text-on-error-container uppercase tracking-wider">Do NOT do</h3>
+</div>
+<ul class="space-y-2 list-disc pl-5 text-on-error-container text-body-sm opacity-90">
+<li>Do NOT try to splint the limb unless you are trained.</li>
+<li>Do NOT give human painkillers (like Paracetamol/Ibuprofen) as they are toxic.</li>
+<li>Do NOT force the animal to walk or move the injured part.</li>
+</ul>
+</div>
+<!-- Vet Advisory (Amber/Tertiary) -->
+<div class="bg-tertiary-container/10 rounded-3xl p-md border border-tertiary/20">
+<div class="flex items-center gap-3 mb-sm">
+<span class="material-symbols-outlined text-tertiary" data-icon="emergency_home">emergency_home</span>
+<h3 class="font-title-md text-title-md text-on-tertiary-fixed-variant">When to call a vet</h3>
+</div>
+<p class="text-body-sm text-on-tertiary-fixed-variant opacity-90 leading-relaxed">
+                    Immediate professional help is required if the limb is hanging at an odd angle, if the animal is in extreme vocal pain, or if there is visible bone exposure.
+                </p>
+<button class="mt-md w-full py-3 bg-tertiary text-on-tertiary rounded-xl font-title-md flex items-center justify-center gap-2 active:scale-95 transition-transform shadow-md">
+<span class="material-symbols-outlined" data-icon="call">call</span>
+                    Find Nearest Vet
+                </button>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Shell & FAB -->
+<div class="fixed bottom-0 left-0 w-full z-50">
+<!-- Chat CTA -->
+<div class="px-container-margin mb-6">
+<button class="w-full bg-primary text-on-primary py-4 px-6 rounded-2xl flex justify-between items-center shadow-xl hover:bg-primary-container transition-all group overflow-hidden relative">
+<div class="absolute inset-0 bg-white/5 group-active:bg-black/10"></div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full border-2 border-on-primary/30 flex items-center justify-center overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close up portrait of Sita, a digital AI assistant represented as a serene, modern Indian woman with traditional motifs, soft glowing skin, high-tech interface background, teal and gold palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6Fe6RoED3QuWsGcT4S-CiI7-aHD-inKnz60BH8ZXaTd5e_N2JWE2XXde9_KDi3SUQCH3Bdae6l7M4R1oldjulBRkjo_5opecSwwoS5RUYEKXZXii2IxSDYACwgku2NHRe16-Ozz0aQDLkyIQ_dSbV4D4ul0nsSe2zmu0QnZZf0T0T5ipHcazAhZx-PoOgnhn6w5AfgEb9272C-Kmc2tLK9LWD85dQmwxJdLQflfkAHPtzcGxEDh24ArkZaHAzRd3-8lR91R3J0Qs">
+</div>
+<div class="text-left">
+<p class="font-title-md text-sm leading-none mb-1">Chat with Sita</p>
+<p class="text-[10px] uppercase font-label-caps opacity-80">Live Emergency Help</p>
+</div>
+</div>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Bottom Nav Bar -->
+<nav class="bg-surface shadow-[0_-4px_12px_rgba(0,106,99,0.08)] flex justify-around items-center px-2 py-3 pb-safe">
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:scale-90 transition-all">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-caps text-[10px] mt-1">HOME</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:scale-90 transition-all">
+<span class="material-symbols-outlined" data-icon="pets">pets</span>
+<span class="font-label-caps text-[10px] mt-1">RESCUES</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-2 active:scale-90 transition-all">
+<span class="material-symbols-outlined" data-icon="emergency" style="font-variation-settings: 'FILL' 1;">emergency</span>
+<span class="font-label-caps text-[10px] mt-1">REPORT</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:scale-90 transition-all">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-caps text-[10px] mt-1">COMMUNITY</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:scale-90 transition-all">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-caps text-[10px] mt-1">PROFILE</span>
+</div>
+</nav>
+</div>
+<script>
+        // Simple micro-interaction for chips
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if(this.classList.contains('border-outline')) {
+                    // Logic for chip toggle could go here
+                }
+            });
+        });
+    </script>
+</body></html>

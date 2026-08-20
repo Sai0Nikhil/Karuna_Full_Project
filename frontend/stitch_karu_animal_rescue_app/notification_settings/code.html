@@ -1,0 +1,381 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>Notification Settings - Karuṇā</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600;700;800&amp;family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #005c55;
+        }
+        .toggle-checkbox:checked + .toggle-label .toggle-dot {
+            transform: translateX(100%);
+            background-color: #ffffff;
+        }
+        .toggle-checkbox:disabled + .toggle-label {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .jali-pattern {
+            background-color: #f8f9ff;
+            background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+            background-opacity: 0.05;
+        }
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#5d5f5f",
+                        "on-tertiary-fixed-variant": "#783200",
+                        "surface-bright": "#f8f9ff",
+                        "on-tertiary-fixed": "#341100",
+                        "tertiary-container": "#af4c00",
+                        "primary": "#005c55",
+                        "on-secondary-fixed-variant": "#454747",
+                        "on-surface-variant": "#3e4947",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#6e7977",
+                        "primary-container": "#0f766e",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb690",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-container": "#e5eeff",
+                        "inverse-surface": "#27313e",
+                        "secondary-container": "#dfe0e0",
+                        "background": "#f8f9ff",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "on-primary-fixed": "#00201d",
+                        "error-container": "#ffdad6",
+                        "on-background": "#121c28",
+                        "surface-container-highest": "#d9e3f4",
+                        "on-surface": "#121c28",
+                        "on-primary-container": "#a3faef",
+                        "surface": "#f8f9ff",
+                        "inverse-primary": "#80d5cb",
+                        "surface-container-low": "#eef4ff",
+                        "on-tertiary-container": "#ffe6da",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-variant": "#d9e3f4",
+                        "outline-variant": "#bdc9c6",
+                        "surface-dim": "#d1dbec",
+                        "on-primary-fixed-variant": "#00504a",
+                        "tertiary-fixed": "#ffdbca",
+                        "surface-container-high": "#dfe9fa",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-secondary-container": "#616363",
+                        "primary-fixed": "#9cf2e8",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "tertiary": "#893a00",
+                        "surface-tint": "#006a63",
+                        "primary-fixed-dim": "#80d5cb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "32px",
+                        "container-margin": "20px",
+                        "xl": "48px",
+                        "gutter": "16px",
+                        "base": "8px",
+                        "md": "20px",
+                        "xs": "4px",
+                        "sm": "12px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["EB Garamond"],
+                        "body-sm": ["Hanken Grotesk"],
+                        "title-md": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["EB Garamond"],
+                        "display-lg": ["EB Garamond"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "600"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-lg jali-pattern min-h-screen pb-24">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-container-lowest shadow-sm flex items-center justify-between px-container-margin h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="p-2 -ml-2 text-on-surface active:scale-95 duration-150 rounded-full hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary dark:text-primary-fixed">Notifications</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A warm, professional portrait of a person with a kind expression, softly lit by golden hour sunlight. The style is modern minimalist, with a clean off-white background that matches the Karuṇā brand's serene and professional aesthetic. High-quality photography focusing on human warmth and reliability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJDbM1A40_GZZNU4iaxP0ZXuZ7jCkgq4yek5wt0j0RHv__Tk3EKleUqW9MuvAN_LhnAfVZFX_0Rt-EtGzfZRje63f508OG5ygzLCQr4F9uQrhGlBzbTbnqZtGh7WgHEEsZ0DaQMTtGIJc6e0ch39oKCfF6vlsKCTG9xJXX6VEwbXnUdBmL_YmkMIdPGjQLEs9lSkhRMLQghPUc8oRjwq5w5YLC4YpHLF8DzFsR9jcikANt6g7C4s0cvYlfeaR5B1NrLMJ9c8UsUCI">
+</div>
+</header>
+<main class="pt-20 px-container-margin max-w-md mx-auto">
+<!-- Hero Illustration -->
+<section class="mt-6 mb-8 text-center">
+<div class="relative w-48 h-48 mx-auto mb-6 bg-primary-container/10 rounded-full flex items-center justify-center">
+
+<span class="material-symbols-outlined text-6xl text-primary" style="font-variation-settings: 'FILL' 1;">notifications_active</span>
+</div>
+<p class="text-on-surface-variant font-body-sm px-4">Manage how we reach you for rescues and updates. Stay connected to your community of compassion.</p>
+</section>
+<!-- Notification Categories -->
+<div class="space-y-6">
+<!-- Category 1: Critical Alerts -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-sm border border-outline-variant/30">
+<div class="flex items-start justify-between mb-4">
+<div class="flex-1 pr-4">
+<div class="flex items-center gap-2 mb-1">
+<h3 class="font-title-md text-title-md text-primary">Critical Alerts</h3>
+<span class="bg-tertiary-container/10 text-tertiary px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">Mandatory</span>
+</div>
+<p class="text-on-surface-variant text-body-sm">Urgent emergency rescues occurring within your vicinity.</p>
+</div>
+<div class="relative inline-block w-12 h-6 align-middle select-none">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" disabled="" id="critical" name="critical" type="checkbox">
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-primary/50 cursor-not-allowed" for="critical"></label>
+</div>
+</div>
+<div class="space-y-4 pt-4 border-t border-outline-variant/20">
+<div class="flex items-center justify-between">
+<span class="text-on-surface font-body-lg">Push Notifications</span>
+<div class="flex items-center gap-2">
+<span class="text-primary font-bold text-sm">Always On</span>
+</div>
+</div>
+<div class="flex items-center justify-between opacity-50">
+<span class="text-on-surface font-body-lg">Email Alerts</span>
+<span class="material-symbols-outlined text-secondary">block</span>
+</div>
+</div>
+</div>
+<!-- Category 2: Case Updates -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-sm border border-outline-variant/30">
+<div class="flex items-start justify-between mb-4">
+<div class="flex-1 pr-4">
+<h3 class="font-title-md text-title-md text-on-surface">Case Updates</h3>
+<p class="text-on-surface-variant text-body-sm">Status changes for animals you've reported or followed.</p>
+</div>
+</div>
+<div class="space-y-5 pt-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">smartphone</span>
+<span class="text-on-surface font-body-lg">Push</span>
+</div>
+<div class="relative inline-block w-12 h-6 align-middle select-none">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-2 border-outline-variant appearance-none cursor-pointer transition-transform duration-200 ease-in-out" id="case-push" type="checkbox">
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-secondary-container transition-colors duration-200 ease-in-out cursor-pointer" for="case-push">
+<span class="toggle-dot absolute block w-6 h-6 rounded-full bg-white shadow-md transform transition-transform duration-200"></span>
+</label>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">mail</span>
+<span class="text-on-surface font-body-lg">Email</span>
+</div>
+<div class="relative inline-block w-12 h-6 align-middle select-none">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-2 border-outline-variant appearance-none cursor-pointer transition-transform duration-200 ease-in-out" id="case-email" type="checkbox">
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-secondary-container transition-colors duration-200 ease-in-out cursor-pointer" for="case-email">
+<span class="toggle-dot absolute block w-6 h-6 rounded-full bg-white shadow-md transform transition-transform duration-200"></span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Category 3: Community News -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-sm border border-outline-variant/30">
+<div class="flex items-start justify-between mb-4">
+<div class="flex-1 pr-4">
+<h3 class="font-title-md text-title-md text-on-surface">Community News</h3>
+<p class="text-on-surface-variant text-body-sm">Adoption stories and weekly success updates.</p>
+</div>
+</div>
+<div class="space-y-5 pt-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">diversity_1</span>
+<span class="text-on-surface font-body-lg">Push</span>
+</div>
+<div class="relative inline-block w-12 h-6 align-middle select-none">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-2 border-outline-variant appearance-none cursor-pointer transition-transform duration-200 ease-in-out" id="news-push" type="checkbox">
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-secondary-container transition-colors duration-200 ease-in-out cursor-pointer" for="news-push">
+<span class="toggle-dot absolute block w-6 h-6 rounded-full bg-white shadow-md transform transition-transform duration-200"></span>
+</label>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">alternate_email</span>
+<span class="text-on-surface font-body-lg">Email</span>
+</div>
+<div class="relative inline-block w-12 h-6 align-middle select-none">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-2 border-outline-variant appearance-none cursor-pointer transition-transform duration-200 ease-in-out" id="news-email" type="checkbox">
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-secondary-container transition-colors duration-200 ease-in-out cursor-pointer" for="news-email">
+<span class="toggle-dot absolute block w-6 h-6 rounded-full bg-white shadow-md transform transition-transform duration-200"></span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Category 4: Donation Reminders -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-sm border border-outline-variant/30">
+<div class="flex items-start justify-between mb-4">
+<div class="flex-1 pr-4">
+<h3 class="font-title-md text-title-md text-on-surface">Donation Reminders</h3>
+<p class="text-on-surface-variant text-body-sm">Follow-ups on impact from cases you supported.</p>
+</div>
+</div>
+<div class="space-y-5 pt-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">volunteer_activism</span>
+<span class="text-on-surface font-body-lg">Push</span>
+</div>
+<div class="relative inline-block w-12 h-6 align-middle select-none">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-2 border-outline-variant appearance-none cursor-pointer transition-transform duration-200 ease-in-out" id="don-push" type="checkbox">
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-secondary-container transition-colors duration-200 ease-in-out cursor-pointer" for="don-push">
+<span class="toggle-dot absolute block w-6 h-6 rounded-full bg-white shadow-md transform transition-transform duration-200"></span>
+</label>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">drafts</span>
+<span class="text-on-surface font-body-lg">Email</span>
+</div>
+<div class="relative inline-block w-12 h-6 align-middle select-none">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-2 border-outline-variant appearance-none cursor-pointer transition-transform duration-200 ease-in-out" id="don-email" type="checkbox">
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-secondary-container transition-colors duration-200 ease-in-out cursor-pointer" for="don-email">
+<span class="toggle-dot absolute block w-6 h-6 rounded-full bg-white shadow-md transform transition-transform duration-200"></span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Quiet Hours Section -->
+<section class="mt-8 mb-12">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">bedtime</span>
+<h2 class="font-title-md text-title-md text-on-surface">Quiet Hours</h2>
+</div>
+<div class="bg-surface-container-low rounded-2xl p-md border border-outline-variant/30">
+<div class="flex items-center justify-between mb-6">
+<div>
+<p class="text-on-surface font-bold">Mute non-critical alerts</p>
+<p class="text-on-surface-variant text-body-sm">Critical rescues will still notify you.</p>
+</div>
+<div class="relative inline-block w-12 h-6 align-middle select-none">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-2 border-outline-variant appearance-none cursor-pointer transition-transform duration-200 ease-in-out" id="quiet-toggle" type="checkbox">
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-secondary-container transition-colors duration-200 ease-in-out cursor-pointer" for="quiet-toggle">
+<span class="toggle-dot absolute block w-6 h-6 rounded-full bg-white shadow-md transform transition-transform duration-200"></span>
+</label>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4" id="quiet-hours-picker">
+<div class="bg-surface-container-lowest p-3 rounded-xl border border-outline-variant/30 text-center">
+<span class="text-label-caps font-label-caps text-secondary block mb-1">START</span>
+<span class="text-headline-lg-mobile font-headline-lg-mobile text-primary">22:00</span>
+</div>
+<div class="bg-surface-container-lowest p-3 rounded-xl border border-outline-variant/30 text-center">
+<span class="text-label-caps font-label-caps text-secondary block mb-1">END</span>
+<span class="text-headline-lg-mobile font-headline-lg-mobile text-primary">07:00</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Bottom Nav Bar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container-lowest dark:bg-surface-container-low border-t border-outline-variant shadow-lg flex justify-around items-center h-20 px-base pb-safe w-full">
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim p-1 hover:text-primary-container dark:hover:text-primary-fixed-dim transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim p-1 hover:text-primary-container dark:hover:text-primary-fixed-dim transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">pets</span>
+<span class="font-label-caps text-label-caps">Rescues</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim p-1 hover:text-primary-container dark:hover:text-primary-fixed-dim transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">emergency_share</span>
+<span class="font-label-caps text-label-caps">Report</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim p-1 hover:text-primary-container dark:hover:text-primary-fixed-dim transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-caps text-label-caps">Community</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed font-bold bg-primary-container/10 rounded-xl p-1 hover:text-primary-container dark:hover:text-primary-fixed-dim transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for toggle state changes
+        document.querySelectorAll('.toggle-checkbox').forEach(toggle => {
+            toggle.addEventListener('change', function() {
+                if (!this.disabled) {
+                    const label = this.nextElementSibling;
+                    const dot = label.querySelector('.toggle-dot');
+                    if (this.checked) {
+                        label.classList.add('bg-primary');
+                        label.classList.remove('bg-secondary-container');
+                        dot.style.transform = 'translateX(100%)';
+                        dot.style.backgroundColor = '#ffffff';
+                    } else {
+                        label.classList.remove('bg-primary');
+                        label.classList.add('bg-secondary-container');
+                        dot.style.transform = 'translateX(0)';
+                        dot.style.backgroundColor = '#ffffff';
+                    }
+                    
+                    // Logic to dim quiet hours if toggled off
+                    if (this.id === 'quiet-toggle') {
+                        const picker = document.getElementById('quiet-hours-picker');
+                        picker.style.opacity = this.checked ? '1' : '0.4';
+                        picker.style.pointerEvents = this.checked ? 'auto' : 'none';
+                    }
+                }
+            });
+        });
+
+        // Initialize UI states
+        window.onload = () => {
+             document.querySelectorAll('.toggle-checkbox').forEach(toggle => {
+                if (toggle.checked && !toggle.disabled) {
+                    const label = toggle.nextElementSibling;
+                    label.classList.add('bg-primary');
+                    const dot = label.querySelector('.toggle-dot');
+                    if(dot) dot.style.transform = 'translateX(100%)';
+                }
+             });
+        }
+    </script>
+</body></html>

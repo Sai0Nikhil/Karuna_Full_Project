@@ -1,0 +1,232 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>Karuṇā - Case Details</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600;700&amp;family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container": "#e5eeff",
+                    "primary-fixed-dim": "#80d5cb",
+                    "surface-dim": "#d1dbec",
+                    "on-secondary-fixed-variant": "#454747",
+                    "inverse-on-surface": "#eaf1ff",
+                    "tertiary-fixed": "#ffdbca",
+                    "secondary-fixed": "#e2e2e2",
+                    "on-surface-variant": "#3e4947",
+                    "on-error-container": "#93000a",
+                    "on-error": "#ffffff",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#121c28",
+                    "secondary": "#5d5f5f",
+                    "tertiary": "#893a00",
+                    "surface-container-high": "#dfe9fa",
+                    "outline-variant": "#bdc9c6",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#ffb690",
+                    "surface-container-highest": "#d9e3f4",
+                    "on-tertiary-fixed-variant": "#783200",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-container": "#616363",
+                    "on-primary-fixed": "#00201d",
+                    "on-tertiary-fixed": "#341100",
+                    "surface-variant": "#d9e3f4",
+                    "inverse-surface": "#27313e",
+                    "primary": "#005c55",
+                    "inverse-primary": "#80d5cb",
+                    "on-tertiary-container": "#ffe6da",
+                    "on-primary-fixed-variant": "#00504a",
+                    "surface-tint": "#006a63",
+                    "surface-container-low": "#eef4ff",
+                    "background": "#f8f9ff",
+                    "secondary-container": "#dfe0e0",
+                    "primary-container": "#0f766e",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "on-secondary": "#ffffff",
+                    "on-background": "#121c28",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#9cf2e8",
+                    "tertiary-container": "#af4c00",
+                    "surface-bright": "#f8f9ff",
+                    "outline": "#6e7977",
+                    "surface": "#f8f9ff",
+                    "error-container": "#ffdad6",
+                    "on-primary-container": "#a3faef"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "xs": "4px",
+                    "xl": "48px",
+                    "sm": "12px",
+                    "lg": "32px",
+                    "md": "20px",
+                    "container-margin": "20px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["EB Garamond"],
+                    "body-sm": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "label-caps": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["EB Garamond"],
+                    "display-lg": ["EB Garamond"],
+                    "title-md": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "600"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .form-focus-teal:focus {
+            border-bottom-color: #005c55;
+            outline: none;
+            box-shadow: 0 1px 0 0 #005c55;
+        }
+        .step-transition {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-lg overflow-x-hidden">
+<!-- Top Navigation Anchor -->
+<header class="fixed top-0 w-full z-50 bg-surface shadow-sm h-16 flex justify-between items-center px-container-margin">
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-primary transition-transform active:scale-95 duration-200">arrow_back</button>
+<span class="font-display-lg text-primary text-display-lg">Karuṇā</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center border border-outline-variant overflow-hidden">
+<img class="w-full h-auto" data-alt="A professional profile headshot of a compassionate animal rescuer against a soft, sun-drenched Indian garden background. The image has a warm, high-key lighting style with soft bokeh, reflecting the minimalist and empathetic aesthetic of the Karuṇā brand. The person's expression is stable and reliable." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA__Cisje_GKN-5r4qAdxK316TNuH2FEdU94deVWug4aKV_2ILCvUyGTDbs7_hWMVYOFN8W8hX0N83HazEUB2-WwjliP10k3n-nS5VeWXeWuZ-y9_w93BSWNweeW6d0GSU9sx0IDFKznUM2TGNjd2LhywxhHs70QJJxLIhWYTWyn1E6u9BQzMigX-kaVOYNBhyjPdgMoJQTKmvrVwq7MbECqM-m1p8MJNsTiUWxvc8daNdpwW-gyPtc7sqY3tt9azZk3I1cC6FL2hU">
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-24 pb-32 px-container-margin max-w-lg mx-auto w-full">
+<!-- Step Indicator -->
+<div class="mb-lg">
+<div class="flex justify-between items-end mb-xs">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Step 3 of 4</span>
+<span class="font-label-caps text-label-caps text-primary">75% Complete</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-3/4 rounded-full transition-all duration-700"></div>
+</div>
+</div>
+<!-- Heading Section -->
+<section class="mb-lg">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-bold">Case Details</h1>
+<p class="text-on-surface-variant font-body-sm mt-xs">Please provide specific details about the animal in distress to help our responders prepare.</p>
+</section>
+<!-- Form Content -->
+<form class="space-y-lg">
+<!-- Species Dropdown -->
+<div class="relative group">
+<label class="block font-label-caps text-label-caps text-primary mb-1 uppercase">Species</label>
+<div class="relative">
+<select class="w-full bg-transparent border-0 border-b border-outline-variant py-3 pr-8 text-on-surface font-title-md form-focus-teal appearance-none cursor-pointer">
+<option selected="" value="dog">Dog</option>
+<option value="cat">Cat</option>
+<option value="cow">Cow</option>
+<option value="bird">Bird</option>
+<option value="other">Other</option>
+</select>
+<span class="material-symbols-outlined absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">keyboard_arrow_down</span>
+</div>
+</div>
+<!-- Injury Type Dropdown -->
+<div class="relative group">
+<label class="block font-label-caps text-label-caps text-primary mb-1 uppercase">Injury Type</label>
+<div class="relative">
+<select class="w-full bg-transparent border-0 border-b border-outline-variant py-3 pr-8 text-on-surface font-title-md form-focus-teal appearance-none cursor-pointer">
+<option selected="" value="wound">Wound</option>
+<option value="fracture">Fracture</option>
+<option value="skin_infection">Skin Infection</option>
+<option value="malnutrition">Severe Malnutrition</option>
+<option value="accident">Road Accident</option>
+</select>
+<span class="material-symbols-outlined absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">keyboard_arrow_down</span>
+</div>
+</div>
+<!-- Severity Badge (Read Only) -->
+<div class="flex flex-col gap-xs">
+<label class="font-label-caps text-label-caps text-primary uppercase">Severity Assessment</label>
+<div class="flex">
+<span class="inline-flex items-center px-4 py-1.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-caps text-label-caps border border-tertiary-container/20">
+<span class="material-symbols-outlined mr-2 text-[18px]" style="font-variation-settings: 'FILL' 1;">warning</span>
+                        MODERATE SEVERITY
+                    </span>
+</div>
+<p class="text-[12px] text-on-secondary-fixed-variant italic">Automatically assessed based on initial report photos.</p>
+</div>
+<!-- Location Field -->
+<div class="relative">
+<label class="block font-label-caps text-label-caps text-primary mb-1 uppercase">Location Label</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-3 text-on-surface font-title-md form-focus-teal placeholder:text-outline-variant/60" placeholder="e.g., Near Sector 4 Market Gate" type="text">
+<button class="absolute right-0 top-1/2 -translate-y-1/2 text-primary" type="button">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+</div>
+<!-- Map Hint (Decorative Context) -->
+<div class="h-32 rounded-xl overflow-hidden shadow-sm relative border border-outline-variant/30">
+<div class="w-full h-full bg-cover bg-center" data-location="New Delhi" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDb4zrqvSeOuXbUqgF8WqjBDoDIRHKFpQAPYvrG-sk0HWOwg5Ya6pouwkS-6NAYE19clipeO9I2uP7Le6VJMXrbAs5tNr90qPZoDf__zul-tfQDRoIHX0pmXHpkc4S0m9eqiuWSb8BB08t0uhd02uVKqIxweev0wcscofBOrlQDbZTIfBrqrW3d92Nm-oygCP6QlvCIpLIJnUMAGU04AJB5FL-8RKoD_gt7Y2nAgiyTLj-4vlrrOqR4TtTCLP_udUVf8a9JvetnZqg')"></div>
+<div class="absolute inset-0 bg-primary/5 pointer-events-none"></div>
+<div class="absolute top-2 left-2 bg-surface px-3 py-1 rounded-full text-[10px] font-bold shadow-sm flex items-center gap-1 border border-outline-variant/20">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                    GPS LOCKED
+                </div>
+</div>
+<!-- Additional Notes -->
+<div class="relative">
+<label class="block font-label-caps text-label-caps text-primary mb-1 uppercase">Additional Notes</label>
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl p-4 text-on-surface font-body-sm form-focus-teal focus:ring-0 focus:border-primary placeholder:text-outline-variant/60" placeholder="Describe behavior, specific symptoms, or precise location landmarks..." rows="3"></textarea>
+</div>
+<!-- Primary Action Button -->
+<div class="pt-4">
+<button class="w-full h-14 bg-primary text-on-primary rounded-xl font-title-md flex items-center justify-center gap-2 shadow-lg shadow-primary/20 active:scale-[0.98] transition-transform duration-150" type="button">
+                    Next
+                    <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</form>
+</main>
+<!-- Bottom Navigation Shell (Suppressed based on Transactional Task rule, but adding subtle indicator of persistent presence) -->
+<div class="fixed bottom-0 left-0 w-full bg-surface px-container-margin py-base border-t border-outline-variant/10 md:hidden flex justify-center items-center h-12">
+<div class="w-32 h-1.5 bg-on-surface-variant/20 rounded-full"></div>
+</div>
+<!-- Interaction Script for Form States -->
+<script>
+        document.querySelectorAll('input, select, textarea').forEach(element => {
+            element.addEventListener('focus', () => {
+                element.closest('.relative')?.classList.add('scale-[1.01]');
+                element.closest('.relative')?.style.transition = 'transform 0.2s ease';
+            });
+            element.addEventListener('blur', () => {
+                element.closest('.relative')?.classList.remove('scale-[1.01]');
+            });
+        });
+    </script>
+</body></html>

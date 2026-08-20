@@ -1,0 +1,264 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>Karuṇā - Help Save Animals</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600;700&amp;family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#e2e2e2",
+                    "surface-variant": "#d9e3f4",
+                    "tertiary-fixed-dim": "#ffb690",
+                    "on-primary-fixed-variant": "#00504a",
+                    "on-primary-container": "#a3faef",
+                    "surface-bright": "#f8f9ff",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#e5eeff",
+                    "on-surface": "#121c28",
+                    "tertiary-fixed": "#ffdbca",
+                    "surface-container-high": "#dfe9fa",
+                    "inverse-primary": "#80d5cb",
+                    "on-primary-fixed": "#00201d",
+                    "inverse-on-surface": "#eaf1ff",
+                    "primary-fixed": "#9cf2e8",
+                    "secondary": "#5d5f5f",
+                    "on-secondary-fixed-variant": "#454747",
+                    "inverse-surface": "#27313e",
+                    "primary-fixed-dim": "#80d5cb",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#0f766e",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "surface-container-highest": "#d9e3f4",
+                    "on-surface-variant": "#3e4947",
+                    "error-container": "#ffdad6",
+                    "tertiary": "#893a00",
+                    "outline-variant": "#bdc9c6",
+                    "on-tertiary-fixed-variant": "#783200",
+                    "on-tertiary-container": "#ffe6da",
+                    "secondary-container": "#dfe0e0",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#d1dbec",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "tertiary-container": "#af4c00",
+                    "on-error": "#ffffff",
+                    "outline": "#6e7977",
+                    "background": "#f8f9ff",
+                    "on-tertiary-fixed": "#341100",
+                    "on-secondary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-secondary-container": "#616363",
+                    "primary": "#005c55",
+                    "surface": "#f8f9ff",
+                    "surface-tint": "#006a63",
+                    "on-background": "#121c28",
+                    "surface-container-low": "#eef4ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-margin": "20px",
+                    "md": "20px",
+                    "lg": "32px",
+                    "sm": "12px",
+                    "xs": "4px",
+                    "gutter": "16px",
+                    "xl": "48px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "label-caps": ["Hanken Grotesk"],
+                    "body-sm": ["Hanken Grotesk"],
+                    "display-lg": ["EB Garamond"],
+                    "headline-lg-mobile": ["EB Garamond"],
+                    "title-md": ["Hanken Grotesk"],
+                    "headline-lg": ["EB Garamond"],
+                    "body-lg": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "600"}],
+                    "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { -webkit-tap-highlight-color: transparent; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+        .jali-pattern {
+            background-image: radial-gradient(circle at 2px 2px, rgba(0, 92, 85, 0.05) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        .safe-bottom { padding-bottom: calc(env(safe-area-inset-bottom) + 80px); }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-lg min-h-screen jali-pattern">
+<!-- Top Navigation Anchor -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-container-margin h-16 bg-surface border-b border-outline-variant">
+<div class="flex items-center gap-4">
+<button class="active:scale-95 transition-transform hover:bg-surface-container-high p-2 rounded-full">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Karuṇā</h1>
+</div>
+<div class="w-10 h-10 rounded-full border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional and warm studio portrait of a young Indian woman with a kind smile, wearing a traditional modern kurti. The lighting is soft and natural against a clean off-white background, reflecting a professional yet empathetic persona for a humanitarian app profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6dblq8w0w_jIsYqnzbpa3Q7NPLJNA-Efwgkgq6oMfe4z8ntXwc7Na4uxvtXJj-NGcPjWQBWY2FAFmfAgC7XKCy-yzqVGgrA0lqH-L1rjE1PtB28Xwl56e3RcPtwutKDnYzneMywJp7B3KVT7f0HG7vYqImYOR9jrHc90RISbIKoxQ4w0zhrQZbDMlC7V6FlK2GDIVRvWptLWppidLapVjITp7jUbD5cpJGxJAaFiWj2JuNIFo9KX1fd2wLhEp4bJtAaAmxup61HA">
+</div>
+</header>
+<main class="pt-20 px-container-margin safe-bottom">
+<!-- Animated Header Background Section -->
+<div class="relative w-full h-48 rounded-xl overflow-hidden mb-6 shadow-sm">
+
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex flex-col justify-end p-lg">
+<h2 class="text-on-primary font-headline-lg-mobile text-headline-lg-mobile mb-xs">Help Save Animals 💛</h2>
+<p class="text-on-primary-container font-body-sm text-body-sm opacity-90">Every contribution brings a soul closer to recovery.</p>
+</div>
+</div>
+<!-- Featured Case Card -->
+<div class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant mb-lg shadow-sm">
+<div class="flex gap-gutter">
+<div class="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A close-up heart-tugging photo of a golden retriever puppy with bandages on its paw, resting peacefully on a clean teal blanket. The lighting is warm and hopeful, emphasizing the care and compassion of the rescue center. High-quality photography with a shallow depth of field." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_7-cBUuu8kAg3tBr3ARzp0XHh-SyxFY6Q43RXaR0vD0tovXwFYQtgLi2S_55a6s7MnQP0M-sLvjFR4v9-E5epOuuJete9oWqds9K52Kvdd6she9iTA7h5TExpzAv3Vx-DToNXK4CW881ZHdlTdi2G1GovS6igrLyaqXXmWvLvB3ZLjhdjtim1dC5ToaQ2DKPDwLTJOZmLx-F1nNNPgnQTT6h9iKkUAU8ulttVabBi2b81kLgGHlrh5txLvFHqaEZwugSrqYbqwIA">
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-xs">
+<h3 class="font-title-md text-title-md text-on-surface">Sheru</h3>
+<span class="bg-error-container text-on-error-container text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">Critical</span>
+</div>
+<p class="text-on-surface-variant font-body-sm text-body-sm mb-xs">Species: Indian Pariah</p>
+<p class="text-on-surface-variant font-body-sm text-body-sm line-clamp-2">Rescued from a highway accident with multiple fractures. Needs urgent surgery.</p>
+</div>
+</div>
+<!-- Progress Section -->
+<div class="mt-md">
+<div class="flex justify-between items-end mb-xs">
+<p class="font-label-caps text-label-caps text-on-surface-variant">Amount Raised: <span class="text-primary font-bold">₹3,500</span> / ₹8,000</p>
+<p class="font-label-caps text-label-caps text-primary">44%</p>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary transition-all duration-1000" style="width: 44%"></div>
+</div>
+</div>
+</div>
+<!-- Quick Donation Chips -->
+<section class="mb-lg">
+<h4 class="font-title-md text-title-md text-on-surface mb-sm">Select Amount</h4>
+<div class="flex flex-wrap gap-sm">
+<button class="donation-chip flex-1 min-w-[70px] py-3 rounded-xl border border-outline-variant text-on-surface font-title-md active:scale-95 transition-all hover:bg-surface-container" onclick="selectAmount(this, 100)">₹100</button>
+<button class="donation-chip flex-1 min-w-[70px] py-3 rounded-xl border border-outline-variant text-on-surface font-title-md active:scale-95 transition-all hover:bg-surface-container" onclick="selectAmount(this, 250)">₹250</button>
+<button class="donation-chip flex-1 min-w-[70px] py-3 rounded-xl border border-outline-variant text-on-surface font-title-md active:scale-95 transition-all hover:bg-surface-container" onclick="selectAmount(this, 500)">₹500</button>
+<button class="donation-chip flex-1 min-w-[70px] py-3 rounded-xl border border-outline-variant text-on-surface font-title-md active:scale-95 transition-all hover:bg-surface-container" onclick="selectAmount(this, 1000)">₹1000</button>
+<button class="donation-chip flex-1 min-w-[100px] py-3 rounded-xl border border-outline-variant text-on-surface font-body-lg active:scale-95 transition-all hover:bg-surface-container" onclick="selectAmount(this, 'Custom')">Custom</button>
+</div>
+</section>
+<!-- Call to Action -->
+<button class="w-full py-4 bg-primary text-on-primary rounded-xl font-title-md text-title-md flex items-center justify-center gap-2 shadow-lg active:scale-95 transition-transform mb-lg group">
+            Donate Now 💛
+            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">favorite</span>
+</button>
+<!-- Recent Donors -->
+<section class="mb-xl">
+<div class="flex justify-between items-center mb-sm">
+<h4 class="font-title-md text-title-md text-on-surface">Recent Kind Souls</h4>
+<a class="text-primary font-label-caps text-label-caps hover:underline" href="#">View All</a>
+</div>
+<div class="space-y-sm">
+<!-- Donor Item -->
+<div class="flex items-center gap-md p-sm bg-surface-container-lowest border border-outline-variant rounded-lg">
+<div class="w-10 h-10 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center font-bold">AS</div>
+<div class="flex-grow">
+<p class="font-title-md text-on-surface text-[15px]">Ananya Sharma</p>
+<p class="text-on-surface-variant font-body-sm text-[12px]">2 hours ago</p>
+</div>
+<p class="font-bold text-primary">₹500</p>
+</div>
+<!-- Donor Item -->
+<div class="flex items-center gap-md p-sm bg-surface-container-lowest border border-outline-variant rounded-lg">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold">RK</div>
+<div class="flex-grow">
+<p class="font-title-md text-on-surface text-[15px]">Rahul Kapoor</p>
+<p class="text-on-surface-variant font-body-sm text-[12px]">5 hours ago</p>
+</div>
+<p class="font-bold text-primary">₹1,000</p>
+</div>
+<!-- Donor Item -->
+<div class="flex items-center gap-md p-sm bg-surface-container-lowest border border-outline-variant rounded-lg opacity-80">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold">JD</div>
+<div class="flex-grow">
+<p class="font-title-md text-on-surface text-[15px]">Anonymous Soul</p>
+<p class="text-on-surface-variant font-body-sm text-[12px]">Yesterday</p>
+</div>
+<p class="font-bold text-primary">₹250</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 pb-safe bg-surface shadow-[0_-4px_10px_rgba(0,106,99,0.05)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="pets">pets</span>
+<span class="font-label-caps text-label-caps">Rescues</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="emergency" style="font-variation-settings: 'FILL' 1;">emergency</span>
+<span class="font-label-caps text-label-caps">Report</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-caps text-label-caps">Community</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</nav>
+<script>
+        function selectAmount(element, value) {
+            // Remove active classes from all chips
+            document.querySelectorAll('.donation-chip').forEach(chip => {
+                chip.classList.remove('bg-primary-container', 'text-on-primary-container', 'border-primary');
+                chip.classList.add('border-outline-variant', 'text-on-surface');
+            });
+            
+            // Add active class to selected chip
+            element.classList.remove('border-outline-variant', 'text-on-surface');
+            element.classList.add('bg-primary-container', 'text-on-primary-container', 'border-primary');
+            
+            console.log("Selected donation amount: ", value);
+            
+            // Haptic-like feedback
+            if (window.navigator.vibrate) {
+                window.navigator.vibrate(10);
+            }
+        }
+
+        // Initialize first chip as active
+        window.onload = () => {
+            const firstChip = document.querySelector('.donation-chip');
+            if (firstChip) selectAmount(firstChip, 100);
+        };
+    </script>
+</body></html>

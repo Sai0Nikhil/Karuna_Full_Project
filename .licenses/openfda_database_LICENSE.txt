@@ -1,0 +1,4 @@
+openFDA Database API License Notice
+Timestamp: 2026-07-15T11:15:00Z
+Please check the terms of service at https://open.fda.gov/apis/ and the license information at https://open.fda.gov/license.
+This API is managed by the US Food and Drug Administration (FDA) and provides public databases for drugs, devices, and veterinary products.

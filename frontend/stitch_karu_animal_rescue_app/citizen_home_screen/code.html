@@ -1,0 +1,280 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>Karuṇā - Compassionate Rescue</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600;700&amp;family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-container": "#616363",
+                    "primary-fixed": "#9cf2e8",
+                    "error-container": "#ffdad6",
+                    "on-error": "#ffffff",
+                    "surface-container": "#e5eeff",
+                    "on-error-container": "#93000a",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#454747",
+                    "secondary-fixed": "#e2e2e2",
+                    "surface-container-low": "#eef4ff",
+                    "on-tertiary-fixed-variant": "#783200",
+                    "surface-tint": "#006a63",
+                    "secondary": "#5d5f5f",
+                    "on-tertiary-fixed": "#341100",
+                    "surface-variant": "#d9e3f4",
+                    "tertiary-container": "#af4c00",
+                    "inverse-on-surface": "#eaf1ff",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "secondary-container": "#dfe0e0",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#ffdbca",
+                    "on-primary-fixed-variant": "#00504a",
+                    "on-primary-fixed": "#00201d",
+                    "background": "#f8f9ff",
+                    "tertiary": "#893a00",
+                    "on-surface": "#121c28",
+                    "outline-variant": "#bdc9c6",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#f8f9ff",
+                    "primary": "#005c55",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#a3faef",
+                    "surface-container-high": "#dfe9fa",
+                    "inverse-surface": "#27313e",
+                    "outline": "#6e7977",
+                    "primary-fixed-dim": "#80d5cb",
+                    "tertiary-fixed-dim": "#ffb690",
+                    "surface": "#f8f9ff",
+                    "on-tertiary-container": "#ffe6da",
+                    "surface-container-highest": "#d9e3f4",
+                    "inverse-primary": "#80d5cb",
+                    "on-secondary": "#ffffff",
+                    "on-background": "#121c28",
+                    "surface-dim": "#d1dbec",
+                    "primary-container": "#0f766e",
+                    "on-surface-variant": "#3e4947",
+                    "on-secondary-fixed": "#1a1c1c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "sm": "12px",
+                    "container-margin": "20px",
+                    "xs": "4px",
+                    "md": "20px",
+                    "lg": "32px",
+                    "gutter": "16px",
+                    "xl": "48px"
+            },
+            "fontFamily": {
+                    "title-md": ["Hanken Grotesk"],
+                    "body-sm": ["Hanken Grotesk"],
+                    "label-caps": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["EB Garamond"],
+                    "headline-lg": ["EB Garamond"],
+                    "display-lg": ["EB Garamond"],
+                    "body-lg": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            -webkit-tap-highlight-color: transparent;
+            font-family: 'Hanken Grotesk', sans-serif;
+        }
+        .jali-pattern {
+            background-image: radial-gradient(circle at 2px 2px, rgba(0, 92, 85, 0.05) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        .custom-shadow {
+            box-shadow: 0 4px 20px -2px rgba(0, 92, 85, 0.12);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen pb-24">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-primary text-on-primary transition-transform active:scale-95 duration-200 shadow-sm h-16 flex justify-between items-center px-container-margin">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined cursor-pointer" data-icon="menu">menu</span>
+<h1 class="font-display-lg text-[24px] tracking-tight">Karuṇā</h1>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-primary-fixed overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional close-up portrait of a kind-faced Indian man in his late 20s, smiling warmly. He is outdoors with soft morning sunlight highlighting his face. The photography style is modern and high-quality, with a shallow depth of field and a serene, professional aesthetic that fits a compassionate community app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfTz-Z0fC1FZtPBZ__5PwtrpSBtYsbcGcvLEjn2JESgTBVLE0nH0cUg1dgLDm6FzNfJ3oNAw80IdznSCsy1RKX5We6kq2iulqNKBuQGb7kMqzMfb0QQHcFM-f2I0ZUAS3Q98LkEEyC9X2FwKXRGmn-Lzp2A7HWAPlZ_11lTI-p56zoGmJRdywSA06WbymtLv_yL_gixoRo-GTyP1grLNjGyqOWYptxKtSVlFAQzMkCy0u4ad_SJ0KyJwfNSQTr8SgRdSZtYkZqCQc">
+</div>
+</header>
+<main class="mt-16">
+<!-- Hero Branding Section -->
+<section class="bg-primary pt-6 pb-12 px-container-margin rounded-b-[40px] relative overflow-hidden">
+<div class="absolute inset-0 jali-pattern opacity-20 pointer-events-none"></div>
+<div class="relative z-10 space-y-6">
+<div>
+<p class="text-on-primary-container/80 font-body-lg text-body-lg">Good Morning!</p>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-primary">Arjun Sharma</h2>
+</div>
+<!-- Search Bar -->
+<div class="relative group">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-on-primary/60 group-focus-within:text-on-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</div>
+<input class="w-full bg-primary-container/30 border-none text-on-primary placeholder:text-on-primary/60 rounded-full py-4 pl-12 pr-4 focus:ring-2 focus:ring-primary-fixed-dim transition-all outline-none backdrop-blur-sm" placeholder="Search rescues, clinics, or vets..." type="text">
+</div>
+</div>
+</section>
+<!-- Emergency CTA Card -->
+<section class="px-container-margin -mt-8 relative z-20">
+<div class="bg-gradient-to-br from-tertiary to-primary-container p-6 rounded-[24px] flex items-center justify-between shadow-lg group active:scale-[0.98] transition-transform duration-150">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[32px]" data-icon="pets" data-weight="fill" style="font-variation-settings: 'FILL' 1;">pets</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-white">Report Emergency</h3>
+<p class="text-white/80 font-body-sm text-body-sm">Help an animal in distress</p>
+</div>
+</div>
+<button class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-primary shadow-md">
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- Quick Action Grid -->
+<section class="px-container-margin py-8">
+<div class="grid grid-cols-2 gap-4">
+<!-- Donate -->
+<div class="bg-surface-container-low p-5 rounded-[24px] flex flex-col gap-3 custom-shadow border border-outline-variant/30 active:scale-95 transition-transform">
+<div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
+<span class="material-symbols-outlined" data-icon="favorite" data-weight="fill" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+<span class="font-title-md text-title-md">Donate 💛</span>
+</div>
+<!-- Adopt -->
+<div class="bg-surface-container-low p-5 rounded-[24px] flex flex-col gap-3 custom-shadow border border-outline-variant/30 active:scale-95 transition-transform">
+<div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+<span class="material-symbols-outlined" data-icon="home_health" data-weight="fill" style="font-variation-settings: 'FILL' 1;">home_health</span>
+</div>
+<span class="font-title-md text-title-md">Adopt 🐾</span>
+</div>
+<!-- First Aid -->
+<div class="bg-surface-container-low p-5 rounded-[24px] flex flex-col gap-3 custom-shadow border border-outline-variant/30 active:scale-95 transition-transform">
+<div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center text-purple-600">
+<span class="material-symbols-outlined" data-icon="medical_services" data-weight="fill" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+</div>
+<span class="font-title-md text-title-md">First Aid 🩺</span>
+</div>
+<!-- My Cases -->
+<div class="bg-surface-container-low p-5 rounded-[24px] flex flex-col gap-3 custom-shadow border border-outline-variant/30 active:scale-95 transition-transform">
+<div class="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center text-teal-600">
+<span class="material-symbols-outlined" data-icon="assignment" data-weight="fill" style="font-variation-settings: 'FILL' 1;">assignment</span>
+</div>
+<span class="font-title-md text-title-md">My Cases 📋</span>
+</div>
+</div>
+</section>
+<!-- Recent Cases -->
+<section class="px-container-margin pb-10">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-headline-lg-mobile text-[22px]">Recent Cases Nearby</h3>
+<button class="text-primary font-label-caps text-label-caps">VIEW ALL</button>
+</div>
+<div class="space-y-4">
+<!-- Case 1 -->
+<div class="bg-white p-4 rounded-[20px] shadow-sm border border-outline-variant/20 flex gap-4">
+<div class="w-20 h-20 rounded-xl bg-surface-container flex items-center justify-center text-3xl shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A close up photo of a limping stray dog on a quiet Indian street during golden hour. The dog looks slightly tired but calm. The background is a soft-focus residential area with warm, earthy tones. High quality cinematic photography with compassionate lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYt3VNn33Uj2rxKebNLL6kXVdmVBS4kfMjVkSbhaLAP16or-usIf_feIuIEUQqWw4lYjMRYNzrtXYRENstfImR-BH8UjstOHU3nE--lotaqG_wKFiK9hTKEpSh1iKAsozdFEbiv4LIDSF5PoO-0lVGScoVHK6Y7LjlbLA_7Ul2vHFwo1xbNDLHTjzV0BBI8GIgOMwKuJacaql-A6sDF9apbUx4kS-i6Nph-jQzE2iF9dGs698MyK7nVMNtBbsaWQcmJ_TPfBuOYjA">
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-title-md text-[16px]">Injured Indie Dog 🐕</h4>
+<p class="text-on-surface-variant font-body-sm text-[12px] flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="location_on">location_on</span>
+                                    Indiranagar, Sector 4
+                                </p>
+</div>
+<span class="bg-error-container text-on-error-container px-2 py-0.5 rounded-full font-label-caps text-[10px]">CRITICAL</span>
+</div>
+<div class="flex justify-between items-center mt-2">
+<span class="bg-surface-container text-primary px-3 py-1 rounded-full font-label-caps text-[10px]">RESCUER ON WAY</span>
+<span class="text-on-surface-variant text-[11px]">2 mins ago</span>
+</div>
+</div>
+</div>
+<!-- Case 2 -->
+<div class="bg-white p-4 rounded-[20px] shadow-sm border border-outline-variant/20 flex gap-4">
+<div class="w-20 h-20 rounded-xl bg-surface-container flex items-center justify-center text-3xl shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A small kitten with a minor eye infection nestled in a safe cardboard box. The lighting is soft and natural. The photography is clean, modern, and high-resolution, emphasizing a sense of care and rehabilitation. Soft teal and white color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEhBRdCDFBGqv58QJkhvFtdDRupaS09S4daUdz072Xf79Ut-Riy8DPil09tmj5Cr7OXka_3TqHYTUkdB49fzkjMrqCNTsUmJYQ738D1jYMBcHSVs1pLk_8_g_aRKaSw6ZzryvDi9xKSX-8iaRjL6N91yAngovHSosEnTpz8GYrCZ-QhyViCdhN45L1mTWKSqC-q20dCdWMQCpMTeg3x-9LVEecwBT4URzAvepCDNGtthdoxOS3a1WhuegGhj18QxAHoBDLiaLDgfQ">
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-title-md text-[16px]">Kitten with Infection 🐈</h4>
+<p class="text-on-surface-variant font-body-sm text-[12px] flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="location_on">location_on</span>
+                                    Koramangala 5th Block
+                                </p>
+</div>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-2 py-0.5 rounded-full font-label-caps text-[10px]">STABLE</span>
+</div>
+<div class="flex justify-between items-center mt-2">
+<span class="bg-surface-container text-primary px-3 py-1 rounded-full font-label-caps text-[10px]">TREATED</span>
+<span class="text-on-surface-variant text-[11px]">1 hour ago</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center py-2 px-base pb-safe bg-surface dark:bg-inverse-surface shadow-lg z-50 rounded-t-xl">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container dark:bg-primary-fixed dark:text-on-primary-fixed rounded-full px-4 py-1 active:scale-90 transition-all duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="home" data-weight="fill" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-secondary-container dark:text-on-secondary-fixed-variant hover:bg-secondary-container dark:hover:bg-on-secondary-fixed-variant transition-colors active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="pets">pets</span>
+<span class="font-label-caps text-label-caps">Rescues</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-secondary-container dark:text-on-secondary-fixed-variant hover:bg-secondary-container dark:hover:bg-on-secondary-fixed-variant transition-colors active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="emergency_share">emergency_share</span>
+<span class="font-label-caps text-label-caps">Report</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-secondary-container dark:text-on-secondary-fixed-variant hover:bg-secondary-container dark:hover:bg-on-secondary-fixed-variant transition-colors active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for cards
+        document.querySelectorAll('.active\\:scale-95').forEach(card => {
+            card.addEventListener('mousedown', () => {
+                card.style.transform = 'scale(0.97)';
+            });
+            card.addEventListener('mouseup', () => {
+                card.style.transform = 'scale(1)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

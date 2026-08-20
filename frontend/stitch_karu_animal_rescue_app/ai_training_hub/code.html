@@ -1,0 +1,411 @@
+<!DOCTYPE html><html class="dark" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>RescueCore AI | AI Training Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-pane {
+            backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .neon-border-glow {
+            box-shadow: 0 0 20px rgba(128, 213, 203, 0.2);
+        }
+        .terminal-glow {
+            text-shadow: 0 0 8px rgba(128, 213, 203, 0.5);
+        }
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+        .scanline {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: rgba(128, 213, 203, 0.1);
+            animation: scanline 4s linear infinite;
+        }
+        .retrain-button {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .retrain-button:hover {
+            box-shadow: 0 0 30px rgba(128, 213, 203, 0.4);
+            transform: scale(1.02);
+        }
+        .retrain-button:active {
+            transform: scale(0.98);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#e5e2e1",
+                        "error": "#ffb4ab",
+                        "secondary-fixed": "#89f5e7",
+                        "primary-container": "#0f766e",
+                        "primary-fixed-dim": "#80d5cb",
+                        "on-primary": "#003733",
+                        "on-secondary": "#003732",
+                        "on-secondary-fixed": "#00201d",
+                        "inverse-surface": "#e5e2e1",
+                        "on-secondary-container": "#00302b",
+                        "surface-tint": "#80d5cb",
+                        "on-error": "#690005",
+                        "tertiary-fixed": "#d8e2ff",
+                        "on-background": "#e5e2e1",
+                        "background": "#131313",
+                        "on-primary-fixed": "#00201d",
+                        "on-tertiary": "#002e6a",
+                        "surface-bright": "#3a3939",
+                        "outline-variant": "#3e4947",
+                        "secondary-container": "#29a195",
+                        "tertiary-fixed-dim": "#adc6ff",
+                        "on-tertiary-fixed": "#001a42",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-highest": "#353534",
+                        "error-container": "#93000a",
+                        "inverse-on-surface": "#313030",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-tertiary-container": "#e4eaff",
+                        "surface-variant": "#353534",
+                        "on-tertiary-fixed-variant": "#004395",
+                        "surface-container-high": "#2a2a2a",
+                        "tertiary-container": "#0165d8",
+                        "primary": "#80d5cb",
+                        "inverse-primary": "#006a63",
+                        "tertiary": "#adc6ff",
+                        "surface": "#131313",
+                        "on-secondary-fixed-variant": "#005049",
+                        "surface-dim": "#131313",
+                        "surface-container-low": "#1c1b1b",
+                        "primary-fixed": "#9cf2e8",
+                        "on-primary-container": "#a3faef",
+                        "surface-container": "#201f1f",
+                        "secondary-fixed-dim": "#6bd8cb",
+                        "secondary": "#6bd8cb",
+                        "outline": "#889391",
+                        "on-surface-variant": "#bdc9c6",
+                        "on-primary-fixed-variant": "#00504a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1440px",
+                        "gutter": "24px",
+                        "margin-desktop": "40px",
+                        "margin-mobile": "16px",
+                        "base-unit": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Outfit"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Outfit"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Outfit"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Outfit"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen selection:bg-primary/30 selection:text-primary overflow-x-hidden">
+<!-- Global Background Mesh -->
+
+<!-- Side Navigation Shell -->
+<aside class="fixed left-0 top-0 h-screen flex flex-col py-margin-desktop bg-surface/60 backdrop-blur-xl h-full w-[280px] border-r border-white/10 shadow-2xl shadow-black/40 z-50">
+<div class="px-8 mb-10">
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary">RescueCore</h1>
+<p class="font-label-md text-label-md text-on-surface-variant/60">Premium Management</p>
+</div>
+<nav class="flex-1 px-4 space-y-2">
+<!-- Nav Item: Dashboard -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-300 group" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard Summary</span>
+</a>
+<!-- Nav Item: Registration -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">verified</span>
+<span class="font-label-md text-label-md">NGO Registration</span>
+</a>
+<!-- Nav Item: Cases -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">pets</span>
+<span class="font-label-md text-label-md">Case Supervision</span>
+</a>
+<!-- Nav Item: Access -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Access Control</span>
+</a>
+<!-- Nav Item: AI HUB (ACTIVE) -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-primary border-l-2 border-primary-container bg-primary-container shadow-[0_0_15px_rgba(15,118,110,0.3)] scale-[0.98] transition-transform duration-200" href="#"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">psychology</span><span class="font-label-md text-label-md">AI Training Hub</span></a>
+</nav>
+<div class="px-4 mt-auto space-y-2">
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-error">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-[280px] w-[calc(100%-280px)] min-h-screen flex flex-col">
+<!-- Top App Bar -->
+<header class="flex justify-between items-center px-margin-desktop h-16 bg-surface/40 backdrop-blur-md border-b border-white/5 sticky top-0 z-40">
+<div class="flex items-center gap-4">
+<h2 class="font-headline-md text-headline-md font-extrabold text-primary">AI Hub</h2>
+<span class="px-2 py-0.5 rounded bg-primary/10 border border-primary/20 text-[10px] font-bold text-primary tracking-widest uppercase">Production-V4</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden lg:block">
+<input class="w-64 bg-white/5 border border-white/10 rounded-full px-10 py-1.5 font-body-md text-body-md focus:ring-1 focus:ring-primary focus:border-primary transition-all" placeholder="Search parameters..." type="text">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">help</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary/40 p-0.5">
+<img class="w-full h-full object-cover rounded-full" data-alt="A professional headshot of a senior AI research administrator, wearing a minimalist high-tech headset, set against a blurred background of glowing server racks and teal neon lighting. The aesthetic is clean, cinematic, and authoritative, matching the premium glassmorphic UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzFs4MsSCthLLt23DNLqzP0DEeoEU_VmIGk9SigHgzB0codGdhfQzA7exgA1AjS6bhkl7iI5QNSZ5kCNd-bbSE5KWWDsq0Ac0aYpgrgw6rVRTZGdlNY7Q6ZWw5ysWnXlHTw4tgknnPMd31v5G254wdhyMWyHrEZb1mKCgjtQahah1gUUwTPXsR0u16VtOhF-TLcdhvh-2Qw8gaZ7cueahws96tSWJTm1-DFxJbg9vV7UVJgBfy5Hn9pHkzgq8AVbbqNQyrgbhIxjQ">
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<div class="p-margin-desktop max-w-[1200px] mx-auto w-full space-y-gutter">
+<!-- Hero Bento Grid -->
+<section class="grid grid-cols-12 gap-gutter">
+<!-- Training Log Counter Card -->
+<div class="col-span-12 md:col-span-4 glass-pane rounded-3xl p-8 relative overflow-hidden group" style="transform: translate3d(1.64844px, -4.46444px, 0px);">
+<div class="absolute -right-10 -bottom-10 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-[160px]">database</span>
+</div>
+<p class="font-label-md text-label-md text-primary tracking-widest uppercase mb-2">Data Integrity</p>
+<h3 class="font-headline-lg text-headline-lg mb-6">MongoDB training logs</h3>
+<div class="flex items-baseline gap-2">
+<span class="font-display-lg text-display-lg text-on-surface terminal-glow" id="log-counter">2,841,902</span>
+<span class="text-secondary font-label-md">+14.2k/hr</span>
+</div>
+<div class="mt-8 flex items-center gap-2">
+<div class="h-1 flex-1 bg-white/5 rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-3/4 shadow-[0_0_8px_rgba(15,118,110,0.5)]"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">75% Sync</span>
+</div>
+</div>
+<!-- Main Action Card -->
+<div class="col-span-12 md:col-span-8 glass-pane rounded-3xl p-8 flex flex-col justify-between bg-gradient-to-br from-primary/5 via-transparent to-transparent" style="transform: translate3d(1.64844px, -4.46444px, 0px);">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md mb-2">Triage Intelligence</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">Iterative fine-tuning of the RescueCore neural network based on the latest field deployments and NGO feedback loops.</p>
+</div>
+<div class="w-16 h-16 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl">bolt</span>
+</div>
+</div>
+<div class="mt-12 flex flex-col sm:flex-row gap-6 items-center">
+<button class="retrain-button px-10 py-4 bg-primary-container text-on-primary font-headline-md text-headline-md rounded-2xl flex items-center gap-3" id="retrain-btn"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">refresh</span>Retrain AI Triage Model</button>
+<div class="flex -space-x-3">
+<div class="w-10 h-10 rounded-full border-2 border-background glass-pane p-0.5" style="transform: translate3d(1.64844px, -4.46444px, 0px);">
+<img class="w-full h-full rounded-full object-cover" data-alt="Close-up portrait of a female data scientist, minimalist studio lighting, high-end professional photography, deep charcoal background with subtle teal accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbH4ARQKBAPHhqwKipxYk23VJdGIDU-nONzYtzwENXJWfoAZ51FcaNA6qR1OUHhUJXL_eMFVIKGAoZFV1KRYzS6CcB6cwUrPII7Pu6B1KaPVOtnrjKta2QH4OeAXsvmh_4p4wJakNxK4A3NA5DvrIQRZ6guSUzfCpjAi1t2hPx2U8Og1WFoRX2gp8Ywz8kVnhqQ1zc62sLQMD97ryQH6-4URLyRyJsM8y7hM7zm-4Ht5XSnEe5WrpZw6pa1Hz9lBgxDqW6Xy6DGso">
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-background glass-pane p-0.5" style="transform: translate3d(1.64844px, -4.46444px, 0px);">
+<img class="w-full h-full rounded-full object-cover" data-alt="Portrait of a male machine learning engineer, wearing a sharp dark sweater, focused expression, cinematic lighting, 8k resolution, glassmorphic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCU3CJZdrk5J-MUiGTOKUSpz_Qvyn-6nLTeKWG549TSq2RyqjlelRokTuP7_mIx59NkEsfGNIWgU8dOLDHCheo6p7p-mky8aS-Ez6jBy0zIIFpt6tWmAQ-QgVxmNkwXJMYP9PdrTCgguKKWEYeaBCO_NP6V7dgc9BSD9gCWmhuUZtpciZ0y0K1Oh0z5Uolryr5Si3C5CMCjeFraDoi87em9ODnn2kXG3fOaTeCmxIH158yFZgMZIKH4yoMJ5VDyQOfw6aV6zG6Xs-s">
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-background glass-pane flex items-center justify-center text-[10px] font-bold text-on-surface-variant" style="transform: translate3d(1.64844px, -4.46444px, 0px);">
+                                +12
+                            </div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Active Model: <span class="text-on-surface">Alpha-7</span></p>
+</div>
+</div>
+<!-- Console Output Widget -->
+<div class="col-span-12 glass-pane rounded-3xl overflow-hidden flex flex-col min-h-[400px]" style="transform: translate3d(1.64844px, -4.46444px, 0px);">
+<div class="bg-white/5 border-b border-white/5 px-6 py-3 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="flex gap-1.5">
+<div class="w-3 h-3 rounded-full bg-error/40"></div>
+<div class="w-3 h-3 rounded-full bg-secondary/40"></div>
+<div class="w-3 h-3 rounded-full bg-primary/40"></div>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant ml-4 font-mono">system.console_output_stream</span>
+</div>
+<div class="flex gap-4">
+<span class="font-label-sm text-label-sm text-primary-container animate-pulse">● LIVE STREAMING</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">UTF-8</span>
+</div>
+</div>
+<div class="flex-1 p-6 font-mono text-sm leading-relaxed relative bg-black/40 overflow-y-auto">
+<div class="scanline"></div>
+<div class="space-y-1 text-on-surface-variant" id="terminal-content">
+<div class="text-primary-container/60"># Initializing RescueCore Console v4.0.1...</div>
+<div class="">[SYSTEM]: Connection to MongoDB established.</div>
+<div class="">[SYSTEM]: Authenticating RSA keys... <span class="text-primary-container">OK</span></div>
+<div class="opacity-50">--------------------------------------------------</div>
+<div class="terminal-cursor">Ready for next instruction.</div>
+</div>
+</div>
+</div>
+<!-- Feedback Loop Details -->
+<div class="col-span-12 md:col-span-6 glass-pane rounded-3xl p-8" style="transform: translate3d(1.64844px, -4.46444px, 0px);">
+<div class="flex items-center gap-4 mb-8">
+<span class="material-symbols-outlined text-secondary">forum</span>
+<h3 class="font-headline-md text-headline-md">Feedback Loop Metrics</h3>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div class="space-y-1">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Precision Score</p>
+<p class="font-headline-lg text-headline-lg text-secondary">98.4%</p>
+</div>
+<div class="space-y-1">
+<p class="font-label-sm text-label-sm text-on-surface-variant">User Agreement</p>
+<p class="font-headline-lg text-headline-lg text-primary">94.1%</p>
+</div>
+<div class="space-y-1">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Latency (ms)</p>
+<p class="font-headline-lg text-headline-lg text-on-surface">124ms</p>
+</div>
+<div class="space-y-1">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Token Efficiency</p>
+<p class="font-headline-lg text-headline-lg text-tertiary">0.003¢</p>
+</div>
+</div>
+</div>
+<!-- Model Visualization -->
+<div class="col-span-12 md:col-span-6 glass-pane rounded-3xl p-8 relative group cursor-crosshair" style="transform: translate3d(1.64844px, -4.46444px, 0px);">
+<div class="absolute inset-0 opacity-20 overflow-hidden rounded-3xl">
+
+</div>
+<div class="relative z-10">
+<h3 class="font-headline-md text-headline-md mb-2">Neural Map</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-12">Visual representation of the active triage weighting nodes.</p>
+<div class="flex justify-end">
+<button class="px-6 py-2 rounded-xl border border-white/10 hover:border-primary/40 hover:bg-white/5 transition-all font-label-md text-label-md flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">fullscreen</span>
+                                Expand Network
+                            </button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<script>
+        // Log Counter Animation
+        function animateCounter(id, target) {
+            const el = document.getElementById(id);
+            let current = 2841500;
+            const step = Math.ceil((target - current) / 100);
+            
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                el.innerText = current.toLocaleString();
+            }, 30);
+        }
+
+        // Terminal Emulation
+        const terminal = document.getElementById('terminal-content');
+        const retrainBtn = document.getElementById('retrain-btn');
+
+        function addTerminalLine(text, type = 'default') {
+            const line = document.createElement('div');
+            const timestamp = new Date().toLocaleTimeString([], { hour12: false });
+            
+            let colorClass = 'text-on-surface-variant';
+            if (type === 'process') colorClass = 'text-secondary font-bold';
+            if (type === 'success') colorClass = 'text-primary terminal-glow';
+            if (type === 'system') colorClass = 'text-primary/60';
+
+            line.innerHTML = `<span class="opacity-30 mr-2">[${timestamp}]</span> <span class="${colorClass}">${text}</span>`;
+            terminal.appendChild(line);
+            
+            // Auto scroll
+            terminal.parentElement.scrollTop = terminal.parentElement.scrollHeight;
+        }
+
+        async function startTraining() {
+            retrainBtn.disabled = true;
+            retrainBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            
+            const steps = [
+                { text: '[FETCHING]: Pulling last 24h MongoDB training logs...', delay: 1000, type: 'process' },
+                { text: '[FETCHING]: 14,203 documents retrieved. Checksum verified.', delay: 800 },
+                { text: '[MERGING]: Deduplicating feedback vectors...', delay: 1200, type: 'process' },
+                { text: '[MERGING]: Merging NGO correction layers into global weights...', delay: 1500 },
+                { text: '[TRAINING]: Initializing PyTorch-XLA acceleration...', delay: 1000, type: 'process' },
+                { text: '[TRAINING]: Epoch 1/5 | Loss: 0.842 | Acc: 89.1%', delay: 1000 },
+                { text: '[TRAINING]: Epoch 3/5 | Loss: 0.124 | Acc: 96.8%', delay: 1000 },
+                { text: '[TRAINING]: Epoch 5/5 | Loss: 0.041 | Acc: 98.4%', delay: 1000 },
+                { text: '[SAVING]: Exporting ONNX weights to edge-cloud...', delay: 1500, type: 'process' },
+                { text: '[SUCCESS]: AI Triage Model Alpha-7 updated and deployed.', delay: 800, type: 'success' },
+            ];
+
+            for (const step of steps) {
+                addTerminalLine(step.text, step.type);
+                await new Promise(resolve => setTimeout(resolve, step.delay));
+            }
+
+            retrainBtn.disabled = false;
+            retrainBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+
+        retrainBtn.addEventListener('click', startTraining);
+
+        // Initial interactions
+        window.onload = () => {
+            animateCounter('log-counter', 2841902);
+            
+            // Subtle parallax effect on cards
+            document.addEventListener('mousemove', (e) => {
+                const panes = document.querySelectorAll('.glass-pane');
+                const mouseX = (e.clientX / window.innerWidth) - 0.5;
+                const mouseY = (e.clientY / window.innerHeight) - 0.5;
+
+                panes.forEach(pane => {
+                    const depth = pane.getAttribute('data-depth') || 10;
+                    const moveX = mouseX * depth;
+                    const moveY = mouseY * depth;
+                    pane.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
+                });
+            });
+        };
+    </script>
+
+
+
+</body></html>

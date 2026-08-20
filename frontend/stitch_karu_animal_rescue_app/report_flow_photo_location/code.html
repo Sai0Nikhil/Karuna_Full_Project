@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Karuṇā - Report Animal in Distress</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600;700&amp;family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container": "#e5eeff",
+                    "primary-fixed-dim": "#80d5cb",
+                    "surface-dim": "#d1dbec",
+                    "on-secondary-fixed-variant": "#454747",
+                    "inverse-on-surface": "#eaf1ff",
+                    "tertiary-fixed": "#ffdbca",
+                    "secondary-fixed": "#e2e2e2",
+                    "on-surface-variant": "#3e4947",
+                    "on-error-container": "#93000a",
+                    "on-error": "#ffffff",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#121c28",
+                    "secondary": "#5d5f5f",
+                    "tertiary": "#893a00",
+                    "surface-container-high": "#dfe9fa",
+                    "outline-variant": "#bdc9c6",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#ffb690",
+                    "surface-container-highest": "#d9e3f4",
+                    "on-tertiary-fixed-variant": "#783200",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-container": "#616363",
+                    "on-primary-fixed": "#00201d",
+                    "on-tertiary-fixed": "#341100",
+                    "surface-variant": "#d9e3f4",
+                    "inverse-surface": "#27313e",
+                    "primary": "#005c55",
+                    "inverse-primary": "#80d5cb",
+                    "on-tertiary-container": "#ffe6da",
+                    "on-primary-fixed-variant": "#00504a",
+                    "surface-tint": "#006a63",
+                    "surface-container-low": "#eef4ff",
+                    "background": "#f8f9ff",
+                    "secondary-container": "#dfe0e0",
+                    "primary-container": "#0f766e",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "on-secondary": "#ffffff",
+                    "on-background": "#121c28",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#9cf2e8",
+                    "tertiary-container": "#af4c00",
+                    "surface-bright": "#f8f9ff",
+                    "outline": "#6e7977",
+                    "surface": "#f8f9ff",
+                    "error-container": "#ffdad6",
+                    "on-primary-container": "#a3faef"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "xs": "4px",
+                    "xl": "48px",
+                    "sm": "12px",
+                    "lg": "32px",
+                    "md": "20px",
+                    "container-margin": "20px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["EB Garamond"],
+                    "body-sm": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "label-caps": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["EB Garamond"],
+                    "display-lg": ["EB Garamond"],
+                    "title-md": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "600"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .progress-line {
+            height: 2px;
+            width: 100%;
+            background-color: #e5e7eb;
+            position: absolute;
+            top: 14px;
+            z-index: 0;
+        }
+        .jali-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0l20 20-20 20L0 20z' fill='%23005c55' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-lg jali-pattern">
+<!-- Top Navigation Suppression: Linear Task Flow -->
+<!-- As per Shell Visibility Rule: suppressed for transactional/task-focused pages -->
+<header class="pt-12 px-container-margin pb-6">
+<div class="flex items-center mb-8">
+<button aria-label="Go back" class="p-2 -ml-2 rounded-full hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-on-surface">arrow_back</span>
+</button>
+<div class="flex-1 flex justify-center pr-8">
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Karuṇā</span>
+</div>
+</div>
+<!-- Progress Stepper -->
+<div class="relative flex justify-between items-start w-full px-2">
+<div class="progress-line"></div>
+<!-- Step 1: Active -->
+<div class="relative z-10 flex flex-col items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-primary flex items-center justify-center border-4 border-surface">
+<div class="w-2 h-2 rounded-full bg-white"></div>
+</div>
+<span class="font-label-caps text-label-caps text-primary">Photo</span>
+</div>
+<!-- Step 2 -->
+<div class="relative z-10 flex flex-col items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-outline-variant flex items-center justify-center border-4 border-surface"></div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Analysis</span>
+</div>
+<!-- Step 3 -->
+<div class="relative z-10 flex flex-col items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-outline-variant flex items-center justify-center border-4 border-surface"></div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Details</span>
+</div>
+<!-- Step 4 -->
+<div class="relative z-10 flex flex-col items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-outline-variant flex items-center justify-center border-4 border-surface"></div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Confirm</span>
+</div>
+</div>
+</header>
+<main class="flex-1 px-container-margin pb-32">
+<div class="mb-lg">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-xs">Report an Injured Animal</h1>
+<p class="text-body-sm text-on-surface-variant">Your prompt action can save a life. Start by sharing a photo of the animal and its location.</p>
+</div>
+<!-- Upload Area (Asymmetric Bento-style focus) -->
+<div class="relative group">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary to-primary-container rounded-xl blur opacity-10 group-hover:opacity-20 transition duration-1000 group-hover:duration-200"></div>
+<label class="relative flex flex-col items-center justify-center w-full aspect-square bg-surface-container-lowest border-2 border-dashed border-primary/30 rounded-xl cursor-pointer hover:border-primary/60 transition-all duration-300" for="file-upload">
+<input accept="image/*" class="hidden" id="file-upload" type="file"/>
+<div class="p-lg bg-surface-container-low rounded-full mb-md transition-transform duration-300 group-active:scale-90">
+<span class="material-symbols-outlined text-[48px] text-primary" style="font-variation-settings: 'FILL' 1;">photo_camera</span>
+</div>
+<p class="font-title-md text-title-md text-primary text-center px-lg mb-xs">Tap to take photo</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">or choose from gallery</p>
+<!-- Micro-interaction Hint -->
+<div class="mt-lg flex items-center gap-2 text-primary/60">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span class="font-label-caps text-[10px] tracking-widest uppercase">Safe &amp; Private Upload</span>
+</div>
+</label>
+</div>
+<!-- Location Button -->
+<div class="mt-lg">
+<button class="w-full flex items-center justify-center gap-base py-md border-2 border-primary text-primary rounded-xl font-title-md text-title-md hover:bg-primary-fixed-dim/10 active:scale-95 transition-all">
+<span class="material-symbols-outlined">location_on</span>
+                📍 Get My Location
+            </button>
+<div class="mt-base flex items-center justify-center">
+<p class="text-body-sm text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">info</span>
+                    We'll notify the nearest rescue team to this spot.
+                </p>
+</div>
+</div>
+<!-- Asymmetric Background Accent -->
+<div class="fixed -bottom-10 -left-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl -z-10"></div>
+<div class="fixed top-1/4 -right-10 w-32 h-32 bg-primary/5 rounded-full blur-2xl -z-10"></div>
+</main>
+<!-- Bottom Action Bar (Floating Style) -->
+<footer class="fixed bottom-0 left-0 w-full p-container-margin bg-gradient-to-t from-background via-background to-transparent pt-lg">
+<button class="w-full bg-primary text-white py-lg rounded-xl font-title-md text-title-md shadow-lg shadow-primary/20 flex items-center justify-center gap-sm hover:bg-on-primary-fixed-variant active:scale-[0.98] transition-all">
+            Next →
+        </button>
+</footer>
+<script>
+        // Simple Interaction logic for file upload feedback
+        const fileInput = document.getElementById('file-upload');
+        const uploadArea = fileInput.closest('label');
+
+        fileInput.addEventListener('change', function(e) {
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadArea.style.backgroundImage = `url('${e.target.result}')`;
+                    uploadArea.style.backgroundSize = 'cover';
+                    uploadArea.style.backgroundPosition = 'center';
+                    uploadArea.innerHTML = `
+                        <div class="absolute top-4 right-4 bg-primary text-white p-2 rounded-full shadow-md">
+                            <span class="material-symbols-outlined">check</span>
+                        </div>
+                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full border border-primary/20">
+                            <span class="font-label-caps text-primary">Photo Attached</span>
+                        </div>
+                    `;
+                }
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+
+        // Vibrate on primary button press if supported
+        document.querySelector('button').addEventListener('click', () => {
+            if (window.navigator.vibrate) {
+                window.navigator.vibrate(20);
+            }
+        });
+    </script>
+</body></html>

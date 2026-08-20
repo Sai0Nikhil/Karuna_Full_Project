@@ -1,0 +1,322 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Karuṇā - Case Resolved</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600;700&amp;family=Hanken+Grotesk:wght@400;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+        .paw-star.active {
+            font-variation-settings: 'FILL' 1;
+            color: #0f766e;
+        }
+        .jali-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l30 30-30 30-30-30z' fill='%23005c55' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        .success-confetti {
+            pointer-events: none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#bdc9c6",
+                        "on-tertiary-fixed-variant": "#783200",
+                        "surface-container-highest": "#d9e3f4",
+                        "secondary-container": "#dfe0e0",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#eef4ff",
+                        "on-secondary-container": "#616363",
+                        "on-tertiary-container": "#ffe6da",
+                        "on-primary-fixed-variant": "#00504a",
+                        "surface-dim": "#d1dbec",
+                        "on-tertiary-fixed": "#341100",
+                        "background": "#f8f9ff",
+                        "on-surface-variant": "#3e4947",
+                        "on-error": "#ffffff",
+                        "primary-container": "#0f766e",
+                        "surface-tint": "#006a63",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "tertiary": "#893a00",
+                        "inverse-surface": "#27313e",
+                        "primary-fixed-dim": "#80d5cb",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#a3faef",
+                        "primary-fixed": "#9cf2e8",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#ffdbca",
+                        "surface-bright": "#f8f9ff",
+                        "tertiary-container": "#af4c00",
+                        "on-secondary-fixed-variant": "#454747",
+                        "on-primary-fixed": "#00201d",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#dfe9fa",
+                        "surface-variant": "#d9e3f4",
+                        "secondary-fixed": "#e2e2e2",
+                        "secondary": "#5d5f5f",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#80d5cb",
+                        "on-background": "#121c28",
+                        "tertiary-fixed-dim": "#ffb690",
+                        "surface-container": "#e5eeff",
+                        "primary": "#005c55",
+                        "outline": "#6e7977",
+                        "on-surface": "#121c28",
+                        "surface": "#f8f9ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "12px",
+                        "xs": "4px",
+                        "md": "20px",
+                        "lg": "32px",
+                        "container-margin": "20px",
+                        "gutter": "16px",
+                        "xl": "48px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["EB Garamond"],
+                        "display-lg": ["EB Garamond"],
+                        "body-sm": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-lg": ["EB Garamond"],
+                        "title-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "600"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-lg overflow-x-hidden min-h-screen">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-container-lowest shadow-sm flex items-center justify-between px-container-margin h-16 w-full">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer active:scale-95 duration-150">menu</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary dark:text-primary-fixed">Karuṇā</h1>
+</div>
+<div class="w-10 h-10 rounded-full bg-secondary-fixed overflow-hidden ring-2 ring-primary/10">
+<img class="w-full h-full object-cover" data-alt="A professional close-up studio portrait of a young Indian woman with a kind expression, wearing minimalist clothing. The background is a soft, warm neutral tone. The lighting is diffused and professional, matching a clean light-mode UI aesthetic with high-end photographic quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCv2nS8DqfnbRpqYFVBTg3BNAnGZb8n1fwiUl_kGMdxtDTl0DU7IoumCy8HZf8dvtywKtXj7LWXwjwFkatBNXuZ9Upo4FFtXI1CClGbbSfwRB0o9_KywPJT5lU2Ptlt3HG9BUAuqYdCWlX8m_iKZrmkWSZ4Q-adKMYb6njfT2ziQTE4YwAvAfxeLIG3pTGF61yoXzSslfjyTzbupj_W0jN2OvdK_YCShXnJrpjtpCZrQlXUZMISgCESMdnGkY-jDzNhayqchFcjIWE">
+</div>
+</header>
+<!-- Main Content -->
+<main class="pt-24 pb-32 px-container-margin jali-pattern min-h-screen relative">
+<canvas class="success-confetti" id="confetti"></canvas>
+<div class="max-w-xl mx-auto space-y-lg relative z-10">
+<!-- Success Header -->
+<section class="text-center space-y-xs animate-in fade-in slide-in-from-bottom-4 duration-700">
+<div class="inline-flex items-center justify-center w-20 h-20 bg-primary-fixed rounded-full mb-4 shadow-sm">
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">celebration</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Case Resolved! 🐾</h2>
+<p class="font-body-lg text-on-surface-variant max-w-xs mx-auto">Case #KR-4822: Indie Dog has been Discharged.</p>
+</section>
+<!-- Rescuer Profile Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm transition-transform hover:scale-[1.01]">
+<div class="flex items-center gap-md">
+<div class="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border-2 border-primary-fixed">
+<img class="w-full h-full object-cover" data-alt="A warm, empathetic portrait of Arjun Varma, a male animal rescuer in his early 30s with a gentle smile. He is outdoors in a sun-drenched Indian park with soft greenery in the background. The aesthetic is clean, professional, and optimistic, utilizing natural golden hour lighting to emphasize a sense of trust and compassion." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCj3UugZu0rA9X4ipwlhuQ_LTnKj9JncdKRTrdrgNOTXsjg_lQx4zcJEWODuq7ubwag9TQDQKmAxN4bJo7uC2KEoLhFKRn6JVa_qPsm1N3Qpf9HcgaGbZK5U0jW6M8LDT7CBCRY08CODZDshigSayIVyslwqNpKlQzJwh52nv-7QkT1UWq91jSHuyJsS6loay0sRc2BzDJDdTwqJJY_LcOR6WW4XalZ4NG6a5t4z-eKHILQb4SN_VOhUJRVzitXGDbAMvXtrxCJPnM">
+</div>
+<div class="flex-grow">
+<p class="font-label-caps text-label-caps text-on-surface-variant">YOUR HERO</p>
+<h3 class="font-title-md text-title-md text-on-surface">Rescued by Arjun Varma</h3>
+<p class="text-body-sm text-secondary">Rescue Specialist • 152 Lives Saved</p>
+</div>
+</div>
+<button class="w-full mt-md bg-primary text-on-primary py-3 rounded-lg font-title-md flex items-center justify-center gap-2 hover:bg-primary-container transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined">favorite</span>
+                    Thank Rescuer
+                </button>
+</div>
+<!-- Feedback Section -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm space-y-md">
+<div class="text-center">
+<h4 class="font-title-md text-title-md text-on-surface mb-2">Rate the Rescue Experience</h4>
+<div class="flex justify-center gap-sm" id="rating-container">
+<button class="paw-star text-4xl transition-all hover:scale-110 active:scale-90" data-value="1">
+<span class="material-symbols-outlined text-4xl">pets</span>
+</button>
+<button class="paw-star text-4xl transition-all hover:scale-110 active:scale-90" data-value="2">
+<span class="material-symbols-outlined text-4xl">pets</span>
+</button>
+<button class="paw-star text-4xl transition-all hover:scale-110 active:scale-90" data-value="3">
+<span class="material-symbols-outlined text-4xl">pets</span>
+</button>
+<button class="paw-star text-4xl transition-all hover:scale-110 active:scale-90" data-value="4">
+<span class="material-symbols-outlined text-4xl">pets</span>
+</button>
+<button class="paw-star text-4xl transition-all hover:scale-110 active:scale-90" data-value="5">
+<span class="material-symbols-outlined text-4xl">pets</span>
+</button>
+</div>
+</div>
+<div class="space-y-xs">
+<label class="font-label-caps text-label-caps text-on-surface-variant ml-1">Leave a message for the team</label>
+<textarea class="w-full bg-background border-b border-outline focus:border-primary focus:ring-0 rounded-t-lg p-3 min-h-[100px] font-body-lg text-on-surface placeholder:text-on-surface-variant/50" placeholder="Share your gratitude or feedback..."></textarea>
+</div>
+</section>
+<!-- Social Share -->
+<div class="space-y-md">
+<button class="w-full bg-primary-container text-on-primary-container py-4 rounded-xl font-title-md flex items-center justify-center gap-3 shadow-lg shadow-primary-container/20 hover:bg-primary-container/90 transition-all active:scale-95">
+<span class="material-symbols-outlined">ios_share</span>
+                    Share Impact
+                </button>
+<div class="flex justify-center gap-lg py-2">
+<div class="flex flex-col items-center gap-1 cursor-pointer group">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-on-secondary-fixed">face_nod</span>
+</div>
+<span class="text-xs font-label-caps text-on-surface-variant">Facebook</span>
+</div>
+<div class="flex flex-col items-center gap-1 cursor-pointer group">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-on-secondary-fixed">share_reviews</span>
+</div>
+<span class="text-xs font-label-caps text-on-surface-variant">Instagram</span>
+</div>
+<div class="flex flex-col items-center gap-1 cursor-pointer group">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-on-secondary-fixed">chat</span>
+</div>
+<span class="text-xs font-label-caps text-on-surface-variant">WhatsApp</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Nav Bar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container-lowest dark:bg-surface-container-low border-t border-outline-variant shadow-lg flex justify-around items-center h-20 px-base pb-safe w-full">
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed font-bold bg-primary-container/10 rounded-xl p-1 px-4" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim p-1 px-4 hover:text-primary-container transition-all" href="#">
+<span class="material-symbols-outlined">pets</span>
+<span class="font-label-caps text-label-caps">Rescues</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim p-1 px-4 hover:text-primary-container transition-all" href="#">
+<span class="material-symbols-outlined">emergency_share</span>
+<span class="font-label-caps text-label-caps">Report</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim p-1 px-4 hover:text-primary-container transition-all" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-caps text-label-caps">Community</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim p-1 px-4 hover:text-primary-container transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</nav>
+<script>
+        // Rating interaction
+        const pawStars = document.querySelectorAll('.paw-star');
+        pawStars.forEach((star, index) => {
+            star.addEventListener('click', () => {
+                const value = parseInt(star.getAttribute('data-value'));
+                pawStars.forEach((s, i) => {
+                    if (i < value) {
+                        s.classList.add('active');
+                    } else {
+                        s.classList.remove('active');
+                    }
+                });
+                
+                // Visual feedback
+                star.classList.add('scale-125');
+                setTimeout(() => star.classList.remove('scale-125'), 200);
+            });
+        });
+
+        // Simple Confetti Effect
+        const canvas = document.getElementById('confetti');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height - canvas.height;
+                this.size = Math.random() * 8 + 4;
+                this.speed = Math.random() * 3 + 2;
+                this.color = ['#005c55', '#80d5cb', '#ffdbca', '#0f766e'][Math.floor(Math.random() * 4)];
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = Math.random() * 5 - 2.5;
+            }
+
+            update() {
+                this.y += this.speed;
+                this.rotation += this.rotationSpeed;
+                if (this.y > canvas.height) {
+                    this.y = -20;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation * Math.PI / 180);
+                ctx.fillStyle = this.color;
+                ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size);
+                ctx.restore();
+            }
+        }
+
+        function init() {
+            resize();
+            for (let i = 0; i < 50; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', resize);
+        init();
+        animate();
+    </script>
+</body></html>
