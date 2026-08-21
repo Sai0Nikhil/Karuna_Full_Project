@@ -82,6 +82,15 @@ public class AIController {
     }
 
     /**
+     * Predict clinical pain severity level for an animal based on breed, weight, vitals, and GCPS checklist.
+     */
+    @PostMapping("/pain-index")
+    @Operation(summary = "Canine clinical pain index evaluation based on vitals and GCPS scale")
+    public ResponseEntity<Map<String, Object>> painIndex(@RequestBody Map<String, Object> body) {
+        return ResponseEntity.ok(aiService.predictPain(body));
+    }
+
+    /**
      * Legacy triage endpoint (kept for backward compatibility).
      */
     @PostMapping("/triage")

@@ -134,3 +134,10 @@ export const updateAdoptionStatus = (adoptionId: number, status: string) =>
   fetch(`${BASE}/adoptions/${adoptionId}`, {
     method: 'PUT', headers: authHeaders(), body: JSON.stringify({ status }),
   }).then(handle);
+
+export const getPainIndex = (data: any) =>
+  fetch(`${BASE}/ai/pain-index`, {
+    method: 'POST',
+    headers: authHeaders(),
+    body: JSON.stringify(data),
+  }).then(handle);

@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../models/case_model.dart';
 import '../../providers/volunteer_provider.dart';
 import '../../utils/app_colors.dart';
+import 'pain_assessment_screen.dart';
 
 /// Full case detail view for the volunteer — see triage info, navigate,
 /// update case status step by step.
@@ -202,6 +203,36 @@ class _VolunteerCaseDetailState extends State<VolunteerCaseDetail> {
                 ),
               ),
             if (c.latitude != null) const SizedBox(height: 12),
+
+            // Clinical Pain Assessment Button (GCPS Vitals)
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                icon: const Icon(Icons.favorite_border),
+                label: const Text('Clinical Pain Assessment'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.tealBg,
+                  foregroundColor: AppColors.teal,
+                  elevation: 0,
+                  side: const BorderSide(color: AppColors.teal),
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12)),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PainAssessmentScreen(
+                        breed: 'unknown_breed',
+                        species: c.species ?? 'dog',
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+            const SizedBox(height: 12),
 
             if (_nextStatus != null)
               SizedBox(

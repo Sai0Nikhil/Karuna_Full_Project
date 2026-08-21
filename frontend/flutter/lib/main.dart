@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'providers/auth_provider.dart';
+import 'models/case_model.dart';
 import 'providers/case_provider.dart';
 import 'providers/volunteer_provider.dart';
 import 'utils/app_theme.dart';
@@ -124,7 +125,7 @@ class KarunaApp extends StatelessWidget {
         return _fade(const VolunteerHome());
 
       case '/volunteer/case':
-        final caseModel = settings.arguments;
+        final caseModel = settings.arguments as CaseModel;
         return _slide(VolunteerCaseDetail(caseModel: caseModel));
 
       // ── Veterinary Clinic portal ─────────────────────────────────────────

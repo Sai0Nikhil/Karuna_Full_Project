@@ -25,20 +25,30 @@ print("🐾 Loading YOLOv8 model...")
 yolo_model = YOLO("yolov8n.pt")
 print("🐾 YOLOv8 model loaded successfully!")
 
+import joblib
+
+# Try to load pain model
+pain_model = None
+for path in ["pain_model.joblib", "backend/ai-service/pain_model.joblib"]:
+    if os.path.exists(path):
+        print(f"🐾 Loading Pain Index model from {path}...")
+        try:
+            pain_model = joblib.load(path)
+            print("🐾 Pain Index model loaded successfully!")
+        except Exception as ex:
+            print(f"⚠️ Error loading pain model from {path}: {ex}")
+        break
+
 # Initialize triage model
 init_triage_model()
 
-# COCO class mappings for species
+# COCO class mappings for species (Restricted to domestic/street rescue animals)
 SPECIES_CLASSES = {
     15: "cat",
     16: "dog",
     17: "horse",
     18: "sheep",
     19: "cow",
-    20: "elephant",
-    21: "bear",
-    22: "zebra",
-    23: "giraffe",
     14: "bird"
 }
 
@@ -92,6 +102,9 @@ async def predict(
                 if "dog" in desc_lower: detected_species = "dog"
                 elif "cat" in desc_lower: detected_species = "cat"
                 elif "cow" in desc_lower: detected_species = "cow"
+                elif "pig" in desc_lower: detected_species = "pig"
+                elif "goat" in desc_lower or "sheep" in desc_lower: detected_species = "goat/sheep"
+                elif "horse" in desc_lower: detected_species = "horse"
                 elif "bird" in desc_lower: detected_species = "bird"
             
             detections.append({
@@ -199,6 +212,78 @@ async def retrain(payload: list = Body(...)):
             "message": "Triage model retrained successfully.",
             "total_samples": total_samples,
             "new_samples_added": len(payload)
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/predict-pain")
+async def predict_pain(body: dict = Body(...)):
+    global pain_model
+    if pain_model is None:
+        for path in ["pain_model.joblib", "backend/ai-service/pain_model.joblib"]:
+            if os.path.exists(path):
+                try:
+                    pain_model = joblib.load(path)
+                except:
+                    pass
+                break
+        if pain_model is None:
+            raise HTTPException(status_code=500, detail="Pain model not loaded.")
+            
+    try:
+        import numpy as np
+        import pandas as pd
+        
+        breed = str(body.get("breed", "unknown_breed")).lower().strip()
+        sex = str(body.get("sex", "unknown_sex")).lower().strip()
+        neuter_status = str(body.get("neuterStatus", "unknown_status")).lower().strip()
+        
+        weight = body.get("weight")
+        weight = float(weight) if weight is not None else np.nan
+        
+        gcps_1 = int(body.get("gcps1", 0))
+        gcps_2 = int(body.get("gcps2", 0))
+        gcps_3 = int(body.get("gcps3", 0))
+        gcps_4 = int(body.get("gcps4", 0))
+        
+        temperature = body.get("temperature")
+        temperature = float(temperature) if temperature is not None else 38.5
+        
+        heart_rate = body.get("heartRate")
+        heart_rate = float(heart_rate) if heart_rate is not None else 100.0
+        
+        input_data = pd.DataFrame([{
+            "Breed": breed,
+            "Sex": sex,
+            "Neuter status": neuter_status,
+            "Weight": weight,
+            "gcps_1": gcps_1,
+            "gcps_2": gcps_2,
+            "gcps_3": gcps_3,
+            "gcps_4": gcps_4,
+            "temperature": temperature,
+            "heart_rate": heart_rate
+        }])
+        
+        prediction = pain_model.predict(input_data)[0]
+        probs = pain_model.predict_proba(input_data)[0]
+        confidence = float(max(probs))
+        
+        advice = "No immediate pain medication indicated. Monitor closely."
+        if prediction == "moderate":
+            advice = "Moderate pain detected. Keep the animal warm, calm, and consult a vet for mild pain management options."
+        elif prediction == "severe":
+            advice = "WARNING: Severe clinical pain detected. Administer direct animal analgesics under vet supervision immediately!"
+            
+        return {
+            "painLevel": prediction,
+            "confidence": confidence,
+            "advice": advice,
+            "parameters": {
+                "temperature": temperature,
+                "heartRate": heart_rate,
+                "weight": weight if not pd.isna(weight) else None
+            }
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

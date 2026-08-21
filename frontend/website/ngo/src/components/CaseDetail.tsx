@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { getCase, assignCase, advanceCase, addNote, getResponders, updateAdoptionStatus, subscribeToCaseUpdates } from '../api';
+import { getCase, assignCase, advanceCase, addNote, getResponders, updateAdoptionStatus, subscribeToCaseUpdates, getPainIndex } from '../api';
 
 interface Props { caseId: number; onBack: () => void; user: any; }
 
@@ -27,6 +27,38 @@ export const CaseDetail: React.FC<Props> = ({ caseId, onBack, user }) => {
   const [loading, setLoading] = useState(true);
   const [noteText, setNoteText] = useState('');
   const [actionLoading, setActionLoading] = useState(false);
+
+  const [gcps1, setGcps1] = useState(0);
+  const [gcps2, setGcps2] = useState(0);
+  const [gcps3, setGcps3] = useState(0);
+  const [gcps4, setGcps4] = useState(0);
+  const [weight, setWeight] = useState('');
+  const [temp, setTemp] = useState('');
+  const [hr, setHr] = useState('');
+  const [painResult, setPainResult] = useState<any>(null);
+  const [painLoading, setPainLoading] = useState(false);
+
+  const handlePainAssess = async () => {
+    setPainLoading(true);
+    try {
+      const data = await getPainIndex({
+        breed: 'unknown_breed',
+        species: c?.species || 'dog',
+        gcps1,
+        gcps2,
+        gcps3,
+        gcps4,
+        weight: weight ? parseFloat(weight) : undefined,
+        temperature: temp ? parseFloat(temp) : undefined,
+        heartRate: hr ? parseFloat(hr) : undefined
+      });
+      setPainResult(data);
+    } catch (err: any) {
+      alert(err.message);
+    } finally {
+      setPainLoading(false);
+    }
+  };
 
   const load = useCallback((showLoading = true) => {
     if (showLoading) setLoading(true);
@@ -194,6 +226,75 @@ export const CaseDetail: React.FC<Props> = ({ caseId, onBack, user }) => {
               </select>
             </div>
           )}
+
+          {/* Pain Assessment */}
+          <div className="bg-white rounded-xl border border-slate-200 p-5">
+            <h3 className="font-semibold text-slate-700 mb-3">🩺 Pain Index Assessment</h3>
+            <div className="space-y-3">
+              <div>
+                <label className="block text-xs font-medium text-slate-500 mb-1">Kennel Posture</label>
+                <select value={gcps1} onChange={e => setGcps1(parseInt(e.target.value))} className="w-full p-2 border border-slate-300 rounded-lg text-sm">
+                  <option value="0">Quiet (0)</option>
+                  <option value="1">Crying or whimpering (1)</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-slate-500 mb-1">Attention to Pain Site</label>
+                <select value={gcps2} onChange={e => setGcps2(parseInt(e.target.value))} className="w-full p-2 border border-slate-300 rounded-lg text-sm">
+                  <option value="0">Ignoring (0)</option>
+                  <option value="1">Looking (1)</option>
+                  <option value="2">Licking (2)</option>
+                  <option value="3">Rubbing (3)</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-slate-500 mb-1">Mobility / Walking</label>
+                <select value={gcps3} onChange={e => setGcps3(parseInt(e.target.value))} className="w-full p-2 border border-slate-300 rounded-lg text-sm">
+                  <option value="0">Normal (0)</option>
+                  <option value="1">Lame (1)</option>
+                  <option value="2">Slow & Reluctant (2)</option>
+                  <option value="3">Stiff (3)</option>
+                  <option value="4">Refuses to move (4)</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-slate-500 mb-1">Response to Touch</label>
+                <select value={gcps4} onChange={e => setGcps4(parseInt(e.target.value))} className="w-full p-2 border border-slate-300 rounded-lg text-sm">
+                  <option value="0">Do nothing (0)</option>
+                  <option value="1">Look round (1)</option>
+                  <option value="2">Flinch (2)</option>
+                  <option value="3">Growl or guard (3)</option>
+                  <option value="4">Snap (4)</option>
+                  <option value="5">Cry (5)</option>
+                </select>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <div>
+                  <label className="block text-xs font-medium text-slate-500 mb-1">Temp (°C)</label>
+                  <input type="number" placeholder="38.5" value={temp} onChange={e => setTemp(e.target.value)} className="w-full p-2 border border-slate-300 rounded-lg text-sm" />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-slate-500 mb-1">HR (bpm)</label>
+                  <input type="number" placeholder="100" value={hr} onChange={e => setHr(e.target.value)} className="w-full p-2 border border-slate-300 rounded-lg text-sm" />
+                </div>
+              </div>
+              <button onClick={handlePainAssess} disabled={painLoading} className="w-full bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium py-2 rounded-lg disabled:opacity-50">
+                {painLoading ? 'Evaluating...' : 'Assess Pain Index'}
+              </button>
+              
+              {painResult && (
+                <div className={`p-3 rounded-lg border text-sm mt-3 ${
+                  painResult.painLevel === 'severe' ? 'bg-red-50 border-red-200 text-red-800' :
+                  painResult.painLevel === 'moderate' ? 'bg-amber-50 border-amber-200 text-amber-800' :
+                  'bg-green-50 border-green-200 text-green-800'
+                }`}>
+                  <p className="font-semibold">Pain Level: {painResult.painLevel.toUpperCase()}</p>
+                  <p className="text-xs text-slate-500 mb-1">Confidence: {(painResult.confidence * 100).toFixed(1)}%</p>
+                  <p className="text-xs">{painResult.advice}</p>
+                </div>
+              )}
+            </div>
+          </div>
 
           {/* Donations */}
           <div className="bg-white rounded-xl border border-slate-200 p-5">

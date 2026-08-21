@@ -390,6 +390,72 @@ public class AIService {
         };
     }
 
+    public Map<String, Object> predictPain(Map<String, Object> body) {
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://ai-service:8000/predict-pain";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(body, headers);
+
+        try {
+            ResponseEntity<Map> response = restTemplate.postForEntity(url, requestEntity, Map.class);
+            if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
+                Map<String, Object> responseBody = (Map<String, Object>) response.getBody();
+                
+                try {
+                    AiPrediction prediction = new AiPrediction();
+                    prediction.setProvider("pain-rf-v1");
+                    prediction.setModel("RandomForest-Pain");
+                    prediction.setPredictionType("pain-assessment");
+                    prediction.setConfidenceScore(responseBody.get("confidence") != null ? Double.parseDouble(responseBody.get("confidence").toString()) : 0.89);
+                    prediction.setInputMetadata(body);
+                    prediction.setOutput(responseBody);
+                    prediction.setCreatedAt(java.time.LocalDateTime.now());
+                    aiPredictionRepository.save(prediction);
+                } catch (Exception mongoEx) {
+                    System.err.println("Could not save Pain prediction to MongoDB: " + mongoEx.getMessage());
+                }
+                
+                return responseBody;
+            }
+        } catch (Exception e) {
+            System.err.println("Failed to call Python Pain Index service: " + e.getMessage());
+        }
+
+        // Rule-based fallback if Python service is down
+        int gcpsScore = 0;
+        gcpsScore += body.get("gcps1") != null ? Integer.parseInt(body.get("gcps1").toString()) : 0;
+        gcpsScore += body.get("gcps2") != null ? Integer.parseInt(body.get("gcps2").toString()) : 0;
+        gcpsScore += body.get("gcps3") != null ? Integer.parseInt(body.get("gcps3").toString()) : 0;
+        gcpsScore += body.get("gcps4") != null ? Integer.parseInt(body.get("gcps4").toString()) : 0;
+        
+        Double temp = body.get("temperature") != null ? Double.parseDouble(body.get("temperature").toString()) : 38.5;
+        Double hr = body.get("heartRate") != null ? Double.parseDouble(body.get("heartRate").toString()) : 100.0;
+        
+        String level = "mild";
+        if (gcpsScore >= 3 || temp > 39.5 || hr > 130) {
+            level = "severe";
+        } else if (gcpsScore >= 1 || temp > 39.0 || hr > 110) {
+            level = "moderate";
+        }
+        
+        String advice = "No immediate pain medication indicated. Monitor closely (Fallback).";
+        if (level.equals("moderate")) {
+            advice = "Moderate pain detected. Keep the animal warm, calm, and consult a vet for mild pain management options (Fallback).";
+        } else if (level.equals("severe")) {
+            advice = "WARNING: Severe clinical pain detected. Administer direct animal analgesics under vet supervision immediately (Fallback)!";
+        }
+
+        return Map.of(
+            "painLevel", level,
+            "confidence", 0.64,
+            "advice", advice,
+            "parameters", Map.of("temperature", temp, "heartRate", hr)
+        );
+    }
+
     private String buildSummaryText(RescueCase rc) {
         StringBuilder sb = new StringBuilder();
         if (rc.getSpecies() != null) sb.append(capitalize(rc.getSpecies())).append(" ");

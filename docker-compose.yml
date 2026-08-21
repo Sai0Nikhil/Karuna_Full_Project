@@ -47,12 +47,10 @@ services:
     container_name: karuna-backend
     ports:
       - "8081:8081"
+    env_file:
+      - ./backend/springboot/.env
     environment:
       - SPRING_PROFILES_ACTIVE=prod
-      - POSTGRES_URL=jdbc:postgresql://postgres:5432/karuna
-      - POSTGRES_USERNAME=karuna
-      - POSTGRES_PASSWORD=replace-with-a-local-password
-      - MONGODB_URI=mongodb://mongodb:27017/karuna
       - KARUNA_JWT_SECRET=replace-with-at-least-32-random-characters
       - KARUNA_UPLOAD_BASE_URL=http://localhost:8081
     depends_on:

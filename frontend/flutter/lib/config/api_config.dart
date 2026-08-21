@@ -9,8 +9,7 @@ class ApiConfig {
   //   Physical device   → 'http://<YOUR_LOCAL_IP>:8081/api'
   //   Production        → 'https://<YOUR_BACKEND_DOMAIN>/api'
 
-  static const String baseUrl = 'http://10.0.2.2:8081/api'; // local (Android emulator)
-  // static const String baseUrl = 'http://192.168.1.X:8081/api'; // local (physical device)
+  static const String baseUrl = 'http://192.168.31.211:8081/api'; // local (Wi-Fi network)
 
   // ── Endpoints ─────────────────────────────────────────────────────────────
   static const String login       = '$baseUrl/auth/login';
@@ -33,6 +32,7 @@ class ApiConfig {
   static String aiPhoto()             => '$baseUrl/ai/analyze-photo';
   static String aiFirstAid()          => '$baseUrl/ai/firstaid';
   static String aiSummary(int id)     => '$baseUrl/ai/summary/$id';
+  static String aiPainIndex()         => '$baseUrl/ai/pain-index';
 
   static const Duration timeout = Duration(seconds: 20);
 }

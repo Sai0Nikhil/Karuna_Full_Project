@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../../providers/case_provider.dart';
+import '../../models/case_model.dart';
 import '../../services/donation_service.dart';
 import '../../utils/app_colors.dart';
 import '../../widgets/loading_button.dart';
@@ -312,7 +313,13 @@ class _DonateScreenState extends State<DonateScreen> {
       (c) => c.id == (_caseId ?? (allCases.isNotEmpty ? allCases.first.id : 1)),
       orElse: () => allCases.isNotEmpty
           ? allCases.first
-          : DynamicCaseModelMock(), // fallback placeholder
+          : CaseModel(
+              id: 1,
+              reporterName: 'Sheru',
+              species: 'Indian Pariah',
+              severity: 'critical',
+              probableCondition: 'Rescued from a highway accident',
+            ), // fallback placeholder
     );
 
     return Scaffold(
@@ -799,12 +806,3 @@ class _DonateScreenState extends State<DonateScreen> {
   }
 }
 
-// Temporary fallback class if cases provider is empty
-class DynamicCaseModelMock {
-  int get id => 1;
-  String? get title => 'Sheru';
-  String? get species => 'Indian Pariah';
-  String? get severity => 'CRITICAL';
-  String? get probableCondition => 'Rescued from a highway accident';
-  String? get imageUrl => null;
-}

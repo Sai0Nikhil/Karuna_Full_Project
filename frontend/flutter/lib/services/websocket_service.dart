@@ -16,7 +16,7 @@ class WebSocketService {
   bool _connected = false;
   Timer? _reconnectTimer;
 
-  static const String _wsBase = 'ws://10.0.2.2:8081/ws';
+  static const String _wsBase = 'ws://192.168.31.211:8081/ws';
 
   Stream<Map<String, dynamic>> get stream {
     _controller ??= StreamController<Map<String, dynamic>>.broadcast();

@@ -70,6 +70,10 @@ class CaseModel {
     }
   }
 
+  String? get title => injuryType;
+  String? get imageUrl => imageDataUrl;
+  String? get location => locationLabel;
+
   bool get isCritical => severity == 'critical';
   bool get isResolved => ['discharged', 'adopted', 'released'].contains(status);
   bool get isAssigned => assignedResponder != null && assignedResponder!.isNotEmpty;

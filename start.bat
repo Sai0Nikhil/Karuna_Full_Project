@@ -12,24 +12,48 @@ echo                    KARUNA LOCAL DEVELOPMENT STARTER
 echo =================================================================
 echo.
 echo Please select what you want to launch:
-echo [1] Java Backend + Citizen Web App    (Recommended)
-echo [2] Java Backend + NGO Web App
-echo [3] All: Java Backend + Citizen + NGO
-echo [4] Java Backend Only
-echo [5] Citizen Web App Only
-echo [6] NGO Web App Only
-echo [7] Exit
+echo [1] Start Full Backend Stack via Docker Compose (Recommended)
+echo     - (Starts Postgres + MongoDB + Spring Boot + Python AI Service in Docker)
 echo.
-set /p choice="Enter choice (1-7): "
+echo [2] Start Databases Only via Docker Compose
+echo     - (Starts Postgres + MongoDB, then you run Spring Boot locally in IDE/CLI)
+echo.
+echo [3] Java Backend Only (Local via Maven)
+echo [4] Citizen Web App Only (Local)
+echo [5] NGO Web App Only (Local)
+echo.
+echo [6] Java Backend + Citizen Web App (Local)
+echo [7] Java Backend + NGO Web App (Local)
+echo [8] All: Java Backend + Citizen + NGO (Local)
+echo [9] Exit
+echo.
+set /p choice="Enter choice (1-9): "
 
-if "%choice%"=="1" goto java_and_citizen
-if "%choice%"=="2" goto java_and_ngo
-if "%choice%"=="3" goto java_all
-if "%choice%"=="4" goto java_only
-if "%choice%"=="5" goto citizen_only
-if "%choice%"=="6" goto ngo_only
-if "%choice%"=="7" goto end
+if "%choice%"=="1" goto docker_all
+if "%choice%"=="2" goto docker_db
+if "%choice%"=="3" goto java_only
+if "%choice%"=="4" goto citizen_only
+if "%choice%"=="5" goto ngo_only
+if "%choice%"=="6" goto java_and_citizen
+if "%choice%"=="7" goto java_and_ngo
+if "%choice%"=="8" goto java_all
+if "%choice%"=="9" goto end
 goto invalid
+
+:docker_all
+echo Starting all backend services via Docker Compose...
+docker-compose up --build
+goto end
+
+:docker_db
+echo Starting Postgres and MongoDB containers...
+docker-compose up -d postgres mongodb
+echo.
+echo Databases are running in the background!
+echo You can now run Spring Boot in your IDE or using option 3.
+echo.
+pause
+goto end
 
 :java_and_citizen
 call :find_mvn
